@@ -1,24 +1,14 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block title %}
-	It worked!
-{% endblock title %}
-
-
-{% block content %}
-	<center class='worked'>
-		<span>
-			<h1>Your Django project is ready!</h1>
-		</span>
-		<hr>
-		<a href="https://github.com/dunderlabs">
-			<img src="{% static '/images/GitHub-Mark-Light-32px.png' %}">
-				<p>
-					See us on github.
-				</p>
-			</img>
-		</a>
-		
-	</center>
-{% endblock content %}
+{% load render_bundle from webpack_loader %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Django React Webpack</title>
+    <!-- Webpack rendered CSS -->
+    {% render_bundle 'main' 'css' %}
+</head><body>
+    <div id="react-app"></div>
+    <!-- Webpack rendered JS -->
+    {% render_bundle 'main' 'js' %}
+</body>
+</html>

@@ -30,6 +30,8 @@ LOCAL_APPS = [
 ]
 THIRD_PARTY_APPS = [
     'compressor',
+    'rest_framework',
+    'webpack_loader',
 ]
 
 
@@ -105,6 +107,7 @@ STATIC_ROOT = BASE_DIR.child('_public', 'static')
 STATICFILES_DIRS = [
     BASE_DIR.child('frontend'),
     BASE_DIR.child('frontend', 'bower_components'),
+    BASE_DIR.child('frontend', 'assets'),
 ]
 
 # Static files finding engines
@@ -114,6 +117,12 @@ STATICFILES_FINDERS = [
     'compressor.finders.CompressorFinder',
 ]
 
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'dist/',
+        'STATS_FILE': BASE_DIR.child('webpack-stats.json'),
+    }
+}
 
 # Pre-processing and compression
 _bower = BASE_DIR.child('frontend', 'bower_components')

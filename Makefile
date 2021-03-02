@@ -24,7 +24,7 @@ setup-data:
 	python config
 
 setup-frontend:
-	bower install --allow-root
+	npm install
 
 test:
 	$(call step,Running all tests under tests/...)
