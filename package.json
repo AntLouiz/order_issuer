@@ -1,0 +1,17 @@
+{
+  "name": "DjangoBoilerplate",
+  "description": "Django boilerplate to start new projects.",
+  "version": "1.0.0",
+  "author": "Dunderlabs",
+  "dependencies": {
+    "bower": "1.8.8"
+  },
+  "license": "UNLICENSED",
+  "repository": "https://github.com/dunderlabs/django-boilerplate",
+  "engines": {
+    "node": "8.9.4"
+  },
+  "scripts": {
+    "heroku-postbuild": "./node_modules/.bin/bower install"
+  }
+}

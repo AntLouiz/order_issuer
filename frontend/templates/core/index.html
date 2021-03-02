@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+	It worked!
+{% endblock title %}
+
+
+{% block content %}
+	<center class='worked'>
+		<span>
+			<h1>Your Django project is ready!</h1>
+		</span>
+		<hr>
+		<a href="https://github.com/dunderlabs">
+			<img src="{% static '/images/GitHub-Mark-Light-32px.png' %}">
+				<p>
+					See us on github.
+				</p>
+			</img>
+		</a>
+		
+	</center>
+{% endblock content %}
