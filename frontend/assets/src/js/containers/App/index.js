@@ -12,7 +12,7 @@ import Clients from '../Clients';
 
 export default function App() {
     return (
-        <HashRouter basename={'routing'}>
+        <HashRouter basename={'/'}>
             <div>
                 <nav>
                 <ul>
