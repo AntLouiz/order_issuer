@@ -21,3 +21,4 @@ unipath==1.1
 whitenoise==5.1.0
 pytest==5.4.3
 pytest-django==3.10.0
+django-webpack-loader==0.7.0
