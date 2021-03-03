@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # Local apps
     path('', include('backend.core.urls', namespace='core')),
+    path('api/clients/', include('backend.clients.api.urls', namespace='clients')),
 ]
 
 if settings.DEBUG:
