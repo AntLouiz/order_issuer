@@ -9,6 +9,7 @@ import {
 import Home from '../Home';
 import About from '../About';
 import Clients from '../Clients';
+import Products from '../Products';
 
 export default function App() {
     return (
@@ -23,7 +24,10 @@ export default function App() {
                         <Link to="/about">About</Link>
                     </li>
                     <li>
-                        <Link to="/users">Users</Link>
+                        <Link to="/clients">Clients</Link>
+                    </li>
+                    <li>
+                        <Link to="/products">Products</Link>
                     </li>
                 </ul>
                 </nav>
@@ -36,6 +40,9 @@ export default function App() {
                 </Route>
                 <Route path="/">
                     <Home />
+                </Route>
+                <Route path="/products">
+                    <Products />
                 </Route>
             </Switch>
             </div>
