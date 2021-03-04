@@ -16,4 +16,5 @@ for ip in ips:
 INSTALLED_APPS += [
 	'django_extensions',
     'backend.clients',
+    'backend.products',
 ]
