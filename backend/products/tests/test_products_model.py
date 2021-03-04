@@ -2,13 +2,8 @@ import pytest
 from backend.products.models import Product
 
 
-@pytest.fixture
-def product():
+def test_instance():
     product = Product()
-    return product
-
-
-def test_instance(product):
     assert isinstance(product, Product)
 
 
