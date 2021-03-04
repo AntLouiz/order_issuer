@@ -1,4 +1,5 @@
 from django.apps import AppConfig
+from settings.base import BASE_DIR
 
 
 class ProductsConfig(AppConfig):
