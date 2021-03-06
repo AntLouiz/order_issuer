@@ -8,6 +8,7 @@ urlpatterns = [
     # Local apps
     path('', include('backend.core.urls', namespace='core')),
     path('api/clients/', include('backend.clients.api.urls', namespace='clients')),
+    path('api/products/', include('backend.products.api.urls', namespace='products')),
 ]
 
 if settings.DEBUG:
