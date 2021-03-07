@@ -21,7 +21,8 @@ generate-requirements:
 
 setup-data:
 	$(call step,Exporting the initial data...)
-	python config
+	python manage.py loaddata fixtures/products.json
+	python manage.py loaddata fixtures/clients.json
 
 setup-frontend:
 	npm install

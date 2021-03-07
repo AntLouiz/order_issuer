@@ -1,0 +1,35 @@
+[{
+    "model": "clients.client",
+    "pk": 1,
+    "fields": {
+        "name": "Darth Vader"
+    }
+},
+{
+    "model": "clients.client",
+    "pk": 2,
+    "fields": {
+        "name": "Obi-Wan​ ​Kenobi"
+    }
+},
+{
+    "model": "clients.client",
+    "pk": 3,
+    "fields": {
+        "name": "Luke​ ​Skywalker"
+    }
+},
+{
+    "model": "clients.client",
+    "pk": 4,
+    "fields": {
+        "name": "Imperador​ ​Palpatine"
+    }
+},
+{
+    "model": "clients.client",
+    "pk": 5,
+    "fields": {
+        "name": "Han​ ​Solo"
+    }
+}]

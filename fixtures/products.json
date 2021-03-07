@@ -1,0 +1,60 @@
+[{
+    "pk": 1,
+    "model": "products.product",
+    "fields": {
+        "name": "Millenium​ ​Falcon",
+        "price": 55000000
+    }
+},
+{
+    "pk": 2,
+    "model": "products.product",
+    "fields": {
+        "name": "X-Wing",
+        "price": 6000000,
+        "multiple": 2
+    }
+},
+{
+    "pk": 3,
+    "model": "products.product",
+    "fields": {
+        "name": "Super​ ​Star​ ​Destroyer",
+        "price": 457000000
+    }
+},
+{
+    "pk": 4,
+    "model": "products.product",
+    "fields": {
+        "name": "TIE​ ​Fighter",
+        "price": 7500000,
+        "multiple": 2
+    }
+},
+{
+    "pk": 5,
+    "model": "products.product",
+    "fields": {
+        "name": "Lightsaber",
+        "price": 600000,
+        "multiple": 5
+    }
+},
+{
+    "pk": 6,
+    "model": "products.product",
+    "fields": {
+        "name": "DLT-19​ ​Heavy​ ​Blaster​ ​Rifle",
+        "price": 580000
+    }
+},
+{
+    "pk": 7,
+    "model": "products.product",
+    "fields": {
+        "name": "DL-44​ ​Heavy​ ​Blaster​ ​Pistol",
+        "price": 150000,
+        "multiple": 10
+    }
+}]
