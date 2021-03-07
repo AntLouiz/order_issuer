@@ -29,7 +29,6 @@ LOCAL_APPS = [
     'backend.core.apps.DefaultApp',
 ]
 THIRD_PARTY_APPS = [
-    'compressor',
     'rest_framework',
     'webpack_loader',
 ]
@@ -114,7 +113,6 @@ STATICFILES_DIRS = [
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
 ]
 
 WEBPACK_LOADER = {
@@ -124,24 +122,6 @@ WEBPACK_LOADER = {
     }
 }
 
-# Pre-processing and compression
-_bower = BASE_DIR.child('frontend', 'bower_components')
-
-_sass_includes = ' '.join(
-    ['--include-path={}'.format(_bower.child('susy', 'sass')), ]
-)
-
-COMPRESS_PRECOMPILERS = [
-    ('text/x-scss', 'pysassc {infile} {outfile} ' + _sass_includes),
-]
-
-COMPRESS_CSS_FILTERS = [
-    'compressor.filters.cssmin.rCSSMinFilter',
-]
-
-COMPRESS_JS_FILTERS = [
-    'compressor.filters.jsmin.JSMinFilter',
-]
 
 # Template finders and processors
 TEMPLATES = [
