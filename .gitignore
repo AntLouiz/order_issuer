@@ -15,6 +15,7 @@ _data
 /node_modules
 /_public
 /_media
+/static
 
 # Other cache
 /.cache
