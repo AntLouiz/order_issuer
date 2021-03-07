@@ -1,8 +1,7 @@
 import pytest
-from backend.products.models import Product, Order
-from backend.products.tests.schemas import ProductSchema
+from backend.products.models import Product
+from backend.orders.models import Order
 from backend.clients.models import Client
-from backend.clients.tests.schemas import ClientSchema
 
 
 def test_instance():
