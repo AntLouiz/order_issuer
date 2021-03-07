@@ -17,4 +17,5 @@ INSTALLED_APPS += [
 	'django_extensions',
     'backend.clients',
     'backend.products',
+    'backend.orders'
 ]
