@@ -105,7 +105,6 @@ STATIC_ROOT = BASE_DIR.child('_public', 'static')
 # Directories to find static files
 STATICFILES_DIRS = [
     BASE_DIR.child('frontend'),
-    BASE_DIR.child('frontend', 'bower_components'),
     BASE_DIR.child('frontend', 'assets'),
 ]
 
