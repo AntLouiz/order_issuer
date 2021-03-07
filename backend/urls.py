@@ -11,9 +11,3 @@ urlpatterns = [
     path('api/products/', include('backend.products.api.urls', namespace='products')),
     path('api/orders/', include('backend.orders.api.urls', namespace='orders')),
 ]
-
-if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns = [
-        path('__debug__/', include(debug_toolbar.urls)),
-    ] + urlpatterns
