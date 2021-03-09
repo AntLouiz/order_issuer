@@ -1,36 +1,25 @@
 import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    HashRouter,
-    Link
+    HashRouter
 } from "react-router-dom";
 import Home from '../Home';
 import About from '../About';
 import Clients from '../Clients';
 import Products from '../Products';
+import Menu from '../../components/Menu';
+
+
 
 export default function App() {
     return (
-        <HashRouter basename={'/'}>
-            <div>
-                <nav>
-                <ul>
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/about">About</Link>
-                    </li>
-                    <li>
-                        <Link to="/clients">Clients</Link>
-                    </li>
-                    <li>
-                        <Link to="/products">Products</Link>
-                    </li>
-                </ul>
-                </nav>
+    <HashRouter basename={'/'}>
+            <Menu />
             <Switch>
                 <Route path="/about">
                     <About />
@@ -45,7 +34,6 @@ export default function App() {
                     <Products />
                 </Route>
             </Switch>
-            </div>
-        </HashRouter>
+    </HashRouter>
     );
 }
