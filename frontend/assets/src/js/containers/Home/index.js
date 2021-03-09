@@ -4,6 +4,7 @@ import {Link as RouteLink} from "react-router-dom";
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import Offers from '../../components/Offers';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -44,6 +45,14 @@ export default function Home() {
                     </Button>
                     </Grid>
                 </div>
+            </Grid>
+            <Grid
+                alignItems="center"
+                container
+                direction="row"
+                justify="center"
+            >
+                <Offers />
             </Grid>
             </Container>
         </div>
