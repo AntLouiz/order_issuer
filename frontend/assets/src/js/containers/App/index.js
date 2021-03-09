@@ -20,18 +20,9 @@ export default function App() {
         <HashRouter basename={'/'}>
         <Menu />
                 <Switch>
-                    <Route path="/about">
-                        <About />
-                    </Route>
-                    <Route path="/clients">
-                        <Clients />
-                    </Route>
-                    <Route path="/home">
-                        <Home />
-                    </Route>
-                    <Route path="/products">
-                        <Products />
-                    </Route>
+                    <Route path="/home" component={Home} />
+                    <Route path="/about" component={About} />
+                    <Route path="/products" component={Products} />
                     <Route path="/checkout" component={Checkout} />
                 </Switch>
         </HashRouter>
