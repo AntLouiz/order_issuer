@@ -11,6 +11,10 @@ import ProductsSearch from '../ProductsSearch';
 
 
 const useStyles = makeStyles((theme) => ({
+    root: {
+        paddingTop: "1rem",
+        paddingBottom: "1rem"
+    },
     link: {
         display: 'flex',
     },
@@ -30,7 +34,7 @@ export default function Menu() {
     const classes = useStyles();
 
     return (
-        <Grid container xs={12}>
+        <Grid container xs={12} className={classes.root}>
         <Grid item xs={2}>
             <Link color="inherit" className={classes.logo}>
                 <RouteLink to="home">
@@ -41,7 +45,13 @@ export default function Menu() {
         <Grid item xs={6}>
             <ProductsSearch />
         </Grid>
-        <Grid item xs={4}>
+        <Grid
+            item xs={4}
+            alignItems="center"
+            container
+            direction="row"
+            justify="center"
+        >
             <Typography color="textPrimary" className={classes.link}>
                 <RouteLink to="orders">
                     <ShoppingBasketIcon className={classes.icon} />
