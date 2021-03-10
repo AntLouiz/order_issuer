@@ -25,28 +25,32 @@ const useStyles = makeStyles({
 
 export default function OrderCard(props) {
     const classes = useStyles();
+    const { order } = props;
+
+    console.log(order)
+
     let defaultMessage = null;
 
-    if (!props.title) {
+    if (!order.title) {
         defaultMessage = <h3>Clique em um pedido para ver detalhes.</h3>
     }
 
-    let CardContent = <div>{defaultMessage}</div>
+    let content = <div>{defaultMessage}</div>
 
     if (!defaultMessage) {
-        CardContent = (
+      content = (
           <div>
           <CardMedia
             className={classes.media}
-            image={props.image_url}
-            title={props.title}
+            image={order.image_url}
+            title={order.title}
           />
           <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
-                {props.title}
+                {order.title}
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
-                {props.description}
+                {order.description}
               </Typography>
           </CardContent>
           </div>
@@ -55,19 +59,14 @@ export default function OrderCard(props) {
 
     let cardActions = (
       <CardActions hidden={!!defaultMessage}>
-        <Button size="medium" color="secondary" className={classes.buttons}>
-          Fazer pedido
-        </Button>
-        <Button size="small" color="primary" className={classes.buttons}>
-          Saber mais
-        </Button>
+        Show details
       </CardActions>
     )
 
     return (
         <Card className={classes.root}>
         <CardActionArea>
-        {CardContent}
+        {content}
         </CardActionArea>
         {defaultMessage? null: cardActions}
       </Card>

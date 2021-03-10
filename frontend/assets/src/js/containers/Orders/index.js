@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import OrdersList from '../../components/OrdersList';
+import OrderCard from '../../components/OrderCard';
+
+const defaultState = {
+  title: null,
+  description: null,
+  price: null,
+  image_url: null
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: 400,
+    margin: "auto",
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
 
 function mocked_orders() {
   return [
@@ -16,18 +32,28 @@ function mocked_orders() {
 
 export default function Orders() {
     const products = mocked_orders();
-    let offers = [];
+    const classes = useStyles();
 
-    for (let offer of products) {
-      console.log(offer)
-    }
+    const [selectedOrder, setOrder] = useState(defaultState);
 
     return (
       <Grid container xs={12}>
       <Grid item xs={12}>
         <h1>Meus pedidos</h1>
       </Grid>
-      <OrdersList />
+      <Grid container xs={12} className={classes.root}>
+      <Grid item xs={8}>
+        <OrdersList handleItemClick={setOrder}/>
+      </Grid>
+      <Grid
+        item xs={4}
+        alignItems="center"
+        direction="row"
+        justify="center"
+      >
+        <OrderCard order={selectedOrder}/>
+      </Grid>
+      </Grid>
       </Grid>
     )
 }

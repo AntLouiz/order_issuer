@@ -5,7 +5,6 @@ import ListItem from '@material-ui/core/ListItem';
 import Grid from '@material-ui/core/Grid';
 import ListItemText from '@material-ui/core/ListItemText';
 import { FixedSizeList } from 'react-window';
-import OrderCard from '../OrderCard';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -17,11 +16,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function renderRow(props) {
-  const { index, style } = props;
+  const { index, style, data } = props;
+
+  let rowData = {"title": index, "description": "Lorem"}
+  console.log(rowData)
 
   return (
-    <ListItem button style={style} key={index}>
-      <ListItemText primary={`Pedido ${index + 1}`} />
+    <ListItem button style={style} key={index} onClick={() => data.handleItemClick(rowData)}>
+      <ListItemText primary={`Pedido ${index + 1}`}/>
     </ListItem>
   );
 }
@@ -31,24 +33,19 @@ renderRow.propTypes = {
   style: PropTypes.object.isRequired,
 };
 
-export default function OrdersList() {
+export default function OrdersList({handleItemClick}) {
   const classes = useStyles();
 
   return (
-    <Grid container xs={12} className={classes.root}>
-      <Grid item xs={8}>
-      <FixedSizeList height={400} width={500} itemSize={46} itemCount={200} className={classes.root}>
-        {renderRow}
-      </FixedSizeList>
-      </Grid>
-      <Grid
-        item xs={4}
-        alignItems="center"
-        direction="row"
-        justify="center"
-      >
-        <OrderCard />
-      </Grid>
-    </Grid>
-  );
+    <FixedSizeList
+      height={400}
+      width={500}
+      itemSize={46}
+      itemCount={200}
+      className={classes.root}
+      itemData={{handleItemClick: handleItemClick}}
+    >
+      {renderRow}
+    </FixedSizeList>
+  )
 }
