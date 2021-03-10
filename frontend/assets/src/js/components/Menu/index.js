@@ -53,7 +53,7 @@ export default function Menu() {
             justify="center"
         >
             <Typography color="textPrimary" className={classes.link}>
-                <RouteLink to="orders">
+                <RouteLink to="my-orders">
                     <ShoppingBasketIcon className={classes.icon} />
                 </RouteLink>
             </Typography>

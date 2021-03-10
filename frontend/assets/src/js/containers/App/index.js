@@ -11,6 +11,7 @@ import About from '../About';
 import Clients from '../Clients';
 import Products from '../Products';
 import Checkout from '../Checkout';
+import Orders from '../Orders';
 import Menu from '../../components/Menu';
 
 
@@ -24,6 +25,7 @@ export default function App() {
                     <Route path="/about" component={About} />
                     <Route path="/products" component={Products} />
                     <Route path="/checkout" component={Checkout} />
+                    <Route path="/my-orders" component={Orders} />
                 </Switch>
         </HashRouter>
     );

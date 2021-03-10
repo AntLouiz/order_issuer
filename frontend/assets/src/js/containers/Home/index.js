@@ -40,7 +40,7 @@ export default function Home() {
                     </p>
 
                     <Grid item>
-                    <Button color="green" component={RouteLink} to="new-order">
+                    <Button color="green" component={RouteLink} to="checkout">
                         Comprar agora
                     </Button>
                     </Grid>

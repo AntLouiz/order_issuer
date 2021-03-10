@@ -1,9 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import OfferCard from '../OfferCard';
 import Grid from '@material-ui/core/Grid';
+import OrdersList from '../../components/OrdersList';
 
-function mocked_products() {
+function mocked_orders() {
   return [
     {"id": 1, "description": "Lorem", "name": "Tie Fighter", "image_url": "https://bit.ly/30tP43i"},
     {"id": 2, "description": "Lorem", "name": "Tie Fighter", "image_url": "https://bit.ly/30tP43i"},
@@ -14,22 +14,20 @@ function mocked_products() {
   ]
 }
 
-export default function Offers() {
-    const products = mocked_products();
+export default function Orders() {
+    const products = mocked_orders();
     let offers = [];
 
     for (let offer of products) {
-      let offerCard = <OfferCard
-                        key={offer.id}
-                        title={offer.name}
-                        description={offer.description}
-                        image_url={offer.image_url}/>
-      offers.push(offerCard)
+      console.log(offer)
     }
 
     return (
-      <Grid container xs={9}>
-        {offers}
+      <Grid container xs={12}>
+      <Grid item xs={12}>
+        <h1>Meus pedidos</h1>
+      </Grid>
+      <OrdersList />
       </Grid>
     )
 }

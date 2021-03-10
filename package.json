@@ -38,6 +38,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
     "react-router-dom": "^5.2.0",
+    "react-window": "^1.8.6",
     "webpack": "^5.24.2",
     "webpack-bundle-tracker": "^0.4.3",
     "webpack-cli": "^4.5.0"
