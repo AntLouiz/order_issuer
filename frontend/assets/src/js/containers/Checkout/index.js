@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import OrderDetail from '../../components/OrderDetail';
-import OrderCard from '../../components/OrderCard';
+import OrderPricing from '../../components/OrderPricing';
 
 const defaultState = {
   title: "Tie Fighter",
@@ -13,7 +13,7 @@ const defaultState = {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: 400,
+    height: "100%",
     margin: "auto",
     backgroundColor: theme.palette.background.paper,
   },
@@ -39,7 +39,7 @@ export default function Orders() {
         direction="row"
         justify="center"
       >
-        OrderPricing
+        <OrderPricing order={selectedOrder}/>
       </Grid>
       </Grid>
       </Grid>
