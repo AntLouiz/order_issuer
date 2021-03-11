@@ -88,7 +88,8 @@ export default function OrderPricing(props) {
             showInput = true
         }
         confirmedPrice = confirmedPrice
-        setState({...state, confirmedPrice: confirmedPrice, showInput: showInput})
+        let subtotal = state.quantity * confirmedPrice
+        setState({...state, confirmedPrice: confirmedPrice, subtotal: subtotal, showInput: showInput})
     }
 
     const handleShowHideClick = () => {
