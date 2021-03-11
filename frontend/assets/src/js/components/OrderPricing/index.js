@@ -151,7 +151,7 @@ export default function OrderPricing(props) {
                 <Button
                     color="green"
                     to="checkout"
-                    disabled={state.quantity===1}
+                    disabled={state.quantity===state.multiple}
                     className={classes.buttonQuantity}
                     onClick={() => handleQuantity("sub")}
                 >
