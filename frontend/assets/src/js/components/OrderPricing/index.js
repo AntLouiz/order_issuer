@@ -26,6 +26,12 @@ const useStyles = makeStyles((theme) => ({
     },
     buttonQuantity: {
         width: 80
+    },
+    subtotal: {
+        textAlign: "right",
+        fontSize: 18,
+        fontWeight: "bold",
+        margin: 10
     }
 }));
 
@@ -48,7 +54,8 @@ export default function OrderPricing(props) {
         useSugestedPrice: true,
         quantity: order.multiple? order.multiple: 1,
         inputError: false,
-        multiple: order.multiple? order.multiple: 1
+        multiple: order.multiple? order.multiple: 1,
+        subtotal: convertPrice(order.multiple * order.price)
     }
 
     const [state, setState] = useState(defaultState);
@@ -166,6 +173,13 @@ export default function OrderPricing(props) {
                 >
                     <AddIcon />
                 </Button>
+            </Grid>
+            <Grid
+                item
+                xs={12}
+                className={classes.subtotal}
+            >
+                <span>Subtotal: {state.subtotal}</span>
             </Grid>
             <Grid item xs={12}>
             <Button color="green" to="checkout" className={classes.button}>
