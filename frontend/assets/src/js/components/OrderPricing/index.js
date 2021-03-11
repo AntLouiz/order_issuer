@@ -9,13 +9,6 @@ import Input from '@material-ui/core/Input';
 import { makeStyles } from '@material-ui/core/styles';
 
 
-let defaultState = {
-    price: null,
-    showInput: false,
-    amount: undefined,
-    quantity: 1
-}
-
 const useStyles = makeStyles((theme) => ({
     root: {
         margin: "auto",
@@ -37,25 +30,53 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+function convertPrice(price) {
+    return price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+}
+
+
 export default function OrderPricing(props) {
     const {order} = props
+
+    let orderPrice = convertPrice(order.price)
+    let defaultState = {
+        price: null,
+        showInput: false,
+        showUserInput: false,
+        confirmedPrice: orderPrice,
+        sugestedPrice: orderPrice,
+        useSugestedPrice: true,
+        quantity: 1,
+        multiple: order.multiple
+    }
+
     const [state, setState] = useState(defaultState);
 
     const classes = useStyles();
 
-    const convertPrice = (price) => {
-        return price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
-    }
-
     const handleChange = (event) => {
-        console.log(event.target.value)
+        const {name, value} = event.target
+        setState({...state, [name]: parseInt(value)})
     };
 
-    const handleInputClick = () => {
-
+    const handleInputButtonClick = () => {
+        let confirmedPrice = 0
+        if (state.sugestedPrice && state.useSugestedPrice) {
+            confirmedPrice = state.sugestedPrice
+        } else {
+            confirmedPrice = state.price
+        }
+        confirmedPrice = convertPrice(confirmedPrice)
+        setState({...state, confirmedPrice: confirmedPrice})
     }
 
-    let orderPrice = convertPrice(order.price)
+    const handleShowHideClick = () => {
+        setState({...state,
+                  useSugestedPrice: !state.useSugestedPrice,
+                  showInput: !state.showInput,
+                  showUserInput: !state.showUserInput
+                })
+    }
 
     let inputAmount = null
     if (state.showInput) {
@@ -64,11 +85,12 @@ export default function OrderPricing(props) {
                 <InputLabel htmlFor="standard-adornment-amount">Informe um valor:</InputLabel>
                 <Input
                     id="standard-adornment-amount"
-                    value={state.amount}
+                    name="price"
+                    value={state.price}
                     onChange={handleChange}
-                    startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                    startAdornment={<InputAdornment position="start">R$</InputAdornment>}
                 />
-                <Button color="default" to="checkout" onClick={handleInputClick}>
+                <Button color="default" to="checkout" onClick={handleInputButtonClick}>
                     Pronto
                 </Button>
             </label>)
@@ -76,13 +98,17 @@ export default function OrderPricing(props) {
 
     return (
         <Grid container className={classes.root} justify="space-evenly">
-            <Grid item xs={12}>
-                <span className={classes.price}>
-                    Preço sugerido: {state.price? state.price: orderPrice}
-                </span>
-                <Button color="green" onClick={() => setState({...state, showInput: !state.showInput})}>
-                    {state.showInput? "Utilizar preço sugerido": "Alterar preço sugerido"}
-                </Button>
+            <Grid container xs={12}>
+                <Grid item xs={12}>
+                    <span className={classes.price}>
+                        Preço sugerido: <br/>{state.showUserInput? state.confirmedPrice: orderPrice}
+                    </span>
+                </Grid>
+                <Grid item xs={12}>
+                    <Button color="green" onClick={handleShowHideClick}>
+                        {state.showInput? "Utilizar preço sugerido": "Alterar preço sugerido"}
+                    </Button>
+                </Grid>
             </Grid>
             <Grid item xs={12}>
                 {inputAmount}
