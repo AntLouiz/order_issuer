@@ -46,9 +46,9 @@ export default function OrderPricing(props) {
         confirmedPrice: orderPrice,
         sugestedPrice: orderPrice,
         useSugestedPrice: true,
-        quantity: 1,
+        quantity: order.multiple? order.multiple: 1,
         inputError: false,
-        multiple: order.multiple
+        multiple: order.multiple? order.multiple: 1
     }
 
     const [state, setState] = useState(defaultState);
@@ -90,6 +90,18 @@ export default function OrderPricing(props) {
                   showInput: !state.showInput,
                   showUserInput: !state.showUserInput
                 })
+    }
+
+    const handleQuantity = (event) => {
+        if (event === "sum") {
+            let quantity = state.multiple + state.quantity
+            setState({...state, quantity: quantity})
+        } else {
+            if (state.quantity > state.multiple) {
+                let quantity =  state.quantity - state.multiple
+                setState({...state, quantity: quantity})
+            }
+        }
     }
 
     let inputAmount = null
@@ -141,7 +153,7 @@ export default function OrderPricing(props) {
                     to="checkout"
                     disabled={state.quantity===1}
                     className={classes.buttonQuantity}
-                    onClick={() => setState({...state, quantity: state.quantity > 1? state.quantity - 1: state.quantity})}
+                    onClick={() => handleQuantity("sub")}
                 >
                     <RemoveIcon />
                 </Button>
@@ -150,7 +162,7 @@ export default function OrderPricing(props) {
                     color="green"
                     to="checkout"
                     className={classes.buttonQuantity}
-                    onClick={() => setState({...state, quantity: state.quantity + 1})}
+                    onClick={() => handleQuantity("sum")}
                 >
                     <AddIcon />
                 </Button>

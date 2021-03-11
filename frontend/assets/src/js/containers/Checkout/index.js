@@ -8,7 +8,8 @@ const defaultState = {
   title: "Tie Fighter",
   description: "Lorem",
   price: 215500,
-  image_url: "https://bit.ly/30tP43i"
+  image_url: "https://bit.ly/30tP43i",
+  multiple: 2
 }
 
 const useStyles = makeStyles((theme) => ({
