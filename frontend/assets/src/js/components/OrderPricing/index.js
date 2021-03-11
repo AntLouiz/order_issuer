@@ -7,6 +7,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Input from '@material-ui/core/Input';
 import { makeStyles } from '@material-ui/core/styles';
+import OrderConfirmModal from '../OrderConfirmModal';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -185,9 +186,7 @@ export default function OrderPricing(props) {
                 <span>Subtotal: {state.subtotal}</span>
             </Grid>
             <Grid item xs={12}>
-            <Button color="green" to="checkout" className={classes.button}>
-                Submeter pedido
-            </Button>
+            <OrderConfirmModal openButtonText={"Submeter pedido"}/>
             </Grid>
         </Grid>
     )
