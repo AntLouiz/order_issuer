@@ -47,6 +47,7 @@ export default function OrderPricing(props) {
         sugestedPrice: orderPrice,
         useSugestedPrice: true,
         quantity: 1,
+        inputError: false,
         multiple: order.multiple
     }
 
@@ -55,8 +56,16 @@ export default function OrderPricing(props) {
     const classes = useStyles();
 
     const handleChange = (event) => {
-        const {name, value} = event.target
-        setState({...state, [name]: parseInt(value)})
+        let {name, value} = event.target
+        let inputError = false
+
+        if (!parseInt(value)) {
+            inputError = true
+        } else {
+            value = parseInt(value)
+        }
+
+        setState({...state, [name]: value, inputError: inputError})
     };
 
     const handleInputButtonClick = () => {
@@ -86,11 +95,17 @@ export default function OrderPricing(props) {
                 <Input
                     id="standard-adornment-amount"
                     name="price"
+                    error={state.inputError}
                     value={state.price}
                     onChange={handleChange}
                     startAdornment={<InputAdornment position="start">R$</InputAdornment>}
                 />
-                <Button color="default" to="checkout" onClick={handleInputButtonClick}>
+                <Button
+                    color="default"
+                    to="checkout"
+                    onClick={handleInputButtonClick}
+                    disabled={state.inputError}
+                >
                     Pronto
                 </Button>
             </label>)
