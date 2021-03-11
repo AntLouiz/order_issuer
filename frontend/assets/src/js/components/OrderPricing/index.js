@@ -44,7 +44,7 @@ function convertPrice(price) {
 export default function OrderPricing(props) {
     const {order} = props
 
-    let orderPrice = convertPrice(order.price)
+    let orderPrice = order.price
     let defaultState = {
         price: null,
         showInput: false,
@@ -55,7 +55,7 @@ export default function OrderPricing(props) {
         quantity: order.multiple? order.multiple: 1,
         inputError: false,
         multiple: order.multiple? order.multiple: 1,
-        subtotal: convertPrice(order.multiple * order.price)
+        subtotal: order.multiple * order.price
     }
 
     const [state, setState] = useState(defaultState);
@@ -87,7 +87,7 @@ export default function OrderPricing(props) {
         if (!state.price) {
             showInput = true
         }
-        confirmedPrice = convertPrice(confirmedPrice)
+        confirmedPrice = confirmedPrice
         setState({...state, confirmedPrice: confirmedPrice, showInput: showInput})
     }
 
@@ -102,11 +102,13 @@ export default function OrderPricing(props) {
     const handleQuantity = (event) => {
         if (event === "sum") {
             let quantity = state.multiple + state.quantity
-            setState({...state, quantity: quantity})
+            let subtotal = quantity * state.confirmedPrice
+            setState({...state, quantity: quantity, subtotal: subtotal})
         } else {
             if (state.quantity > state.multiple) {
                 let quantity =  state.quantity - state.multiple
-                setState({...state, quantity: quantity})
+                let subtotal = quantity * state.confirmedPrice
+                setState({...state, quantity: quantity, subtotal: subtotal})
             }
         }
     }
