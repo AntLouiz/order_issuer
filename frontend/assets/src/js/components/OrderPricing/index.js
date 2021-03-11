@@ -169,7 +169,7 @@ export default function OrderPricing(props) {
             </Grid>
             <Grid item xs={12}>
             <Button color="green" to="checkout" className={classes.button}>
-                Finalizar pedido
+                Submeter pedido
             </Button>
             </Grid>
         </Grid>
