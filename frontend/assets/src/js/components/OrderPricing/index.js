@@ -70,13 +70,18 @@ export default function OrderPricing(props) {
 
     const handleInputButtonClick = () => {
         let confirmedPrice = 0
+        let showInput = false
         if (state.sugestedPrice && state.useSugestedPrice) {
             confirmedPrice = state.sugestedPrice
         } else {
             confirmedPrice = state.price
         }
+
+        if (!state.price) {
+            showInput = true
+        }
         confirmedPrice = convertPrice(confirmedPrice)
-        setState({...state, confirmedPrice: confirmedPrice})
+        setState({...state, confirmedPrice: confirmedPrice, showInput: showInput})
     }
 
     const handleShowHideClick = () => {
@@ -88,7 +93,7 @@ export default function OrderPricing(props) {
     }
 
     let inputAmount = null
-    if (state.showInput) {
+    if (state.showInput && !state.useSugestedPrice) {
         inputAmount = (
             <label>
                 <InputLabel htmlFor="standard-adornment-amount">Informe um valor:</InputLabel>
@@ -121,12 +126,13 @@ export default function OrderPricing(props) {
                 </Grid>
                 <Grid item xs={12}>
                     <Button color="green" onClick={handleShowHideClick}>
-                        {state.showInput? "Utilizar preço sugerido": "Alterar preço sugerido"}
+                        {state.useSugestedPrice? "Alterar preço sugerido": "Utilizar preço sugerido"}
                     </Button>
                 </Grid>
             </Grid>
             <Grid item xs={12}>
                 {inputAmount}
+                {!state.showInput && !state.useSugestedPrice?<Button size="small">Clique para alterar o preço informado</Button>:null}
             </Grid>
             <Grid item xs={12}>
                 <InputLabel htmlFor="standard-adornment-amount">Informe a quantidade:</InputLabel>
