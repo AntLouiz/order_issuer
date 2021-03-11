@@ -1,31 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
+import OrderDetail from '../../components/OrderDetail';
+import OrderCard from '../../components/OrderCard';
 
+const defaultState = {
+  title: "Tie Fighter",
+  description: "Lorem",
+  price: 215500,
+  image_url: "https://bit.ly/30tP43i"
+}
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-    }
-}))
+  root: {
+    height: 400,
+    margin: "auto",
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
 
+export default function Orders() {
+    const classes = useStyles();
 
-export default function Checkout() {
-    const classes = useStyles()
+    const [selectedOrder, setOrder] = useState(defaultState);
 
     return (
-        <div className={classes.root}>
-            <Container>
-            <Grid item xs={12}>
-                <div>
-                    <h2>
-                        Checkout
-                    </h2>
-                </div>
-            </Grid>
-            </Container>
-        </div>
+      <Grid container xs={12}>
+      <Grid item xs={12}>
+        <h1>Checkout</h1>
+      </Grid>
+      <Grid container xs={12} className={classes.root}>
+      <Grid item xs={8}>
+        <OrderDetail order={selectedOrder}/>
+      </Grid>
+      <Grid
+        item xs={4}
+        alignItems="center"
+        direction="row"
+        justify="center"
+      >
+        OrderPricing
+      </Grid>
+      </Grid>
+      </Grid>
     )
 }
