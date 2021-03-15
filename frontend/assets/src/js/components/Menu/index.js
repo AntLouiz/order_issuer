@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
-import HomeIcon from '@material-ui/icons/Home';
+import Avatar from '@material-ui/core/Avatar';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import ProductsSearch from '../ProductsSearch';
 
@@ -27,11 +27,30 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(0.5),
         fontSize: '2.5rem',
         padding: '0.5rem'
+    },
+    greetings: {
+        paddingTop: 5
     }
 }));
 
-export default function Menu() {
+export default function Menu(props) {
     const classes = useStyles();
+    const {client} = props.appState
+
+    let avatarSection;
+
+    if (client) {
+        avatarSection = (
+            <Grid container>
+                <Grid xs={3}>
+                    <Avatar>{client.name[0]}</Avatar>
+                </Grid>
+                <Grid xs={9} className={classes.greetings}>
+                    <strong>Olá, {client.name}</strong>
+                </Grid>
+            </Grid>
+        )
+    }
 
     return (
         <Grid container xs={12} className={classes.root}>
@@ -46,7 +65,7 @@ export default function Menu() {
             <ProductsSearch />
         </Grid>
         <Grid
-            item xs={4}
+            item xs={2}
             alignItems="center"
             container
             direction="row"
@@ -57,6 +76,14 @@ export default function Menu() {
                     <ShoppingBasketIcon className={classes.icon} />
                 </RouteLink>
             </Typography>
+        </Grid>
+        <Grid item xs={2}
+            alignItems="center"
+            container
+            direction="row"
+            justify="center"
+        >
+            {avatarSection}
         </Grid>
         </Grid>
     );

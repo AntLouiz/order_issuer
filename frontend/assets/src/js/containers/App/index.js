@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -13,13 +13,22 @@ import Products from '../Products';
 import Checkout from '../Checkout';
 import Orders from '../Orders';
 import Menu from '../../components/Menu';
+import ClientChooseModal from '../../components/ClientChooseModal';
 
+
+let defaultState = {
+    client: null,
+    currentOrder: null
+}
 
 
 export default function App() {
+    const [state, setState] = useState(defaultState)
+
     return (
         <HashRouter basename={'/'}>
-        <Menu />
+        <ClientChooseModal appState={state} setAppState={setState} />
+        <Menu appState={state} />
                 <Switch>
                     <Route path="/home" component={Home} />
                     <Route path="/about" component={About} />
