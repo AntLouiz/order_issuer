@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
+import { useHistory } from "react-router-dom";
 import { Grid } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+import { Router } from 'react-router-dom';
 
+
+let defaultState = {
+  open: false,
+  isLoading: false
+}
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -22,25 +29,36 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+function fakeRequest(handler, history) {
+    setTimeout(() => {
+        handler()
+        setTimeout(() => {
+            history.push("my-orders")
+        }, 800)
+    }, 1000);
+}
+
 export default function OrderConfirmModal(props) {
     const {openButtonText} = props
+    const [message, setMessage] = useState("Processando pedido...")
+    let history = useHistory();
 
     const classes = useStyles();
-    const [open, setOpen] = useState(false);
+    const [state, setState] = useState(defaultState);
 
     const handleOpen = () => {
-        setOpen(true);
+        setState({...state, open: true, isLoading: true});
+        fakeRequest(() => setMessage("Pedido processado com sucesso!"), history)
     };
-    
+
     const handleClose = () => {
-        setOpen(false);
+      setState({...state, open: false, isLoading: false});
     };
 
     const body = (
         <div className={classes.paper}>
-            <h2 id="simple-modal-title">Text in a modal</h2>
+            <h2 id="simple-modal-title">{message}</h2>
             <p id="simple-modal-description">
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </p>
         </div>
     );
@@ -51,7 +69,7 @@ export default function OrderConfirmModal(props) {
             {openButtonText}
         </Button>
         <Modal
-            open={open}
+            open={state.open}
             onClose={handleClose}
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"
