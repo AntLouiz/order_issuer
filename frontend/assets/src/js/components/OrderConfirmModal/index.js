@@ -4,7 +4,6 @@ import { Grid } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import { Router } from 'react-router-dom';
 
 
 let defaultState = {
@@ -33,7 +32,7 @@ function fakeRequest(handler, history) {
     setTimeout(() => {
         handler()
         setTimeout(() => {
-            history.push("my-orders")
+            history.push('/')
         }, 800)
     }, 1000);
 }
@@ -41,25 +40,23 @@ function fakeRequest(handler, history) {
 export default function OrderConfirmModal(props) {
     const {openButtonText} = props
     const [message, setMessage] = useState("Processando pedido...")
-    let history = useHistory();
+    let history = useHistory()
 
     const classes = useStyles();
     const [state, setState] = useState(defaultState);
 
     const handleOpen = () => {
         setState({...state, open: true, isLoading: true});
-        fakeRequest(() => setMessage("Pedido processado com sucesso!"), history)
+        fakeRequest(() => setMessage("Item adicionado à cesta."), history)
     };
 
     const handleClose = () => {
-      setState({...state, open: false, isLoading: false});
+       setState({...state, open: false, isLoading: false});
     };
 
     const body = (
         <div className={classes.paper}>
-            <h2 id="simple-modal-title">{message}</h2>
-            <p id="simple-modal-description">
-            </p>
+            <strong id="simple-modal-title">{message}</strong>
         </div>
     );
 

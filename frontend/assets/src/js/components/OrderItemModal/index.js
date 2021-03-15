@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from "react-router-dom";
 import IconButton from '@material-ui/core/IconButton';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import { makeStyles } from '@material-ui/core/styles';
@@ -28,11 +27,11 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function fakeRequest(handler, history) {
+function fakeRequest(handler) {
     setTimeout(() => {
         handler()
         setTimeout(() => {
-            history.push("my-orders")
+            console.log("Request done.")
         }, 800)
     }, 1000);
 }
