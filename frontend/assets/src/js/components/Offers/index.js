@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 
 function mocked_products() {
   return [
-    {"id": 1, "description": "Lorem", "name": "Tie Fighter", "image_url": "https://bit.ly/30tP43i"},
+    {"id": 1, "description": "Lorem", "name": "Tie Fighter", "image_url": "https://bit.ly/30tP43i", "is_offer": true},
     {"id": 2, "description": "Lorem", "name": "Tie Fighter", "image_url": "https://bit.ly/30tP43i"},
     {"id": 3, "description": "Lorem", "name": "Tie Fighter", "image_url": "https://bit.ly/30tP43i"},
     {"id": 4, "description": "Lorem", "name": "Tie Fighter", "image_url": "https://bit.ly/30tP43i"},
@@ -19,11 +19,7 @@ export default function Offers() {
     let offers = [];
 
     for (let offer of products) {
-      let offerCard = <OfferCard
-                        key={offer.id}
-                        title={offer.name}
-                        description={offer.description}
-                        image_url={offer.image_url}/>
+      let offerCard = <OfferCard offer={offer}/>
       offers.push(offerCard)
     }
 

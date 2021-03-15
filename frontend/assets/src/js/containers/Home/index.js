@@ -28,32 +28,14 @@ export default function Home() {
     return (
         <div className={classes.root}>
             <Container>
-            <Grid item xs={12}>
-                <div className={classes.welcome}>
-                    <h2>
-                        Welcome to the order issuer!
-                    </h2>
-                    <p>
-                        <span className={classes.subwelcome}>
-                            Produtos a um click de distância.
-                        </span>
-                    </p>
-
-                    <Grid item>
-                    <Button color="green" component={RouteLink} to="checkout">
-                        Comprar agora
-                    </Button>
-                    </Grid>
-                </div>
-            </Grid>
-            <Grid
-                alignItems="center"
-                container
-                direction="row"
-                justify="center"
-            >
-                <Offers />
-            </Grid>
+                <Grid
+                    alignItems="center"
+                    container
+                    direction="row"
+                    justify="center"
+                >
+                    <Offers />
+                </Grid>
             </Container>
         </div>
     )
