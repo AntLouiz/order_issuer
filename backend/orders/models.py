@@ -3,6 +3,12 @@ from backend.clients.models import Client
 from backend.products.models import Product
 
 
+class Order(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    created_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=False, auto_now_add=False, blank=True, null=True)
+
+
 class OrderItem(models.Model):
     GREAT = 'GREAT'
     GOOD = 'GOOD'
@@ -19,11 +25,25 @@ class OrderItem(models.Model):
         choices=RENTABILITY_CHOICES,
         default=GOOD,
     )
-    sugested_price = models.IntegerField()
+    price = models.IntegerField()
+    quantity = models.IntegerField(default=1)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
 
+    def save(self, *args, **kwargs):
+        product_price = self.product.price
+        percent = 10
+        tolerance = int((percent * product_price) / 100)
+        tolerance_price = product_price - tolerance
+        tolerance_range = range(tolerance_price, product_price + 1)
 
-class Order(models.Model):
-    items = models.ManyToManyField(OrderItem)
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    created_at = models.DateField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=False, auto_now_add=False, blank=True, null=True)
+        self.rentability = OrderItem.BAD
+
+        if self.price > product_price:
+            self.rentability = OrderItem.GREAT
+        elif self.price in tolerance_range:
+            self.rentability = OrderItem.GOOD
+
+        return super().save(*args, **kwargs)
+
+    def is_bad_rentability(self):
+        return self.rentability == self.BAD

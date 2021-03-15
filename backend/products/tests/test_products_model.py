@@ -12,6 +12,8 @@ def test_instance_fields_with_multiple_attr():
                        'name',
                        'price',
                        'multiple',
+                       'is_offer',
+                       'image_url',
                        '_state']
 
     product_dict = {"name": "X-Wing",
