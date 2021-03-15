@@ -1,6 +1,6 @@
 import pytest
 from backend.products.models import Product
-from backend.orders.models import Order
+from backend.orders.models import Order, OrderItem
 from backend.clients.models import Client
 
 
@@ -10,19 +10,19 @@ def test_instance():
 
 
 @pytest.fixture
-def products_list(db):
-    products = [Product.objects.create(name='R2d2', price=100),
-               Product.objects.create(name='C3PO', price=200)]
+def items(db):
+    product = Product.objects.create(name='R2d2', price=100)
+    order_items = [OrderItem.objects.create(sugested_price=100, product=product)]
 
-    return products
+    return order_items
 
 @pytest.fixture
 def client(db):
-    client = Client.objects.create(name='R2d2')
+    client = Client.objects.create(name='Darth Vader')
     return client
 
 
-def test_instance_fields(products_list, client, db):
+def test_instance_fields(items, client, db):
     expected_fields = ['id',
                        'client_id',
                        'created_at',
@@ -31,8 +31,9 @@ def test_instance_fields(products_list, client, db):
 
     order_dict = {"client": client}
     order = Order.objects.create(client=client)
-    for product in products_list:
-        order.products.add(product)
+    print(items)
+    for item in items:
+        order.items.add(item)
 
     object_fields = order.__dict__.keys()
 
