@@ -5,8 +5,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import OrderItemModal from '../OrderItemModal';
 
 
 const useStyles = makeStyles({
@@ -45,9 +45,7 @@ export default function OfferCard(props) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="medium" color="secondary" className={classes.buttons}>
-            Fazer pedido
-          </Button>
+          <OrderItemModal order={offer}/>
         </CardActions>
       </Card>
     )

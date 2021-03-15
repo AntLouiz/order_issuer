@@ -6,11 +6,11 @@ import Grid from '@material-ui/core/Grid';
 function mocked_products() {
   return [
     {"id": 1, "description": "Lorem", "name": "Tie Fighter", "image_url": "https://bit.ly/30tP43i", "is_offer": true},
-    {"id": 2, "description": "Lorem", "name": "Tie Fighter", "image_url": "https://bit.ly/30tP43i"},
-    {"id": 3, "description": "Lorem", "name": "Tie Fighter", "image_url": "https://bit.ly/30tP43i"},
-    {"id": 4, "description": "Lorem", "name": "Tie Fighter", "image_url": "https://bit.ly/30tP43i"},
-    {"id": 5, "description": "Lorem", "name": "Tie Fighter", "image_url": "https://bit.ly/30tP43i"},
-    {"id": 6, "description": "Lorem", "name": "Tie Fighter", "image_url": "https://bit.ly/30tP43i"},
+    {"id": 2, "description": "Lorem", "name": "Tie Fighter", "image_url": "https://bit.ly/30tP43i", "price": 20000},
+    {"id": 3, "description": "Lorem", "name": "Tie Fighter", "image_url": "https://bit.ly/30tP43i", "price": 20000},
+    {"id": 4, "description": "Lorem", "name": "Tie Fighter", "image_url": "https://bit.ly/30tP43i", "price": 20000},
+    {"id": 5, "description": "Lorem", "name": "Tie Fighter", "image_url": "https://bit.ly/30tP43i", "price": 20000},
+    {"id": 6, "description": "Lorem", "name": "Tie Fighter", "image_url": "https://bit.ly/30tP43i", "price": 20000},
   ]
 }
 
