@@ -8,8 +8,7 @@ import { Grid } from '@material-ui/core';
 
 
 let defaultState = {
-  open: false,
-  isLoading: false
+  open: false
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -30,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
         height: "100%",
         padding: 10,
         backgroundColor: 'blue',
+        fontSize: 30,
+        fontWeight: 600
     }
 }));
 
@@ -43,25 +44,16 @@ export default function OrderItemModal(props) {
     };
 
     const handleClose = () => {
-      setState({...state, open: false, isLoading: false});
+      setState({...state, open: false});
     };
 
     const handleSubmit = () => {
-        setState({...state, isLoading: true});
         setTimeout(() => {
             setTimeout(() => {
-                setState({...state, open: false, isLoading: false});
+                setState({...state, open: false});
             }, 800)
         }, 1000);
     }
-
-    const loadingBody = (
-        <Grid container className={classes.loading} justify="space-evenly">
-            <Grid item xs={12}>
-                <span>Carregando ...</span>
-            </Grid>
-        </Grid>
-    )
 
     const orderPricing = (
         <OrderPricing order={order} handleSubmit={handleSubmit}/>
@@ -77,7 +69,7 @@ export default function OrderItemModal(props) {
                     </p>
                 </Grid>
                 <Grid item xs={6}>
-                    {state.isLoading? loadingBody: orderPricing}
+                    {orderPricing}
                 </Grid>
             </Grid>
         </div>
