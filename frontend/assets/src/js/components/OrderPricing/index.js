@@ -43,7 +43,7 @@ function convertPrice(price) {
 
 
 export default function OrderPricing(props) {
-    const {order} = props
+    const {order, handleSubmit} = props
 
     let orderPrice = order.price
     let defaultState = {
@@ -186,7 +186,9 @@ export default function OrderPricing(props) {
                 <span>Subtotal: {state.subtotal}</span>
             </Grid>
             <Grid item xs={12}>
-            <OrderConfirmModal openButtonText={"Submeter pedido"}/>
+            <Button color="green" className={classes.button} onClick={handleSubmit}>
+                Adicionar item no pedido
+            </Button>
             </Grid>
         </Grid>
     )

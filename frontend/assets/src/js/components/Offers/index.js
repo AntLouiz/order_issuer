@@ -14,12 +14,13 @@ function mocked_products() {
   ]
 }
 
-export default function Offers() {
+export default function Offers(props) {
+    const {setAppState} = props
     const products = mocked_products();
     let offers = [];
 
     for (let offer of products) {
-      let offerCard = <OfferCard offer={offer}/>
+      let offerCard = <OfferCard offer={offer} setAppState={setAppState}/>
       offers.push(offerCard)
     }
 

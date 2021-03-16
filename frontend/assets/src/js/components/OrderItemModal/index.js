@@ -24,21 +24,17 @@ const useStyles = makeStyles((theme) => ({
     button: {
         width: "100%",
         backgroundColor: "red"
+    },
+    loading: {
+        margin: "auto",
+        height: "100%",
+        padding: 10,
+        backgroundColor: 'blue',
     }
 }));
 
-function fakeRequest(handler) {
-    setTimeout(() => {
-        handler()
-        setTimeout(() => {
-            console.log("Request done.")
-        }, 800)
-    }, 1000);
-}
-
 export default function OrderItemModal(props) {
     const {order} = props
-
     const classes = useStyles();
     const [state, setState] = useState(defaultState);
 
@@ -50,6 +46,27 @@ export default function OrderItemModal(props) {
       setState({...state, open: false, isLoading: false});
     };
 
+    const handleSubmit = () => {
+        setState({...state, isLoading: true});
+        setTimeout(() => {
+            setTimeout(() => {
+                setState({...state, open: false, isLoading: false});
+            }, 800)
+        }, 1000);
+    }
+
+    const loadingBody = (
+        <Grid container className={classes.loading} justify="space-evenly">
+            <Grid item xs={12}>
+                <span>Carregando ...</span>
+            </Grid>
+        </Grid>
+    )
+
+    const orderPricing = (
+        <OrderPricing order={order} handleSubmit={handleSubmit}/>
+    )
+
     const body = (
         <div className={classes.paper}>
             <Grid container xs={12}>
@@ -60,7 +77,7 @@ export default function OrderItemModal(props) {
                     </p>
                 </Grid>
                 <Grid item xs={6}>
-                    <OrderPricing order={order} />
+                    {state.isLoading? loadingBody: orderPricing}
                 </Grid>
             </Grid>
         </div>

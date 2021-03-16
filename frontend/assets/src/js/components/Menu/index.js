@@ -72,7 +72,7 @@ export default function Menu(props) {
             justify="center"
         >
             <Typography color="textPrimary" className={classes.link}>
-                <RouteLink to="my-orders">
+                <RouteLink to="my-bag">
                     <ShoppingBasketIcon className={classes.icon} />
                 </RouteLink>
             </Typography>

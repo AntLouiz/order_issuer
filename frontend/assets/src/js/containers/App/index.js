@@ -12,6 +12,7 @@ import Clients from '../Clients';
 import Products from '../Products';
 import Checkout from '../Checkout';
 import Orders from '../Orders';
+import Bag from '../Bag';
 import Menu from '../../components/Menu';
 import ClientChooseModal from '../../components/ClientChooseModal';
 
@@ -30,10 +31,11 @@ export default function App() {
         <ClientChooseModal appState={state} setAppState={setState} />
         <Menu appState={state} />
                 <Switch>
-                    <Route path="/home" component={Home} />
+                    <Route path="/home" component={Home} setAppState={setState}/>
                     <Route path="/about" component={About} />
                     <Route path="/products" component={Products} />
                     <Route path="/checkout" component={Checkout} />
+                    <Route path="/my-bag" component={Bag} />
                     <Route path="/my-orders" component={Orders} />
                 </Switch>
         </HashRouter>
