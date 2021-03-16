@@ -50,6 +50,10 @@ export default function OrderItemModal(props) {
     const handleSubmit = () => {
         setTimeout(() => {
             setTimeout(() => {
+                let newMessage = {severity: "success", message: "Item adicionado na cesta"}
+                props.setAppState((prevState) => {
+                    return {...prevState, alertMessage: newMessage}
+                })
                 setState({...state, open: false});
             }, 800)
         }, 1000);

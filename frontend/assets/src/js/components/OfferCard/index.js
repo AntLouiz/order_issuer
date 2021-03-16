@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 
 
 export default function OfferCard(props) {
-    const {offer, setAppState} = props
+    const {offer} = props
     const classes = useStyles();
 
     return (
@@ -45,7 +45,7 @@ export default function OfferCard(props) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <OrderItemModal order={offer} setAppState={setAppState} />
+          <OrderItemModal order={offer} setAppState={props.setAppState} />
         </CardActions>
       </Card>
     )

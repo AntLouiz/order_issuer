@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function Home(props) {
-    const {setAppState} = props
     const classes = useStyles()
 
     return (
@@ -35,7 +34,7 @@ export default function Home(props) {
                     direction="row"
                     justify="center"
                 >
-                    <Offers setAppState={setAppState}/>
+                    <Offers setAppState={props.setAppState}/>
                 </Grid>
             </Container>
         </div>
