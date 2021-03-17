@@ -115,6 +115,16 @@ export default function OrderPricing(props) {
         }
     }
 
+    const handleItemSubmit = () => {
+        let item = {
+            ...order,
+            quantity: state.quantity,
+            price: state.confirmedPrice
+        }
+
+        handleSubmit(item)
+    }
+
     let inputAmount = null
     if (state.showInput && !state.useSugestedPrice) {
         inputAmount = (
@@ -186,8 +196,8 @@ export default function OrderPricing(props) {
                 <span>Subtotal: {state.subtotal}</span>
             </Grid>
             <Grid item xs={12}>
-            <Button color="green" className={classes.button} onClick={handleSubmit}>
-                Adicionar item no pedido
+            <Button color="green" className={classes.button} onClick={handleItemSubmit}>
+                {props.isEdition? "Atualizar item": "Adicionar item na sacola"}
             </Button>
             </Grid>
         </Grid>

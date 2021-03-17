@@ -31,6 +31,7 @@ export default function Alert(props) {
               size="small"
               onClick={() => {
                 setOpen(false);
+                props.setAppState((prevState) => { return {...prevState, alertMessage: null}})
               }}
             >
               <CloseIcon fontSize="inherit" />

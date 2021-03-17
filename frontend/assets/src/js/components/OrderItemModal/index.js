@@ -3,6 +3,7 @@ import IconButton from '@material-ui/core/IconButton';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+import { Button } from '@material-ui/core';
 import OrderPricing from '../OrderPricing';
 import { Grid } from '@material-ui/core';
 
@@ -47,12 +48,24 @@ export default function OrderItemModal(props) {
       setState({...state, open: false});
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (item) => {
         setTimeout(() => {
             setTimeout(() => {
-                let newMessage = {severity: "success", message: "Item adicionado na cesta"}
+                let newMessage = {severity: "success", message: "Item adicionado na sacola"}
                 props.setAppState((prevState) => {
-                    return {...prevState, alertMessage: newMessage}
+                    let order = prevState.currentOrder
+                    if (props.isEdition) {
+                        order.items.forEach((element, index) => {
+                            if (element.id == item.id) {
+                                order.items[index] = item
+                                newMessage['severity'] = "info"
+                                newMessage['message'] = "Item atualizado com sucesso"
+                            }
+                        })
+                    } else {
+                        order.items.push(item);
+                    }
+                    return {...prevState, alertMessage: newMessage, currentOrder: order}
                 })
                 setState({...state, open: false});
             }, 800)
@@ -60,7 +73,7 @@ export default function OrderItemModal(props) {
     }
 
     const orderPricing = (
-        <OrderPricing order={order} handleSubmit={handleSubmit}/>
+        <OrderPricing order={order} handleSubmit={handleSubmit} isEdition={props.isEdition}/>
     )
 
     const body = (
@@ -79,11 +92,20 @@ export default function OrderItemModal(props) {
         </div>
     );
 
-    return (
-    <div>
+    let modalAction = (
         <IconButton aria-label="add to favorites" onClick={handleOpen}>
             <LocalMallIcon />
         </IconButton>
+    )
+    if (props.modalActionText) {
+        modalAction = (
+            <Button onClick={handleOpen}>{props.modalActionText}</Button>
+        )
+    }
+
+    return (
+    <div>
+        {modalAction}
         <Modal
             open={state.open}
             onClose={handleClose}

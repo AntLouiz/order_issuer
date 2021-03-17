@@ -45,14 +45,6 @@ export default function Orders() {
       <Grid item xs={8}>
         <OrdersList handleItemClick={setOrder}/>
       </Grid>
-      <Grid
-        item xs={4}
-        alignItems="center"
-        direction="row"
-        justify="center"
-      >
-        <OrderCard order={selectedOrder}/>
-      </Grid>
       </Grid>
       </Grid>
     )
