@@ -1,6 +1,6 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid';
-import OrderCard from '../../components/OrderCard'
+import OrderItemCard from '../../components/OrderItemCard'
 
 
 export default function Bag(props) {
@@ -9,8 +9,8 @@ export default function Bag(props) {
     let subtotal = 0;
 
     for (let item of items) {
-      let orderCard = <OrderCard order={item} setAppState={props.setAppState} />
-      itemsList.push(orderCard)
+      let orderItemCard = <OrderItemCard order={item} setAppState={props.setAppState} />
+      itemsList.push(orderItemCard)
 
       subtotal += item.quantity * item.price
     }

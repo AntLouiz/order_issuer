@@ -42,6 +42,9 @@ export default function OrderItemCard(props) {
             <Typography variant="body2" color="textSecondary" component="p">
               {order.description}
             </Typography>
+            <Typography component="h2">
+              {order.price}
+            </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
