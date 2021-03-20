@@ -4,9 +4,6 @@ from . import views
 
 app_name = 'orders'
 
-router = routers.DefaultRouter()
-router.register('', views.OrderViewSet)
-
 urlpatterns = [
-    path('', include(router.urls)),
+    path('clients/<int:client_pk>/current/', views.CurrentClientOrderAPIView.as_view(), name='current'),
 ]

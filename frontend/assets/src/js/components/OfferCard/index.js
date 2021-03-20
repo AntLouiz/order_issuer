@@ -33,19 +33,22 @@ export default function OfferCard(props) {
             <CardMedia
               className={classes.media}
               image={offer.image_url}
-              title={offer.title}
+              title={offer.name}
             />
         <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {offer.title}
+              {offer.name}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               {offer.description}
             </Typography>
+            <Typography variant="body2" color="textSecondary" component="h2">
+              R$ {offer.price}
+            </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <OrderItemModal order={offer} setAppState={props.setAppState} />
+          <OrderItemModal order={offer} setAppState={props.setAppState} appState={props.appState} />
         </CardActions>
       </Card>
     )

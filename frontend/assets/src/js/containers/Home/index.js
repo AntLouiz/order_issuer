@@ -34,7 +34,7 @@ export default function Home(props) {
                     direction="row"
                     justify="center"
                 >
-                    <Offers setAppState={props.setAppState}/>
+                    <Offers setAppState={props.setAppState} appState={props.appState}/>
                 </Grid>
             </Container>
         </div>

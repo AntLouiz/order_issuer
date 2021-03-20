@@ -48,7 +48,7 @@ export default function OrderItemCard(props) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <OrderItemModal order={order} setAppState={props.setAppState} modalActionText={"Editar item"} isEdition={true}/>
+          <OrderItemModal order={order} setAppState={props.setAppState} appState={props.appState} modalActionText={"Editar item"} isEdition={true}/>
         </CardActions>
       </Card>
     )

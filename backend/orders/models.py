@@ -5,6 +5,7 @@ from backend.products.models import Product
 
 class Order(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    is_closed = models.BooleanField(default=False)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=False, auto_now_add=False, blank=True, null=True)
 

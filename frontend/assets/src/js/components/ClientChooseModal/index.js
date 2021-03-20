@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { Alert } from '@material-ui/lab';
 import ClientCard from '../ClientCard';
+import { getCurrentClientOrder } from '../../api/Orders';
+import { getClients } from '../../api/Clients';
 
 
 let defaultState = {
     open: true,
     isLoading: false,
-    errorMessage: null
+    errorMessage: null,
+    clients: []
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -19,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
         border: '2px solid #000',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
-        top: "10%",
+        top: "2%",
         left: "30%"
     },
     button: {
@@ -28,9 +31,6 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function get_fake_clients() {
-    return [{name: "Obi-wan Kenobi"}, {name: "Darth Vader"}]
-}
 
 export default function ClientChooseModal(props) {
     const classes = useStyles();
@@ -39,28 +39,37 @@ export default function ClientChooseModal(props) {
     const [state, setState] = useState(defaultState);
 
     const setClient = (client) => {
+        const handler = () => setState({...state, open: false, isLoading: false})
+        const handlerError = handler
+        getCurrentClientOrder(props.setAppState, client.pk, handler, handlerError)
         props.setAppState({...props.appState, client: client})
     }
 
     const handleClose = () => {
         if (props.appState.client) {
-            setState({...state, open: false, isLoading: false});
+            getCurrentClientOrder(props.setAppState, props.appState.client.pk, handler, handlerError)
         } else {
             setState({...state, errorMessage: "Selecione um dos clientes para continuar."})
         }
     };
 
-    let clients = []
-    let fakeClients = get_fake_clients()
-    for (let client of fakeClients) {
-        clients.push(<ClientCard client={client} setClient={setClient} />)
+    const setClients = (clients) => {
+        let cardClients = []
+        for (let client of clients) {
+            cardClients.push(<ClientCard client={client} setClient={setClient} />)
+        }
+        setState((prevState) => { return {...prevState, clients: cardClients}})
+    }
+
+    if (!state.clients.length) {
+        getClients(setClients)
     }
 
     const body = (
         <div className={classes.paper}>
             <h2 id="simple-modal-title">Você gostaria de se identificar como:</h2>
             <p id="simple-modal-description">
-                {clients}
+                {state.clients}
             </p>
             {state.errorMessage &&
                 <Alert variant="filled" severity="error">{state.errorMessage}</Alert>

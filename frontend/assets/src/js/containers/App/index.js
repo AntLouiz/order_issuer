@@ -15,18 +15,13 @@ import ClientChooseModal from '../../components/ClientChooseModal';
 
 let defaultState = {
     client: null,
-    currentOrder: {items: []},
-    alertMessage: null
+    currentOrder: {items: [], pk: null},
+    alertMessage: null,
+    products: []
 }
 
 export default function App() {
     const [state, setState] = useState(defaultState)
-
-    window.onbeforeunload = function() {
-        if (state.currentOrder.items) {
-            return "Data will be lost if you leave the page, are you sure?";
-        }
-    };
 
     return (
         <HashRouter basename={'/'}>
@@ -36,7 +31,7 @@ export default function App() {
                 <Switch>
                     <Route
                         path="/home"
-                        render={props => <Home {...props} setAppState={setState} name="home"/>}
+                        render={props => <Home {...props} setAppState={setState} appState={state} name="home"/>}
                     />
                     <Route
                         path="/my-bag"

@@ -6,6 +6,7 @@ import Modal from '@material-ui/core/Modal';
 import { Button } from '@material-ui/core';
 import OrderPricing from '../OrderPricing';
 import { Grid } from '@material-ui/core';
+import { postOrder, postItem, updateItem } from '../../api/Orders';
 
 
 let defaultState = {
@@ -48,28 +49,26 @@ export default function OrderItemModal(props) {
       setState({...state, open: false});
     };
 
-    const handleSubmit = (item) => {
-        setTimeout(() => {
-            setTimeout(() => {
-                let newMessage = {severity: "success", message: "Item adicionado na sacola"}
-                props.setAppState((prevState) => {
-                    let order = prevState.currentOrder
-                    if (props.isEdition) {
-                        order.items.forEach((element, index) => {
-                            if (element.id == item.id) {
-                                order.items[index] = item
-                                newMessage['severity'] = "info"
-                                newMessage['message'] = "Item atualizado com sucesso"
-                            }
-                        })
-                    } else {
-                        order.items.push(item);
-                    }
-                    return {...prevState, alertMessage: newMessage, currentOrder: order}
-                })
-                setState({...state, open: false});
-            }, 800)
-        }, 1000);
+    const handleSubmit = (product) => {
+        let item = {...product, product: product.id}
+        if (!props.appState.currentOrder.pk) {
+            postOrder(props.setAppState, props.appState.client.pk, item)
+            setState({...state, open: false});
+            return
+        }
+
+        const handler = () => {
+            setState({...state, open: false});
+        }
+
+        item['order'] = props.appState.currentOrder.pk
+
+        if (props.isEdition) {
+            item = {...product, product: product.product}
+            updateItem(props.setAppState, item, handler)
+        } else {
+            postItem(props.setAppState, item, handler)
+        }
     }
 
     const orderPricing = (
