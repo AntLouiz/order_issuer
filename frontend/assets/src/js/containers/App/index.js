@@ -17,6 +17,7 @@ let defaultState = {
     client: null,
     currentOrder: {items: [], pk: null},
     alertMessage: null,
+    orders: [],
     products: []
 }
 
@@ -37,7 +38,10 @@ export default function App() {
                         path="/my-bag"
                         render={props => <Bag {...props} setAppState={setState} appState={state} name="bag"/>}
                     />
-                    <Route path="/my-orders" component={Orders} />
+                    <Route
+                        path="/my-orders"
+                        render={props => <Orders {...props} setAppState={setState} appState={state} name='orders'/>}
+                    />
                 </Switch>
         </HashRouter>
     );

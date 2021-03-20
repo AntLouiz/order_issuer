@@ -1,8 +1,8 @@
 import API from '../settings';
 
 
-export function getOrders(setAppState) {
-    let endpoint = '/orders/'
+export function getClientOrders(setAppState, clientId) {
+    let endpoint = `/orders/clients/${clientId}/`
     API.get(endpoint).then((response) => {
         const orders = response.data;
         setAppState((prevState) => { return {...prevState, orders: orders}})
@@ -10,7 +10,7 @@ export function getOrders(setAppState) {
 }
 
 export function getOrderItems(setAppState, order) {
-    let endpoint = `/orders/${order}/items`
+    let endpoint = `/orders/${order}/items/`
     API.get(endpoint).then((response) => {
         const items = response.data
         setAppState((prevState) => {
@@ -101,8 +101,8 @@ export function closeOrder(setAppState, order, handler, handlerError) {
 }
 
 export default {
-    getOrders,
     getCurrentClientOrder,
+    getClientOrders,
     postOrder,
     closeOrder
 }
