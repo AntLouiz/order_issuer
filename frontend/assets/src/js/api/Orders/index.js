@@ -39,11 +39,15 @@ export function postItem(setAppState, item, handler) {
         let item = response.data
         setAppState((prevState) => {
             let items = [item]
+            let alertMessage = {
+                message: 'Item adicionado à sacola',
+                severity: 'success'
+            }
             if (prevState.currentOrder.items) {
                 items = [...prevState.currentOrder.items, item]
             }
             let currentOrder = {...prevState.currentOrder, items: items}
-            return {...prevState, currentOrder: currentOrder}
+            return {...prevState, alertMessage: alertMessage, currentOrder: currentOrder}
         })
         handler()
     })
