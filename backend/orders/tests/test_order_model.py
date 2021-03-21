@@ -20,6 +20,7 @@ def test_instance_fields(client, db):
                        'client_id',
                        'created_at',
                        'updated_at',
+                       'is_closed',
                        '_state']
 
     order_dict = {"client": client}
