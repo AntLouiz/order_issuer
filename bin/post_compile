@@ -1,5 +1,5 @@
 # !/usr/bin/env bash
 echo "=> Performing database migrations..."
 python manage.py migrate
-echo "=> Building the app..."
+echo "=> Building app..."
 npm run build
