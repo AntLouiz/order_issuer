@@ -77,7 +77,7 @@ export default function OrderItemModal(props) {
 
     const body = (
         <div className={classes.paper}>
-            <Grid container xs={12}>
+            <Grid container>
                 <Grid item xs={6}>
                     <h2 id="simple-modal-title">{order.name}</h2>
                     <p id="simple-modal-description">

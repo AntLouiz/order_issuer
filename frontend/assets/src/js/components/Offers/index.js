@@ -14,12 +14,12 @@ export default function Offers(props) {
     }
 
     for (let offer of products) {
-      let offerCard = <OfferCard offer={offer} setAppState={props.setAppState} appState={props.appState}/>
+      let offerCard = <OfferCard key={offer.id} offer={offer} setAppState={props.setAppState} appState={props.appState}/>
       offers.push(offerCard)
     }
 
     return (
-      <Grid container xs={9}>
+      <Grid container>
         {offers}
       </Grid>
     )

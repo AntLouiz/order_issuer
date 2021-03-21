@@ -12,7 +12,7 @@ export default function Bag(props) {
     let subtotal = 0;
 
     for (let item of items) {
-      let orderItemCard = <OrderItemCard order={item} setAppState={props.setAppState} appState={props.appState} />
+      let orderItemCard = <OrderItemCard key={item.id} order={item} setAppState={props.setAppState} appState={props.appState} />
       itemsList.push(orderItemCard)
 
       subtotal += item.quantity * item.price
@@ -36,8 +36,8 @@ export default function Bag(props) {
     return (
         <div>
             Minha sacola
-            <Grid container xs={12}>
-                {itemsList}
+            <Grid container>
+                <Grid item xs={12}>{itemsList}</Grid>
             </Grid>
             <h2>Subtotal: {subtotal}</h2>
             <button onClick={handleSubmit}>Submeter pedido</button>

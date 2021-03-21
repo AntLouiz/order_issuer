@@ -42,10 +42,10 @@ export default function Menu(props) {
     if (client) {
         avatarSection = (
             <Grid container>
-                <Grid xs={3}>
+                <Grid item xs={3}>
                     <Avatar>{client.name[0]}</Avatar>
                 </Grid>
-                <Grid xs={9} className={classes.greetings}>
+                <Grid item xs={9} className={classes.greetings}>
                     <strong>Olá, {client.name}</strong>
                 </Grid>
             </Grid>
@@ -53,51 +53,41 @@ export default function Menu(props) {
     }
 
     return (
-        <Grid container xs={12} className={classes.root}>
-        <Grid item xs={2}>
-            <Link color="inherit" className={classes.logo}>
-                <RouteLink to="home">
+        <Grid container
+            alignItems="center"
+            className={classes.root}
+            direction="row"
+            justify="center"
+        >
+            <Grid item xs={2}>
+                <RouteLink to="home" color="inherit" className={classes.logo}>
                     Home
                 </RouteLink>
-            </Link>
-        </Grid>
-        <Grid item xs={5}>
-            <ProductsSearch />
-        </Grid>
-        <Grid
-            item xs={1}
-            alignItems="center"
-            container
-            direction="row"
-            justify="center"
-        >
-            <Typography color="textPrimary" className={classes.link}>
-                <RouteLink to="my-bag">
-                    <ShoppingBasketIcon className={classes.icon} />
-                </RouteLink>
-            </Typography>
-        </Grid>
-        <Grid
-            item xs={2}
-            alignItems="center"
-            container
-            direction="row"
-            justify="center"
-        >
-            <Typography color="textPrimary" className={classes.link}>
-                <RouteLink to="my-orders">
-                    Meus pedidos
-                </RouteLink>
-            </Typography>
-        </Grid>
-        <Grid item xs={2}
-            alignItems="center"
-            container
-            direction="row"
-            justify="center"
-        >
-            {avatarSection}
-        </Grid>
+            </Grid>
+            <Grid item xs={5}>
+                <ProductsSearch />
+            </Grid>
+            <Grid
+                item xs={1}
+            >
+                <Typography color="textPrimary" className={classes.link}>
+                    <RouteLink to="my-bag">
+                        <ShoppingBasketIcon className={classes.icon} />
+                    </RouteLink>
+                </Typography>
+            </Grid>
+            <Grid
+                item xs={2}
+            >
+                <Typography color="textPrimary" className={classes.link}>
+                    <RouteLink to="my-orders">
+                        Meus pedidos
+                    </RouteLink>
+                </Typography>
+            </Grid>
+            <Grid item xs={2}>
+                {avatarSection}
+            </Grid>
         </Grid>
     );
 }

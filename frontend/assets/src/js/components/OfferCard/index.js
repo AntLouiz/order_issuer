@@ -26,13 +26,14 @@ const useStyles = makeStyles({
 export default function OfferCard(props) {
     const {offer} = props
     const classes = useStyles();
+    let imageDefaultUrl = '/static/images/placeholder.png'
 
     return (
         <Card className={classes.root}>
         <CardActionArea>
             <CardMedia
               className={classes.media}
-              image={offer.image_url}
+              image={offer.image_url? offer.image_url: imageDefaultUrl}
               title={offer.name}
             />
         <CardContent>

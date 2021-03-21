@@ -56,7 +56,7 @@ export default function ClientChooseModal(props) {
     const setClients = (clients) => {
         let cardClients = []
         for (let client of clients) {
-            cardClients.push(<ClientCard client={client} setClient={setClient} />)
+            cardClients.push(<ClientCard key={client.pk} client={client} setClient={setClient} />)
         }
         setState((prevState) => { return {...prevState, clients: cardClients}})
     }
@@ -68,9 +68,9 @@ export default function ClientChooseModal(props) {
     const body = (
         <div className={classes.paper}>
             <h2 id="simple-modal-title">Você gostaria de se identificar como:</h2>
-            <p id="simple-modal-description">
+            <div id="simple-modal-description">
                 {state.clients}
-            </p>
+            </div>
             {state.errorMessage &&
                 <Alert variant="filled" severity="error">{state.errorMessage}</Alert>
             }

@@ -20,7 +20,6 @@ export default function ProductsSearch() {
             <TextField
                 placeholder="busque aqui seu produto"
                 variant="outlined"
-                classes={{input: classes.input}}
                 className={classes.search}
             />
         </div>

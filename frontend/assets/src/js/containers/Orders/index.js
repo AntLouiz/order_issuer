@@ -34,7 +34,7 @@ export default function Orders(props) {
     let ordersList = []
     let currentOrder = null
     for (let order of orders) {
-      let orderPath = `/order/${order.id}/`
+      let orderPath = `order/${order.id}`
 
       if (order.id == props.appState.currentOrder.id) {
         orderPath = '/my-bag/'
@@ -42,9 +42,10 @@ export default function Orders(props) {
       let orderRow = (
         <div
           className={classes.row}
+          key={order.id}
         >
           Pedido {order.id} {order.created_at}
-          <Link to={orderPath}>Visualizar pedido</Link>
+          <Link to={orderPath} key={order.id}>Visualizar pedido</Link>
         </div>
       )
       if (!order.is_closed) {
@@ -59,7 +60,7 @@ export default function Orders(props) {
     }
 
     return (
-      <Grid container xs={12}>
+      <Grid container>
         <Grid item xs={12}>
           <h1>Meus pedidos</h1>
           {ordersList}

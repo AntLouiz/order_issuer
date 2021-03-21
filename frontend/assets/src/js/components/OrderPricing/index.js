@@ -151,14 +151,14 @@ export default function OrderPricing(props) {
 
     return (
         <Grid container className={classes.root} justify="space-evenly">
-            <Grid container xs={12}>
+            <Grid container>
                 <Grid item xs={12}>
                     <span className={classes.price}>
                         Preço sugerido: <br/>{state.showUserInput? state.confirmedPrice: orderPrice}
                     </span>
                 </Grid>
                 <Grid item xs={12}>
-                    <Button color="green" onClick={handleShowHideClick}>
+                    <Button color="default" onClick={handleShowHideClick}>
                         {state.useSugestedPrice? "Alterar preço sugerido": "Utilizar preço sugerido"}
                     </Button>
                 </Grid>
@@ -170,7 +170,7 @@ export default function OrderPricing(props) {
             <Grid item xs={12}>
                 <InputLabel htmlFor="standard-adornment-amount">Informe a quantidade:</InputLabel>
                 <Button
-                    color="green"
+                    color="default"
                     to="checkout"
                     disabled={state.quantity===state.multiple}
                     className={classes.buttonQuantity}
@@ -180,7 +180,7 @@ export default function OrderPricing(props) {
                 </Button>
                     {state.quantity}
                 <Button
-                    color="green"
+                    color="default"
                     to="checkout"
                     className={classes.buttonQuantity}
                     onClick={() => handleQuantity("sum")}
@@ -196,7 +196,7 @@ export default function OrderPricing(props) {
                 <span>Subtotal: {state.subtotal}</span>
             </Grid>
             <Grid item xs={12}>
-            <Button color="green" className={classes.button} onClick={handleItemSubmit}>
+            <Button color="default" className={classes.button} onClick={handleItemSubmit}>
                 {props.isEdition? "Atualizar item": "Adicionar item na sacola"}
             </Button>
             </Grid>

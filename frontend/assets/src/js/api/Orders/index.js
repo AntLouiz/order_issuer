@@ -33,7 +33,7 @@ export function getCurrentClientOrder(setAppState, clientId, handler, handlerErr
     })
 }
 
-export function postItem(setAppState, item, handler) {
+export function postItem(setAppState, item, handler=null) {
     let endpoint = '/items/'
     API.post(endpoint, item).then((response) => {
         let item = response.data
@@ -49,7 +49,7 @@ export function postItem(setAppState, item, handler) {
             let currentOrder = {...prevState.currentOrder, items: items}
             return {...prevState, alertMessage: alertMessage, currentOrder: currentOrder}
         })
-        handler()
+        handler && handler()
     })
 }
 
