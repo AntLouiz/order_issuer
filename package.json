@@ -10,7 +10,7 @@
   },
   "license": "UNLICENSED",
   "engines": {
-    "node": "8.9.4"
+    "node": "12"
   },
   "scripts": {
     "heroku-postbuild": "npm install",
