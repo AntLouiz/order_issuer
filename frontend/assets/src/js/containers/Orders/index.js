@@ -27,14 +27,14 @@ export default function Orders(props) {
     const [selectedOrder, setOrder] = useState(defaultState);
     let orders = props.appState.orders
   
-    if (!props.appState.currentOrder.items.length && props.appState.client) {
+    if (!props.appState.orders.length && props.appState.client) {
       getClientOrders(props.setAppState, props.appState.client.pk)
     }
 
     let ordersList = []
     let currentOrder = null
     for (let order of orders) {
-      let orderPath = `/order/${order.id}`
+      let orderPath = `/order/${order.id}/`
 
       if (order.id == props.appState.currentOrder.id) {
         orderPath = '/my-bag/'
