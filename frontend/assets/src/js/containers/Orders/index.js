@@ -36,16 +36,17 @@ export default function Orders(props) {
     for (let order of orders) {
       let orderPath = `order/${order.id}`
 
-      if (order.id == props.appState.currentOrder.id) {
-        orderPath = '/my-bag/'
+      if (order.id == props.appState.currentOrder.pk) {
+        orderPath = 'my-bag'
       }
+
       let orderRow = (
         <div
           className={classes.row}
           key={order.id}
         >
           Pedido {order.id} {order.created_at}
-          <Link to={orderPath} key={order.id}>Visualizar pedido</Link>
+          <Link exact to={{ pathname: orderPath, hash: '#'}} replace key={order.id}>Visualizar pedido</Link>
         </div>
       )
       if (!order.is_closed) {

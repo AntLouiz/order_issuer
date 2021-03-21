@@ -41,12 +41,14 @@ export default function App() {
                         render={props => <Bag {...props} setAppState={setState} appState={state} name="bag"/>}
                     />
                     <Route
-                        path="/my-orders/"
+                        path="/my-orders"
                         render={props => <Orders {...props} setAppState={setState} appState={state} name='orders'/>}
                     />
                     <Route
-                        path="/order/:id/"
-                        render={props => <OrderDetail {...props} setAppState={setState} appState={state} name='order'/>}
+                        path="/order/:id(\\d+)"
+                        exact={true}
+                        component={OrderDetail}
+                        name="order"
                     />
                     <Route
                         path='*'

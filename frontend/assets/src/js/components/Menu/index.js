@@ -60,7 +60,7 @@ export default function Menu(props) {
             justify="center"
         >
             <Grid item xs={2}>
-                <RouteLink to="home" color="inherit" className={classes.logo}>
+                <RouteLink to="/home" color="inherit" className={classes.logo}>
                     Home
                 </RouteLink>
             </Grid>
@@ -71,7 +71,7 @@ export default function Menu(props) {
                 item xs={1}
             >
                 <Typography color="textPrimary" className={classes.link}>
-                    <RouteLink to="my-bag">
+                    <RouteLink to="/my-bag">
                         <ShoppingBasketIcon className={classes.icon} />
                     </RouteLink>
                 </Typography>
@@ -80,7 +80,7 @@ export default function Menu(props) {
                 item xs={2}
             >
                 <Typography color="textPrimary" className={classes.link}>
-                    <RouteLink to="my-orders">
+                    <RouteLink to="/my-orders">
                         Meus pedidos
                     </RouteLink>
                 </Typography>
