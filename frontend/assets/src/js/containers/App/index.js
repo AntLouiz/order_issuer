@@ -49,7 +49,7 @@ export default function App() {
                     <Route
                         path="/orders/:id"
                         exact={true}
-                        component={OrderDetail}
+                        render={props => <OrderDetail {...props} setAppState={setState} appState={state} name='order'/>}
                         name="order"
                     />
                     <Route

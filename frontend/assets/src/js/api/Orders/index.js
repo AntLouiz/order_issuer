@@ -9,8 +9,8 @@ export function getClientOrders(setAppState, clientId) {
     })
 }
 
-export function getOrderItems(setAppState, order) {
-    let endpoint = `/orders/${order}/items/`
+export function getOrderItems(setAppState, orderId) {
+    let endpoint = `/orders/${orderId}/items/`
     API.get(endpoint).then((response) => {
         const items = response.data
         setAppState((prevState) => {
@@ -91,8 +91,8 @@ export function postOrder(setAppState, client, item=null) {
     })
 }
 
-export function closeOrder(setAppState, order, handler, handlerError) {
-    let endpoint = `/orders/${order}/`
+export function closeOrder(setAppState, orderId, handler, handlerError) {
+    let endpoint = `/orders/${orderId}/`
     let data = {is_closed: true}
     API.patch(endpoint, data).then(() => {
         setAppState((prevState) => {return {...prevState, currentOrder: {pk: null, items: []}}})
