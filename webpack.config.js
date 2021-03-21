@@ -14,7 +14,7 @@ module.exports = {
             filename: 'webpack-stats.json'
         }),
         new webpack.DefinePlugin({
-            'process.env': JSON.stringify(process.env)
+            'API_URL': JSON.stringify(process.env.API_URL)
         })
     ],
     module: {
