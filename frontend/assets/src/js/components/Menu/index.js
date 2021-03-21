@@ -80,7 +80,7 @@ export default function Menu(props) {
                 item xs={2}
             >
                 <Typography color="textPrimary" className={classes.link}>
-                    <RouteLink to="/my-orders">
+                    <RouteLink to="/orders">
                         Meus pedidos
                     </RouteLink>
                 </Typography>

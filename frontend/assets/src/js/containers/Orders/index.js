@@ -34,7 +34,7 @@ export default function Orders(props) {
     let ordersList = []
     let currentOrder = null
     for (let order of orders) {
-      let orderPath = `order/${order.id}`
+      let orderPath = `orders/${order.id}`
 
       if (order.id == props.appState.currentOrder.pk) {
         orderPath = 'my-bag'
