@@ -46,7 +46,11 @@ export default function Orders(props) {
           key={order.id}
         >
           Pedido {order.id} {order.created_at}
-          <Link to={{ pathname: orderPath, hash: '#'}} replace key={order.id}>Visualizar pedido</Link>
+          <Link to={{
+            pathname: orderPath,
+            hash: '#',
+            order: order
+          }} replace key={order.id}>Visualizar pedido</Link>
         </div>
       )
       if (!order.is_closed) {

@@ -27,14 +27,15 @@ export default function App() {
     const [state, setState] = useState(defaultState)
 
     return (
-        <HashRouter basename={'/'}>
+        <HashRouter>
         <ClientChooseModal appState={state} setAppState={setState} />
         <Menu appState={state} />
         {state.alertMessage&& <Alert severity={state.alertMessage.severity} message={state.alertMessage.message} setAppState={setState} />}
                 <Switch>
                     <Route
-                        path='/home'
-                        render={props => <Home {...props} setAppState={setState} appState={state}/>}
+                        path='/'
+                        exact={true}
+                        render={props => <Home {...props} setAppState={setState} appState={state} name="home"/>}
                     />
                     <Route
                         path="/my-bag"

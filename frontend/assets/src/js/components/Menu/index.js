@@ -60,7 +60,7 @@ export default function Menu(props) {
             justify="center"
         >
             <Grid item xs={2}>
-                <RouteLink to="/home" color="inherit" className={classes.logo}>
+                <RouteLink to="/" color="inherit" className={classes.logo}>
                     Home
                 </RouteLink>
             </Grid>

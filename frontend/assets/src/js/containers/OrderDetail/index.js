@@ -1,10 +1,14 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 
 export default function OrderDetail(props) {
-    const { id } = useParams()
-    const { order } = props
+    const { order } = props.location
 
-    return <div>My order {order}</div>
+    if (!order) {
+        return <Redirect to="/"/>
+    }
+    console.log(order)
+
+    return <div>My order</div>
 }
