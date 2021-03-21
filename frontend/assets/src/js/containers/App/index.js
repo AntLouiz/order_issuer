@@ -8,6 +8,7 @@ import {
 import Home from '../Home';
 import Orders from '../Orders';
 import Bag from '../Bag';
+import OrderDetail from '../OrderDetail';
 import Menu from '../../components/Menu';
 import Alert from '../../components/Alert';
 import ClientChooseModal from '../../components/ClientChooseModal';
@@ -39,8 +40,12 @@ export default function App() {
                         render={props => <Bag {...props} setAppState={setState} appState={state} name="bag"/>}
                     />
                     <Route
-                        path="/my-orders"
+                        path="/my-orders/"
                         render={props => <Orders {...props} setAppState={setState} appState={state} name='orders'/>}
+                    />
+                    <Route
+                        path="/order/:id/"
+                        render={props => <OrderDetail {...props} setAppState={setState} appState={state} name='order'/>}
                     />
                 </Switch>
         </HashRouter>

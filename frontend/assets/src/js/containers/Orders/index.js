@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import OrdersList from '../../components/OrdersList';
@@ -26,18 +27,24 @@ export default function Orders(props) {
     const [selectedOrder, setOrder] = useState(defaultState);
     let orders = props.appState.orders
   
-    if (!orders.length && props.appState.client) {
+    if (!props.appState.currentOrder.items.length && props.appState.client) {
       getClientOrders(props.setAppState, props.appState.client.pk)
     }
 
     let ordersList = []
     let currentOrder = null
     for (let order of orders) {
+      let orderPath = `/order/${order.id}`
+
+      if (order.id == props.appState.currentOrder.id) {
+        orderPath = '/my-bag/'
+      }
       let orderRow = (
         <div
           className={classes.row}
         >
           Pedido {order.id} {order.created_at}
+          <Link to={orderPath}>Visualizar pedido</Link>
         </div>
       )
       if (!order.is_closed) {
