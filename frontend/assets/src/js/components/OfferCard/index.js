@@ -11,7 +11,7 @@ import OrderItemModal from '../OrderItemModal';
 
 const useStyles = makeStyles({
   root: {
-    width: "12rem",
+    width: "18rem",
     margin: "1rem"
   },
   media: {
@@ -19,6 +19,18 @@ const useStyles = makeStyles({
   },
   buttons: {
     margin: "auto"
+  },
+  price: {
+    alignItems: "center",
+    fontSize: 20,
+    color: "rgb(51, 51, 51)",
+    fontWeight: "bold"
+  },
+  actions: {
+    display: "inline"
+  },
+  offerName: {
+    fontSize: "1rem"
   }
 });
 
@@ -30,27 +42,25 @@ export default function OfferCard(props) {
 
     return (
         <Card className={classes.root}>
-        <CardActionArea>
+        <CardContent>
             <CardMedia
               className={classes.media}
               image={offer.image_url? offer.image_url: imageDefaultUrl}
               title={offer.name}
             />
         <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {offer.name}
+            <Typography gutterBottom>
+              <span className={classes.offerName}>{offer.name}</span>
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               {offer.description}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="h2">
-              R$ {offer.price}
+            <Typography variant="body2" component="strong" className={classes.price}>
+                <b>R$ {offer.price}</b>
             </Typography>
           </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <OrderItemModal order={offer} setAppState={props.setAppState} appState={props.appState} />
-        </CardActions>
+        </CardContent>
+        <OrderItemModal className={classes.actions} order={offer} setAppState={props.setAppState} appState={props.appState} />
       </Card>
     )
 }

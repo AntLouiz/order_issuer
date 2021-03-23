@@ -24,7 +24,11 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         width: "100%",
-        backgroundColor: "red"
+        backgroundColor: "red",
+        borderRadius: 0,
+        "&:hover": {
+            backgroundColor: "#9d1515"
+        }
     },
     loading: {
         margin: "auto",
@@ -92,9 +96,15 @@ export default function OrderItemModal(props) {
     );
 
     let modalAction = (
-        <IconButton aria-label="add to favorites" onClick={handleOpen}>
-            <LocalMallIcon />
-        </IconButton>
+        <Button
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+            onClick={handleOpen}
+            startIcon={<LocalMallIcon />}
+        >
+            Fazer pedido
+        </Button>
     )
     if (props.modalActionText) {
         modalAction = (
