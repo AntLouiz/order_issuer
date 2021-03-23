@@ -56,7 +56,7 @@ export default function OrderPricing(props) {
         quantity: order.multiple? order.multiple: 1,
         inputError: false,
         multiple: order.multiple? order.multiple: 1,
-        subtotal: order.multiple * order.price
+        subtotal: order.multiple?order.multiple * order.price: order.price
     }
 
     const [state, setState] = useState(defaultState);

@@ -30,7 +30,7 @@ export default function Bag(props) {
             props.setAppState((prevState) => {return {...prevState, alertMessage: alertMessage}})
         }
         closeOrder(props.setAppState, props.appState.currentOrder.pk, handler, handlerError)
-        history.push('home')
+        history.push('/')
     }
 
     return (
