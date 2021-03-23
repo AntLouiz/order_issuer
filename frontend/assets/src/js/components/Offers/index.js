@@ -20,7 +20,7 @@ export default function Offers(props) {
 
     return (
       <Grid container>
-        {offers}
+        {offers? offers: "Nenhum produto encontrado."}
       </Grid>
     )
 }
