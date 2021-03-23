@@ -65,7 +65,7 @@ export default function Menu(props) {
                 </RouteLink>
             </Grid>
             <Grid item xs={5}>
-                <ProductsSearch />
+                <ProductsSearch setAppState={props.setAppState} appState={props.appState} />
             </Grid>
             <Grid
                 item xs={1}

@@ -29,7 +29,7 @@ export default function App() {
     return (
         <HashRouter>
         <ClientChooseModal appState={state} setAppState={setState} />
-        <Menu appState={state} />
+        <Menu setAppState={setState} appState={state} />
         {state.alertMessage&& <Alert severity={state.alertMessage.severity} message={state.alertMessage.message} setAppState={setState} />}
                 <Switch>
                     <Route
