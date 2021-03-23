@@ -6,8 +6,9 @@ import { debounce } from "lodash";
 
 const useStyles = makeStyles((theme) => ({
     search: {
+        bottom: "1rem",
         width: "90%",
-        height: "5px",
+        height: "5px"
     },
     input: {
         padding: "10.5px 14px"
