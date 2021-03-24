@@ -24,10 +24,10 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         width: "100%",
-        backgroundColor: "red",
+        backgroundColor: "#21349d",
         borderRadius: 0,
         "&:hover": {
-            backgroundColor: "#9d1515"
+            backgroundColor: "#141d4d"
         }
     },
     loading: {

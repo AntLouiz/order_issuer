@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { Alert } from '@material-ui/lab';
+import { Grid } from '@material-ui/core';
 import ClientCard from '../ClientCard';
 import { getCurrentClientOrder } from '../../api/Orders';
 import { getClients } from '../../api/Clients';
@@ -17,13 +18,12 @@ let defaultState = {
 const useStyles = makeStyles((theme) => ({
     paper: {
         position: 'absolute',
-        width: 400,
         backgroundColor: theme.palette.background.paper,
-        border: '2px solid #000',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
-        top: "2%",
-        left: "30%"
+        borderRadius: "0.8%",
+        margin: "7rem 5rem 5rem 5rem",
+        color: "#333"
     },
     button: {
         width: "100%",
@@ -56,7 +56,7 @@ export default function ClientChooseModal(props) {
     const setClients = (clients) => {
         let cardClients = []
         for (let client of clients) {
-            cardClients.push(<ClientCard key={client.pk} client={client} setClient={setClient} />)
+            cardClients.push(<Grid item xs={4}><ClientCard key={client.pk} client={client} setClient={setClient} /></Grid>)
         }
         setState((prevState) => { return {...prevState, clients: cardClients}})
     }
@@ -68,9 +68,9 @@ export default function ClientChooseModal(props) {
     const body = (
         <div className={classes.paper}>
             <h2 id="simple-modal-title">Você gostaria de se identificar como:</h2>
-            <div id="simple-modal-description">
+            <Grid container id="simple-modal-description">
                 {state.clients}
-            </div>
+            </Grid>
             {state.errorMessage &&
                 <Alert variant="filled" severity="error">{state.errorMessage}</Alert>
             }

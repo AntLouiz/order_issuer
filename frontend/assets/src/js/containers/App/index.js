@@ -6,6 +6,7 @@ import {
     HashRouter
 } from "react-router-dom";
 import Home from '../Home';
+import Footer from '../Footer';
 import Orders from '../Orders';
 import Bag from '../Bag';
 import OrderDetail from '../OrderDetail';
@@ -30,6 +31,7 @@ export default function App() {
         <HashRouter>
         <ClientChooseModal appState={state} setAppState={setState} />
         <Menu setAppState={setState} appState={state} />
+        <div style={{background: "#eaeaea"}}>
         {state.alertMessage&& <Alert severity={state.alertMessage.severity} message={state.alertMessage.message} setAppState={setState} />}
                 <Switch>
                     <Route
@@ -57,6 +59,8 @@ export default function App() {
                         component={NotFound}
                     />
                 </Switch>
+        </div>
+        <Footer />
         </HashRouter>
     );
 }

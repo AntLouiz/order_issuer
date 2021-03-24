@@ -17,7 +17,8 @@ const useStyles = makeStyles({
     height: 140,
   },
   avatar: {
-    margin: 5
+    margin: 5,
+    backgroundColor: "#0433ff"
   }
 });
 
