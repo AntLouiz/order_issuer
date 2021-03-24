@@ -23,6 +23,12 @@ const useStyles = makeStyles({
   actions: {
     display: "inline"
   },
+  price: {
+    alignItems: "center",
+    fontSize: 20,
+    color: "rgb(51, 51, 51)",
+    fontWeight: "bold"
+  },
 });
 
 
@@ -51,7 +57,7 @@ export default function OrderItemCard(props) {
             <Typography variant="body2" color="textSecondary" component="p">
               {order.description}
             </Typography>
-            <Typography component="h2">
+            <Typography component="h2" className={classes.price}>
               R$ {order.price}
             </Typography>
           </CardContent>
