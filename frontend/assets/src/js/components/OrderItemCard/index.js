@@ -32,6 +32,7 @@ export default function OrderItemCard(props) {
     order['name'] = order.productItem.name
     order['image_url'] = order.productItem.image_url
     order['description'] = order.productItem.description
+    order['multiple'] = order.productItem.multiple
 
     return (
       <Card className={classes.root}>
