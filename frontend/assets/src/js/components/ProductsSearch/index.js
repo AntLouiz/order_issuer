@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { useHistory, useLocation } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { getProducts } from '../../api/Products';
@@ -25,10 +26,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ProductsSearch(props) {
     const classes = useStyles();
-    const handler = useCallback(debounce(getProducts, 250), []);
+    const handler = useCallback(debounce(getProducts, 250), [])
+    const location = useLocation()
+    const history = useHistory()
 
     const handleChange = (event) => {
         let searchText = event.target.value
+        if (location.pathname != '/') {
+            history.push('/')
+        }
+
         handler(props.setAppState, searchText)
     }
 
