@@ -14,16 +14,20 @@ const useStyles = makeStyles((theme) => ({
     root: {
         margin: "auto",
         height: "100%",
-        padding: 10,
-        backgroundColor: 'blue',
+        padding: 10
     },
     price: {
-        fontSize: 30,
+        fontSize: 25,
         fontWeight: 600
     },
     button: {
         width: "100%",
-        backgroundColor: "red"
+        color: "white",
+        backgroundColor: "#21349d",
+        borderRadius: 0,
+        "&:hover": {
+            backgroundColor: "#141d4d"
+        }
     },
     buttonQuantity: {
         width: 80
@@ -32,7 +36,12 @@ const useStyles = makeStyles((theme) => ({
         textAlign: "right",
         fontSize: 18,
         fontWeight: "bold",
-        margin: 10
+        margin: 10,
+        paddingBottom: "1rem",
+        paddingTop: "3rem"
+    },
+    quantity: {
+        paddingTop: "3rem"
     }
 }));
 
@@ -167,7 +176,7 @@ export default function OrderPricing(props) {
                 {inputAmount}
                 {!state.showInput && !state.useSugestedPrice?<Button size="small">Clique para alterar o preço informado</Button>:null}
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} className={classes.quantity}>
                 <InputLabel htmlFor="standard-adornment-amount">Informe a quantidade:</InputLabel>
                 <Button
                     color="default"
@@ -193,6 +202,7 @@ export default function OrderPricing(props) {
                 xs={12}
                 className={classes.subtotal}
             >
+                <hr></hr>
                 <span>Subtotal: {state.subtotal}</span>
             </Grid>
             <Grid item xs={12}>
