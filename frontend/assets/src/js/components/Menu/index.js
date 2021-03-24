@@ -34,8 +34,9 @@ const useStyles = makeStyles((theme) => ({
 export default function Menu(props) {
     const classes = useStyles();
     const {client} = props.appState
+    const items = props.appState.currentOrder.items
+    const itemsLength = items?items.length:0
 
-    const itemsLength = props.appState.currentOrder.items.length
     let avatarSection;
 
     if (client) {
