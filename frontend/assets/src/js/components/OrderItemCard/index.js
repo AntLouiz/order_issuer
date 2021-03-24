@@ -12,7 +12,8 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
-    margin: "1rem"
+    margin: "1rem",
+    width: "16rem"
   },
   media: {
     height: 140,
@@ -48,7 +49,7 @@ export default function OrderItemCard(props) {
               {order.description}
             </Typography>
             <Typography component="h2">
-              {order.price}
+              R$ {order.price}
             </Typography>
           </CardContent>
         </CardActionArea>

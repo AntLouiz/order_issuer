@@ -52,14 +52,12 @@ export default function Bag(props) {
 
     for (let item of items) {
       let orderItemCard = (
-          <Grid item xs={6}>
             <OrderItemCard
                 key={item.id}
                 order={item}
                 setAppState={props.setAppState}
                 appState={props.appState}
             />
-          </Grid>
           )
           itemsList.push(orderItemCard)
 
@@ -91,7 +89,7 @@ export default function Bag(props) {
     let subtotalSubmit = (
         <Grid item xs={12}>
             <Grid item xs={12} className={classes.subtotal}>
-                <h2>Subtotal: {subtotal}</h2>
+                <h2>Subtotal: R$ {subtotal}</h2>
             </Grid>
             <Grid item xs={12} className={classes.subtotal}>
                 <Grid item xs={3} className={classes.submit}>
