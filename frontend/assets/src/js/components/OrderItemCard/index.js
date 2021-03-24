@@ -11,16 +11,18 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
-    margin: "1rem",
-    width: "16rem"
+    width: "18rem",
+    margin: "1rem"
   },
   media: {
     height: 140,
   },
   buttons: {
     margin: "auto"
-  }
+  },
+  actions: {
+    display: "inline"
+  },
 });
 
 
@@ -53,10 +55,8 @@ export default function OrderItemCard(props) {
               R$ {order.price}
             </Typography>
           </CardContent>
+          <OrderItemModal className={classes.actions} order={order} setAppState={props.setAppState} appState={props.appState} modalActionText={"Editar item"} isEdition={true}/>
         </CardActionArea>
-        <CardActions>
-          <OrderItemModal order={order} setAppState={props.setAppState} appState={props.appState} modalActionText={"Editar item"} isEdition={true}/>
-        </CardActions>
       </Card>
     )
 }

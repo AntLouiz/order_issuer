@@ -125,7 +125,14 @@ export default function OrderItemModal(props) {
     )
     if (props.modalActionText) {
         modalAction = (
-            <Button onClick={handleOpen}>{props.modalActionText}</Button>
+            <Button
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+                onClick={handleOpen}
+            >
+                {props.modalActionText}
+            </Button>
         )
     }
 
