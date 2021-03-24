@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link as RouteLink} from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
+import Badge from '@material-ui/core/Badge';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import ViewListIcon from '@material-ui/icons/ViewList';
@@ -24,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
     icon: {
         marginRight: theme.spacing(0.5),
         fontSize: '2.5rem',
-        padding: '0.5rem'
     },
     greetings: {
         paddingTop: 5
@@ -35,6 +35,7 @@ export default function Menu(props) {
     const classes = useStyles();
     const {client} = props.appState
 
+    const itemsLength = props.appState.currentOrder.items.length
     let avatarSection;
 
     if (client) {
@@ -85,7 +86,9 @@ export default function Menu(props) {
                 <Typography color="textPrimary">
                     <RouteLink to="/my-bag" alt="Minha sacola" className={classes.link}>
                         <Tooltip title="Minha sacola" aria-label="my-bag">
-                            <ShoppingBasketIcon className={classes.icon} />
+                            <Badge badgeContent={itemsLength} color="error">
+                                <ShoppingBasketIcon className={classes.icon} />
+                            </Badge>
                         </Tooltip>
                     </RouteLink>
                 </Typography>
