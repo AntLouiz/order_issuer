@@ -5,6 +5,7 @@ import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid'
 import OrderItemCard from '../../components/OrderItemCard'
 import { closeOrder } from '../../api/Orders'
+import integerToBRL from '../../utils';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -89,7 +90,7 @@ export default function Bag(props) {
     let subtotalSubmit = (
         <Grid item xs={12}>
             <Grid item xs={12} className={classes.subtotal}>
-                <h2>Subtotal: R$ {subtotal}</h2>
+                <h2>Subtotal: {integerToBRL(subtotal)}</h2>
             </Grid>
             <Grid item xs={12} className={classes.subtotal}>
                 <Grid item xs={3} className={classes.submit}>
