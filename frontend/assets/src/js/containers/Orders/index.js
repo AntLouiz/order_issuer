@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import OrdersList from '../../components/OrdersList';
@@ -14,15 +20,17 @@ const defaultState = {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: 400,
-    margin: "auto",
-    backgroundColor: theme.palette.background.paper,
+    padding: "2rem 6rem 2rem 6rem"
   },
+  row: {
+    cursor: "pointer"
+  }
 }));
 
 
 export default function Orders(props) {
     const classes = useStyles();
+    const history = useHistory();
 
     const [selectedOrder, setOrder] = useState(defaultState);
     let orders = props.appState.orders
@@ -41,17 +49,15 @@ export default function Orders(props) {
       }
 
       let orderRow = (
-        <div
+        <ListItem
           className={classes.row}
           key={order.id}
+          onClick={() => history.push(orderPath)}
         >
-          Pedido {order.id} {order.created_at}
-          <Link to={{
-            pathname: orderPath,
-            hash: '#',
-            order: order
-          }} replace key={order.id}>Visualizar pedido</Link>
-        </div>
+        <ListItemText
+          primary={`Pedido: ${order.id} submetido em ${order.created_at}`}
+        />
+        </ListItem>
       )
       if (!order.is_closed) {
         currentOrder = orderRow
@@ -65,10 +71,10 @@ export default function Orders(props) {
     }
 
     return (
-      <Grid container>
+      <Grid container className={classes.root}>
         <Grid item xs={12}>
           <h1>Meus pedidos</h1>
-          {ordersList}
+          <List>{ordersList}</List>
         </Grid>
       </Grid>
     )
