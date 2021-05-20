@@ -145,6 +145,7 @@ export default function OrderPricing(props) {
                     name="price"
                     error={state.inputError}
                     value={state.price}
+                    type="number"
                     onChange={handleChange}
                     startAdornment={<InputAdornment position="start">R$</InputAdornment>}
                 />
