@@ -12,8 +12,9 @@ import integerToBRL from '../../utils';
 
 const useStyles = makeStyles({
   root: {
-    width: "18rem",
-    margin: "1rem"
+    width: "15rem",
+    margin: "10px",
+    maxHeight: "19rem"
   },
   media: {
     height: 140,
@@ -24,11 +25,12 @@ const useStyles = makeStyles({
   actions: {
     display: "inline"
   },
-  price: {
+  details: {
     alignItems: "center",
-    fontSize: 20,
+    fontSize: 18,
     color: "rgb(51, 51, 51)",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    listStyle: "none"
   },
 });
 
@@ -45,21 +47,26 @@ export default function OrderItemCard(props) {
 
     return (
       <Card className={classes.root}>
-        <CardActionArea>
-            <CardMedia
-              className={classes.media}
-              image={order.image_url? order.image_url: imageDefaultUrl}
-              title={order.name}
-            />
-        <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
+            <CardActionArea>
+                <CardMedia
+                  className={classes.media}
+                  image={order.image_url? order.image_url: imageDefaultUrl}
+                  title={order.name}
+                />
+            <CardContent>
+            <Typography gutterBottom component="h4">
               {order.name}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               {order.description}
             </Typography>
-            <Typography component="h2" className={classes.price}>
-              {integerToBRL(order.price)}
+            <Typography component="ul" color="textSecondary">
+              <Typography component="li" className={classes.details}>
+                {integerToBRL(order.price)}
+              </Typography>
+              <Typography component="li" className={classes.details}>
+                Qtd: {order.quantity}
+              </Typography>
             </Typography>
           </CardContent>
           <OrderItemModal className={classes.actions} order={order} setAppState={props.setAppState} appState={props.appState} modalActionText={"Editar item"} isEdition={true}/>

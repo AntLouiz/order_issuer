@@ -12,8 +12,12 @@ import integerToBRL from '../../utils';
 
 const useStyles = makeStyles({
   root: {
-    width: "18rem",
-    margin: "1rem"
+    width: "15rem",
+    margin: "10px",
+    maxHeight: "19rem"
+  },
+  content: {
+    padding: "8px"
   },
   media: {
     height: 140,
@@ -23,7 +27,7 @@ const useStyles = makeStyles({
   },
   price: {
     alignItems: "center",
-    fontSize: 20,
+    fontSize: 17,
     color: "rgb(51, 51, 51)",
     fontWeight: "bold"
   },
@@ -43,7 +47,7 @@ export default function OfferCard(props) {
 
     return (
         <Card className={classes.root}>
-        <CardContent>
+        <CardContent className={classes.content}>
             <CardMedia
               className={classes.media}
               image={offer.image_url? offer.image_url: imageDefaultUrl}
@@ -53,7 +57,7 @@ export default function OfferCard(props) {
             <Typography gutterBottom>
               <span className={classes.offerName}>{offer.name}</span>
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
+            <Typography variant="body2" color="textSecondary" component="span">
               {offer.description}
             </Typography>
             <Typography variant="body2" component="strong" className={classes.price}>
