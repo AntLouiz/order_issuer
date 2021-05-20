@@ -8,6 +8,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Input from '@material-ui/core/Input';
 import { makeStyles } from '@material-ui/core/styles';
 import OrderConfirmModal from '../OrderConfirmModal';
+import integerToBRL from '../../utils';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -163,7 +164,7 @@ export default function OrderPricing(props) {
             <Grid container>
                 <Grid item xs={12}>
                     <span className={classes.price}>
-                        Preço sugerido: <br/>{state.showUserInput? state.confirmedPrice: orderPrice}
+                        Preço sugerido: <br/>{state.showUserInput? integerToBRL(state.confirmedPrice): integerToBRL(orderPrice)}
                     </span>
                 </Grid>
                 <Grid item xs={12}>
@@ -203,7 +204,7 @@ export default function OrderPricing(props) {
                 className={classes.subtotal}
             >
                 <hr></hr>
-                <span>Subtotal: {state.subtotal}</span>
+                <span>Subtotal: {integerToBRL(state.subtotal)}</span>
             </Grid>
             <Grid item xs={12}>
             <Button color="default" className={classes.button} onClick={handleItemSubmit}>

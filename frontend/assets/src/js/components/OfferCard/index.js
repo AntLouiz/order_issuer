@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import OrderItemModal from '../OrderItemModal';
+import integerToBRL from '../../utils';
 
 
 const useStyles = makeStyles({
@@ -56,7 +57,7 @@ export default function OfferCard(props) {
               {offer.description}
             </Typography>
             <Typography variant="body2" component="strong" className={classes.price}>
-                <b>R$ {offer.price}</b>
+                <b>{integerToBRL(offer.price)}</b>
             </Typography>
           </CardContent>
         </CardContent>

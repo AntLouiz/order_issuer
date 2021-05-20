@@ -7,6 +7,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import integerToBRL from '../../utils';
 
 
 const useStyles = makeStyles({
@@ -58,7 +59,7 @@ export default function OrderItemCard(props) {
               {order.description}
             </Typography>
             <Typography component="h2" className={classes.price}>
-              R$ {order.price}
+              {integerToBRL(order.price)}
             </Typography>
           </CardContent>
           <OrderItemModal className={classes.actions} order={order} setAppState={props.setAppState} appState={props.appState} modalActionText={"Editar item"} isEdition={true}/>
