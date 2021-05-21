@@ -12,7 +12,12 @@ const useStyles = makeStyles((theme) => ({
         padding: "2rem 6rem 2rem 6rem"
     },
     subtotal: {
-        textAlign: "right"
+        textAlign: "right",
+        padding: "5rem 1rem 6rem 1rem",
+        background: "white",
+        marginTop: "1rem",
+        borderRadius: "1%",
+        border: "#092ece 3px solid"
     },
     submit: {
         backgroundColor: "#62db1d",
@@ -26,6 +31,13 @@ const useStyles = makeStyles((theme) => ({
     },
     emptyMessage: {
         fontSize: "2rem"
+    },
+    itemsList: {
+        backgroundColor: "white",
+        padding: "1rem"
+    },
+    bagHeader: {
+        padding: "2rem 1rem 1rem 4rem"
     }
 }))
 
@@ -60,7 +72,7 @@ export default function Bag(props) {
                 appState={props.appState}
             />
           )
-          itemsList.push(orderItemCard)
+          itemsList.push(<Grid item xs={12}>{orderItemCard}</Grid>)
 
       subtotal += item.quantity * item.price
     }
@@ -70,29 +82,29 @@ export default function Bag(props) {
             <Grid xs={12} className={classes.emptyMessage}>Sua sacola está vazia :(</Grid>
             <Grid xs={12}>
                 <Link to="/">
-                    <p>Voltar para a página principal</p>
+                    <p>Continuar comprando</p>
                 </Link>
             </Grid>
         </Grid>
     )
 
     let body = (
-        <div>
-            <Grid item xs={12}>
-                <h2>Minha sacola</h2>
+        <Grid container className={classes.itemsList}>
+            <Grid item xs={12} className={classes.bagHeader}>
+                <h2>Produtos adicionados à sacola</h2>
             </Grid>
-            <Grid container>
+            <Grid item xs={12}>
                 {itemsList}
             </Grid>
-        </div>
+        </Grid>
     )
 
     let subtotalSubmit = (
-        <Grid item xs={12}>
-            <Grid item xs={12} className={classes.subtotal}>
-                <h2>Subtotal: {integerToBRL(subtotal)}</h2>
+        <Grid item xs={12} className={classes.subtotal}>
+            <Grid item xs={12}>
+                <h2>Valor total: {integerToBRL(subtotal)}</h2>
             </Grid>
-            <Grid item xs={12} className={classes.subtotal}>
+            <Grid item xs={12}>
                 <Grid item xs={3} className={classes.submit}>
                     <Button onClick={handleSubmit} className={classes.submit}>Submeter pedido</Button>
                 </Grid>
@@ -101,11 +113,9 @@ export default function Bag(props) {
     )
 
     return (
-        <div>
-            <Grid container className={classes.root}>
-                {itemsList.length?body: emptyBagMessage}
-                {itemsList.length?subtotalSubmit: null}
-            </Grid>
-        </div>
+        <Grid container className={classes.root}>
+            {itemsList.length?body: emptyBagMessage}
+            {itemsList.length?subtotalSubmit: null}
+        </Grid>
     )
 }

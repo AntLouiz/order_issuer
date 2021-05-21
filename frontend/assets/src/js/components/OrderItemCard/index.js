@@ -14,9 +14,7 @@ import integerToBRL from '../../utils';
 
 const useStyles = makeStyles({
   root: {
-    width: "15rem",
-    margin: "10px",
-    maxHeight: "19rem"
+    padding: "1rem"
   },
   media: {
     height: 140,
@@ -33,7 +31,8 @@ const useStyles = makeStyles({
     fontSize: 18,
     color: "rgb(51, 51, 51)",
     fontWeight: "bold",
-    listStyle: "none"
+    listStyle: "none",
+    padding: "2rem 0rem 0rem 2rem"
   },
 });
 
@@ -53,45 +52,45 @@ export default function OrderItemCard(props) {
     }
 
     return (
-      <Card className={classes.root}>
-            <CardActionArea>
-                <CardMedia
-                  className={classes.media}
-                  image={order.image_url? order.image_url: imageDefaultUrl}
-                  title={order.name}
-                />
-            <CardContent>
-            <Typography gutterBottom component="h4">
-              {order.name}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {order.description}
-            </Typography>
-            <Typography component="ul" color="textSecondary">
-              <Typography component="li" className={classes.details}>
-                {integerToBRL(order.price)}
-              </Typography>
-              <Typography component="li" className={classes.details}>
-                Qtd: {order.quantity}
-              </Typography>
-            </Typography>
-          </CardContent>
-          <Grid container xs={12}>
-            <Grid item xs={6}>
-              <OrderItemModal className={classes.actions} order={order} setAppState={props.setAppState} appState={props.appState} modalActionText={"Editar item"} isEdition={true}/>
-            </Grid>
-            <Grid item xs={6}>
-              <Button
-                  variant="contained"
-                  color="secondary"
-                  className={classes.actions}
-                  onClick={handleRemove}
-              >
-                  Remover
-              </Button>
-            </Grid>
+      <Grid container className={classes.root}>
+        <Grid item xs={3}>
+          <Grid item xs={12}>
+            <CardMedia
+              className={classes.media}
+              image={order.image_url? order.image_url: imageDefaultUrl}
+              title={order.name}
+            />
           </Grid>
-          </CardActionArea>
-      </Card>
+          <Grid item xs={12}>
+            <Button
+                variant="text"
+                color="secondary"
+                className={classes.actions}
+                onClick={handleRemove}
+            >
+              Remover produto
+            </Button>
+          </Grid>
+        </Grid>
+        <Grid item xs={4} className={classes.details}>
+          <Typography gutterBottom component="h4">
+            {order.name}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {order.description}
+          </Typography>
+          <Typography component="h3">
+            <b>{integerToBRL(order.price)}</b>
+          </Typography>
+        </Grid>
+        <Grid item xs={2} className={classes.details}>
+            <Typography component="h3">
+              <span>Quantidade:</span> <b>{order.quantity}</b>
+            </Typography>
+        </Grid>
+        <Grid item xs={2} className={classes.details}>
+          <OrderItemModal className={classes.actions} order={order} setAppState={props.setAppState} appState={props.appState} modalActionText={"Editar valores"} isEdition={true}/>
+        </Grid>
+      </Grid>
     )
 }
