@@ -37,12 +37,21 @@ export function postItem(setAppState, item, handler=null) {
     let endpoint = '/items/'
     API.post(endpoint, item).then((response) => {
         let item = response.data
+        let alertMessage = {
+            message: 'Item adicionado à sacola',
+            severity: 'success'
+        }
+        if (item.rentability == 'BAD') {
+            alertMessage['message'] = 'Item com rentabilidade ruim.'
+            alertMessage['severity'] = 'error'
+            setAppState((prevState) => {
+                return {...prevState, alertMessage: alertMessage}
+            })
+            return false
+        }
+
         setAppState((prevState) => {
             let items = [item]
-            let alertMessage = {
-                message: 'Item adicionado à sacola',
-                severity: 'success'
-            }
             if (prevState.currentOrder.items) {
                 items = [...prevState.currentOrder.items, item]
             }
