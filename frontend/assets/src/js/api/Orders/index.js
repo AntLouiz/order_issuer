@@ -73,6 +73,25 @@ export function updateItem(setAppState, item, handler) {
     })
 }
 
+export function removeItem(setAppState, item, handler) {
+    let endpoint = `/items/${item.id}/`
+    API.delete(endpoint, item).then(() => {
+        setAppState((prevState) => {
+            let items = []
+            let alertMessage = {
+                message: 'Item removido',
+                severity: 'success'
+            }
+            if (prevState.currentOrder.items) {
+                items = prevState.currentOrder.items.filter(e => e.id != item.id)
+            }
+            let currentOrder = {...prevState.currentOrder, items: items}
+            return {...prevState, alertMessage: alertMessage, currentOrder: currentOrder}
+        })
+        handler && handler()
+    })
+}
+
 export function postOrder(setAppState, client, item=null) {
     let endpoint = '/orders/'
     let data = {
@@ -104,5 +123,6 @@ export default {
     getCurrentClientOrder,
     getClientOrders,
     postOrder,
+    removeItem,
     closeOrder
 }

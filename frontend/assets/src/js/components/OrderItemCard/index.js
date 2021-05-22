@@ -10,6 +10,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import integerToBRL from '../../utils';
+import { removeItem } from '../../api/Orders';
 
 
 const useStyles = makeStyles({
@@ -48,7 +49,7 @@ export default function OrderItemCard(props) {
     order['multiple'] = order.productItem.multiple
 
     const handleRemove = () => {
-      console.log("Remove item")
+      removeItem(props.setAppState, order)
     }
 
     return (
