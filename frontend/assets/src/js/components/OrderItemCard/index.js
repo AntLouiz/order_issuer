@@ -73,7 +73,7 @@ export default function OrderItemCard(props) {
             </Button>
           </Grid>
         </Grid>
-        <Grid item xs={4} className={classes.details}>
+        <Grid item xs={3} className={classes.details}>
           <Typography gutterBottom component="h4">
             {order.name}
           </Typography>
@@ -87,6 +87,11 @@ export default function OrderItemCard(props) {
         <Grid item xs={2} className={classes.details}>
             <Typography component="h3">
               <span>Quantidade:</span> <b>{order.quantity}</b>
+            </Typography>
+        </Grid>
+        <Grid item xs={2} className={classes.details}>
+            <Typography component="h3">
+              <span>Rent.:</span> <b>{order.rentability}</b>
             </Typography>
         </Grid>
         <Grid item xs={2} className={classes.details}>
