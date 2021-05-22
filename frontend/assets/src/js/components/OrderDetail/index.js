@@ -21,15 +21,7 @@ export default function OrderDetail(props) {
 
     return (
         <Grid container className={classes.root} justify="space-evenly">
-            <Grid item xs={4}>
-                <img src={order.image_url} className={classes.media} />
-            </Grid>
-            <Grid item xs={6}>
-                <h4>{order.title}</h4>
-                <p>
-                    {order.description}
-                </p>
-            </Grid>
+            Detail
         </Grid>
     )
 }
