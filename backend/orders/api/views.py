@@ -3,7 +3,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from django.shortcuts import get_object_or_404
-from backend.orders.api.serializers import OrderSerializer, OrderItemSerializer
+from backend.orders.api.serializers import OrderSerializer, OrderItemSerializer, ClientOrderSerializer
 from backend.orders.models import Order, OrderItem
 
 
@@ -28,12 +28,13 @@ class CurrentClientOrderAPIView(RetrieveAPIView):
         serializer = self.serializer_class(current_order)
         return Response(serializer.data)
 
+
 class ClientOrdersListView(ListAPIView):
-    serializer_class = OrderSerializer
+    serializer_class = ClientOrderSerializer
     queryset = Order.objects.all()
 
     def get(self, request, client_pk, *args, **kwargs):
-        orders = Order.objects.filter(client__pk=client_pk)
+        orders = Order.objects.filter(client__pk=client_pk, is_closed=True)
 
         serializer = self.serializer_class(orders, many=True)
         return Response(serializer.data)
