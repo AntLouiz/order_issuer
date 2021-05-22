@@ -6,6 +6,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { getClientOrders } from '../../api/Orders';
+import OrderCard from '../../components/OrderCard';
 
 const defaultState = {
   title: null,
@@ -61,24 +62,7 @@ export default function Orders(props) {
         orderPath = 'my-bag'
       }
 
-      let orderRow = (
-        <ListItem
-          className={classes.row}
-          key={order.id}
-          onClick={() => history.push(orderPath)}
-        >
-        <ListItemText
-          primary={`Cod.: #${order.id}`}
-        />
-        <ListItemText
-          primary={`Submetido em: ${order.created_at}`}
-        />
-        <ListItemText
-          className={classes.tooltip}
-          primary={'Clique para visualizar'}
-        />
-        </ListItem>
-      )
+      let orderRow = <OrderCard order={order}/>
       if (!order.is_closed) {
         currentOrder = orderRow
       } else {
