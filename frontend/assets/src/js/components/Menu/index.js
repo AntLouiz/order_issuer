@@ -9,6 +9,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Avatar from '@material-ui/core/Avatar';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import ProductsSearch from '../ProductsSearch';
+import AvatarOptions from '../AvatarOptions';
 
 
 
@@ -37,19 +38,9 @@ export default function Menu(props) {
     const items = props.appState.currentOrder.items
     const itemsLength = items?items.length:0
 
-    let avatarSection;
-
+    let avatarOptions;
     if (client) {
-        avatarSection = (
-            <Grid container>
-                <Grid item xs={3}>
-                    <Avatar>{client.name[0]}</Avatar>
-                </Grid>
-                <Grid item xs={9} className={classes.greetings}>
-                    <strong>Olá, {client.name}</strong>
-                </Grid>
-            </Grid>
-        )
+        avatarOptions = <AvatarOptions client={client}/>
     }
 
     return (
@@ -68,7 +59,7 @@ export default function Menu(props) {
                 <ProductsSearch setAppState={props.setAppState} appState={props.appState} />
             </Grid>
             <Grid item xs={2} className={classes.link}>
-                {avatarSection}
+                {avatarOptions}
             </Grid>
             <Grid
                 item xs={1}
