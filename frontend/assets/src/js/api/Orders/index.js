@@ -12,7 +12,7 @@ export function getClientOrders(setAppState, clientId) {
 export function getOrderItems(setAppState, orderId) {
     let endpoint = `/orders/${orderId}/items/`
     API.get(endpoint).then((response) => {
-        const items = response.data
+        const items = response.data.reverse()
         setAppState((prevState) => {
             const currentOrder = {...prevState.currentOrder, items: items}
             return {...prevState, currentOrder: currentOrder}

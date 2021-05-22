@@ -20,10 +20,27 @@ const defaultState = {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: "2rem 6rem 2rem 6rem"
+    padding: "2rem 6rem 2rem 6rem",
+    margin: "auto",
+    background: "red",
+    marginTop: "3rem",
+    marginBottom: "3rem",
+    background: "white"
+  },
+  tooltip: {
+    color: "#848282",
+    padding: "0rem 1rem 0rem 0rem",
+    textAlign: "right"
   },
   row: {
-    cursor: "pointer"
+    cursor: "pointer",
+    padding: "1rem",
+    background: "#f7f7f7",
+    borderBottom: "1px solid #cacaca",
+    marginBottom: "1rem",
+    '&:hover': {
+      background: "#f9f9f9"
+    }
   }
 }));
 
@@ -55,7 +72,14 @@ export default function Orders(props) {
           onClick={() => history.push(orderPath)}
         >
         <ListItemText
-          primary={`Pedido: ${order.id} submetido em ${order.created_at}`}
+          primary={`Cod.: #${order.id}`}
+        />
+        <ListItemText
+          primary={`Submetido em: ${order.created_at}`}
+        />
+        <ListItemText
+          className={classes.tooltip}
+          primary={'Clique para visualizar'}
         />
         </ListItem>
       )
@@ -71,8 +95,8 @@ export default function Orders(props) {
     }
 
     return (
-      <Grid container className={classes.root}>
-        <Grid item xs={12}>
+      <Grid container>
+        <Grid item xs={10} className={classes.root}>
           <h1>Meus pedidos</h1>
           <List>{ordersList}</List>
         </Grid>
