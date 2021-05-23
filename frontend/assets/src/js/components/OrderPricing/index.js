@@ -57,12 +57,11 @@ export default function OrderPricing(props) {
 
     let orderPrice = order.price
     let defaultState = {
-        price: null,
         showInput: false,
         showUserInput: false,
         confirmedPrice: orderPrice,
-        sugestedPrice: orderPrice,
-        useSugestedPrice: true,
+        suggestedPrice: orderPrice,
+        useSuggestedPrice: false,
         quantity: order.multiple? order.multiple: 1,
         inputError: false,
         multiple: order.multiple? order.multiple: 1,
@@ -89,26 +88,24 @@ export default function OrderPricing(props) {
     const handleInputButtonClick = () => {
         let confirmedPrice = 0
         let showInput = false
-        if (state.sugestedPrice && state.useSugestedPrice) {
-            confirmedPrice = state.sugestedPrice
+        if (state.suggestedPrice) {
+            confirmedPrice = state.suggestedPrice
         } else {
-            confirmedPrice = state.price
+            confirmedPrice = orderPrice
         }
-
-        if (!state.price) {
-            showInput = true
-        }
-        confirmedPrice = confirmedPrice
         let subtotal = state.quantity * confirmedPrice
-        setState({...state, confirmedPrice: confirmedPrice, subtotal: subtotal, showInput: showInput})
+        setState({...state, confirmedPrice: confirmedPrice, subtotal: subtotal, showInput: showInput, useSuggestedPrice: !state.useSuggestedPrice})
     }
 
-    const handleShowHideClick = () => {
-        setState({...state,
-                  useSugestedPrice: !state.useSugestedPrice,
-                  showInput: !state.showInput,
-                  showUserInput: !state.showUserInput
-                })
+    const toggleInput = () => {
+        if (!state.useSuggestedPrice) {
+            setState({...state, showInput: !state.showInput})
+        } else {
+            let useSuggestedPrice = false
+            let confirmedPrice = orderPrice
+            let subtotal = state.quantity * confirmedPrice
+            setState({...state, confirmedPrice: confirmedPrice, subtotal: subtotal, useSuggestedPrice: useSuggestedPrice})
+        }
     }
 
     const handleQuantity = (event) => {
@@ -134,17 +131,19 @@ export default function OrderPricing(props) {
 
         handleSubmit(item)
     }
-
-    let inputAmount = null
-    if (state.showInput && !state.useSugestedPrice) {
-        inputAmount = (
+    let togglePriceButton = (
+        <Button color="default" onClick={toggleInput}>
+            {state.useSuggestedPrice? "Utilizar preço original": "Sugerir um preço para o produto"}
+        </Button>
+    )
+    let inputAmount = (
             <label>
                 <InputLabel htmlFor="standard-adornment-amount">Informe um valor:</InputLabel>
                 <Input
                     id="standard-adornment-amount"
-                    name="price"
+                    name="suggestedPrice"
                     error={state.inputError}
-                    value={state.price}
+                    value={null}
                     type="number"
                     onChange={handleChange}
                     startAdornment={<InputAdornment position="start">R$</InputAdornment>}
@@ -157,26 +156,25 @@ export default function OrderPricing(props) {
                 >
                     Pronto
                 </Button>
-            </label>)
-    }
+            </label>
+    )
 
     return (
         <Grid container className={classes.root} justify="space-evenly">
             <Grid container>
                 <Grid item xs={12}>
+                    <Grid item xs={4}>
                     <span className={classes.price}>
-                        Preço sugerido: <br/>{state.showUserInput? integerToBRL(state.confirmedPrice): integerToBRL(orderPrice)}
+                        Preço: <br/>{state.useSuggestedPrice? integerToBRL(state.suggestedPrice): integerToBRL(orderPrice)}
                     </span>
+                    </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                    <Button color="default" onClick={handleShowHideClick}>
-                        {state.useSugestedPrice? "Alterar preço sugerido": "Utilizar preço sugerido"}
-                    </Button>
+                    {state.showInput? null: togglePriceButton}
                 </Grid>
             </Grid>
             <Grid item xs={12}>
-                {inputAmount}
-                {!state.showInput && !state.useSugestedPrice?<Button size="small">Clique para alterar o preço informado</Button>:null}
+                {state.showInput? inputAmount: null}
             </Grid>
             <Grid item xs={12} className={classes.quantity}>
                 <InputLabel htmlFor="standard-adornment-amount">Informe a quantidade:</InputLabel>
