@@ -70,21 +70,35 @@ export function postItem(setAppState, item, handler=null) {
 
 export function updateItem(setAppState, item, handler) {
     let endpoint = `/items/${item.id}/`
+    let alertMessage = {
+        message: 'Item atualizado',
+        severity: 'info'
+    }
+
+    function alertErrorMessage(message) {
+        alertMessage['message'] = message
+        alertMessage['severity'] = 'error'
+        setAppState((prevState) => {
+            return {...prevState, alertMessage: alertMessage}
+        })
+        return false
+    }
+
     API.patch(endpoint, item).then(() => {
         setAppState((prevState) => {
             let order = prevState.currentOrder
-            let alertMessage = {}
             order.items.forEach((element, index) => {
                 if (element.id == item.id) {
                     order.items[index] = item
-                    alertMessage['message'] = 'Item atualizado'
-                    alertMessage['severity'] = 'info'
                 }
             })
 
             return {...prevState, currentOrder: order, alertMessage: alertMessage}
         })
         handler()
+    }).catch((error) => {
+        let message = error.response.data
+        return alertErrorMessage(message)
     })
 }
 
