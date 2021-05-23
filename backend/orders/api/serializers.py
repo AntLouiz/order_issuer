@@ -20,10 +20,10 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         order_item = OrderItem(**validated_data)
-        rentability = order_item.check_rentability()
-        if rentability == 'BAD':
+        if order_item.is_bad_rentability():
             raise serializers.ValidationError('Item com rentabilidade ruim.')
 
+        order_item.save()
         return order_item
 
 

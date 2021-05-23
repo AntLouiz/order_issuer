@@ -3,6 +3,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from django.shortcuts import get_object_or_404
+from backend.products.models import Product
 from backend.orders.api.serializers import OrderSerializer, OrderItemSerializer, ClientOrderSerializer
 from backend.orders.models import Order, OrderItem
 
@@ -43,3 +44,13 @@ class ClientOrdersListView(ListAPIView):
 class OrderItemViewSet(viewsets.ModelViewSet):
     serializer_class = OrderItemSerializer
     queryset = OrderItem.objects.all()
+
+    def update(self, request, pk, *args, **kwargs):
+        data = request.data
+        item = OrderItem.objects.get(pk=pk)
+        item.price = data['price']
+        item.quantity = data['quantity']
+        if item.is_bad_rentability():
+            return Response("Item com rentabilidade ruim", 400)
+
+        return super().update(request, pk, *args, **kwargs)
