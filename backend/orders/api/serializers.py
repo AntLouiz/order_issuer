@@ -13,9 +13,18 @@ class OrderSerializer(serializers.ModelSerializer):
 
 class OrderItemSerializer(serializers.ModelSerializer):
     productItem = ProductSerializer(source='product', read_only=True)
+
     class Meta:
         model = OrderItem
         fields = ['id', 'product', 'productItem', 'price', 'quantity', 'rentability', 'order']
+
+    def create(self, validated_data):
+        order_item = OrderItem(**validated_data)
+        rentability = order_item.check_rentability()
+        if rentability == 'BAD':
+            raise serializers.ValidationError('Item com rentabilidade ruim.')
+
+        return order_item
 
 
 class ClientOrderSerializer(serializers.ModelSerializer):
