@@ -35,21 +35,25 @@ export function getCurrentClientOrder(setAppState, clientId, handler, handlerErr
 
 export function postItem(setAppState, item, handler=null) {
     let endpoint = '/items/'
+    let alertMessage = {
+        message: 'Item adicionado à sacola',
+        severity: 'success'
+    }
+
+    function alertErrorMessage(message) {
+        alertMessage['message'] = message
+        alertMessage['severity'] = 'error'
+        setAppState((prevState) => {
+            return {...prevState, alertMessage: alertMessage}
+        })
+        return false
+    }
+
     API.post(endpoint, item).then((response) => {
         let item = response.data
-        let alertMessage = {
-            message: 'Item adicionado à sacola',
-            severity: 'success'
+        if (item.rentability === "BAD") {
+            return alertErrorMessage('Item com rentabilidade ruim.')
         }
-        if (item.rentability == 'BAD') {
-            alertMessage['message'] = 'Item com rentabilidade ruim.'
-            alertMessage['severity'] = 'error'
-            setAppState((prevState) => {
-                return {...prevState, alertMessage: alertMessage}
-            })
-            return false
-        }
-
         setAppState((prevState) => {
             let items = [item]
             if (prevState.currentOrder.items) {
@@ -59,6 +63,8 @@ export function postItem(setAppState, item, handler=null) {
             return {...prevState, alertMessage: alertMessage, currentOrder: currentOrder}
         })
         handler && handler()
+    }).catch(() => {
+        return alertErrorMessage('Item com rentabilidade ruim.')
     })
 }
 

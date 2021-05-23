@@ -13,11 +13,7 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(4),
     },
   },
-  success: {
-    backgroundColor: "rgb(93, 230, 93)"
-  },
   alert: {
-    color: "rgb(255, 255, 255)",
     fontWeight: "bold"
   },
   close: {
