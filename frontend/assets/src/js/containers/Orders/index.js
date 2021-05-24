@@ -1,19 +1,9 @@
-import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React from 'react';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { getClientOrders } from '../../api/Orders';
 import OrderCard from '../../components/OrderCard';
-
-const defaultState = {
-  title: null,
-  description: null,
-  price: null,
-  image_url: null
-}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,9 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Orders(props) {
     const classes = useStyles();
-    const history = useHistory();
 
-    const [selectedOrder, setOrder] = useState(defaultState);
     let orders = props.appState.orders
   
     if (!props.appState.orders.length && props.appState.client) {
@@ -54,24 +42,9 @@ export default function Orders(props) {
     }
 
     let ordersList = []
-    let currentOrder = null
     for (let order of orders) {
-      let orderPath = `orders/${order.id}`
-
-      if (order.id == props.appState.currentOrder.pk) {
-        orderPath = 'my-bag'
-      }
-
       let orderRow = <OrderCard order={order}/>
-      if (!order.is_closed) {
-        currentOrder = orderRow
-      } else {
-        ordersList.push(orderRow)
-      }
-    }
-
-    if (currentOrder) {
-      ordersList.unshift(currentOrder)
+      ordersList.push(orderRow)
     }
 
     return (
