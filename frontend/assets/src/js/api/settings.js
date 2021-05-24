@@ -8,7 +8,7 @@ if (API_URL) {
     url = 'http://localhost:8000/api/'
 }
 
-export const PAGE_SIZE = 15
+export const PAGE_SIZE = 5
 
 export default axios.create({
     baseURL: url
