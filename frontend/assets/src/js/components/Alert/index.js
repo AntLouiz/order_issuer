@@ -65,8 +65,7 @@ export default function Alert(props) {
                 aria-label="close"
                 color="inherit"
                 size="small"
-                onClick={() => {
-                }}
+                onClick={handleClose}
               >
                 <CloseIcon fontSize="inherit" />
               </IconButton>
