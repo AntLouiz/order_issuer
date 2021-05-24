@@ -19,8 +19,8 @@ def products_list():
 
 
 def test_get_all_products(client, products_url, products_list, mocker):
-    mocked_view_queryset = mocker.patch.object(ProductsListAPIView, 'queryset')
-    mocked_view_queryset = products_list
+    mocked_view_queryset = mocker.patch.object(ProductsListAPIView, 'filter_queryset')
+    mocked_view_queryset.return_value = products_list
 
     response = client.get(products_url)
     assert response.status_code == 200
