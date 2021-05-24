@@ -59,7 +59,7 @@ export default function Bag(props) {
             alertMessage['severity'] = 'error'
             props.setAppState((prevState) => {return {...prevState, alertMessage: alertMessage}})
         }
-        closeOrder(props.setAppState, props.appState.currentOrder.pk, handler, handlerError)
+        closeOrder(props.setAppState, props.appState.currentOrder.pk, props.appState.client.pk, handler, handlerError)
         history.push('/')
     }
 

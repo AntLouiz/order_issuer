@@ -139,11 +139,12 @@ export function postOrder(setAppState, client, item=null) {
     })
 }
 
-export function closeOrder(setAppState, orderId, handler, handlerError) {
+export function closeOrder(setAppState, orderId, clientId, handler, handlerError) {
     let endpoint = `/orders/${orderId}/`
     let data = {is_closed: true}
     API.patch(endpoint, data).then(() => {
         setAppState((prevState) => {return {...prevState, currentOrder: {pk: null, items: []}}})
+        getClientOrders(setAppState, clientId)
         handler()
     }).catch(() => handlerError())
 }
