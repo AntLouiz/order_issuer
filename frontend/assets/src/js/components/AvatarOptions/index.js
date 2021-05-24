@@ -1,9 +1,9 @@
 import React from 'react';
-import {Link as RouteLink} from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
@@ -52,6 +52,10 @@ export default function AvatarOptions(props) {
         }
     }
 
+    function handleClickAway() {
+        setOpen(false)
+    }
+
     return (
         <Grid container>
         <Grid item xs={3}>
@@ -75,9 +79,11 @@ export default function AvatarOptions(props) {
                         style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
                     >
                     <Paper>
+                    <ClickAwayListener onClickAway={handleClickAway}>
                         <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                             <MenuItem onClick={handleClose}>Sair</MenuItem>
                         </MenuList>
+                    </ClickAwayListener>
                     </Paper>
                     </Grow>
                 )}
