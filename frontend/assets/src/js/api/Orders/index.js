@@ -1,8 +1,8 @@
 import API from '../settings';
 
 
-export function getClientOrders(setAppState, clientId) {
-    let endpoint = `/orders/clients/${clientId}/`
+export function getClientOrders(setAppState, clientId, pageIndex=1) {
+    let endpoint = `/orders/clients/${clientId}/?page=${pageIndex}`
     API.get(endpoint).then((response) => {
         const orders = response.data;
         setAppState((prevState) => { return {...prevState, orders: orders}})

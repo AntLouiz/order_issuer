@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from 'axios'
 
-let url;
+let url
 
 if (API_URL) {
     url = API_URL
@@ -8,6 +8,8 @@ if (API_URL) {
     url = 'http://localhost:8000/api/'
 }
 
+export const PAGE_SIZE = 15
+
 export default axios.create({
     baseURL: url
-});
+})

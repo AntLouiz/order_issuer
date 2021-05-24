@@ -19,7 +19,7 @@ let defaultState = {
     client: null,
     currentOrder: {items: [], pk: null},
     alertMessage: null,
-    orders: [],
+    orders: {},
     products: []
 }
 

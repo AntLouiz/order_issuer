@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import List from '@material-ui/core/List';
+import Pagination from '@material-ui/lab/Pagination';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { getClientOrders } from '../../api/Orders';
 import OrderCard from '../../components/OrderCard';
+import {PAGE_SIZE} from '../../api/settings';
+
+const defaultState = {page: 1}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,30 +32,61 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       background: "#f9f9f9"
     }
+  },
+  pagination: {
+    "textAlign": "center",
+    "& > ul": {
+      "display": "inline-flex"
+    }
   }
 }));
 
 
 export default function Orders(props) {
-    const classes = useStyles();
+    const classes = useStyles()
+    const [state, setState] = useState(defaultState)
 
-    let orders = props.appState.orders
-  
-    if (!props.appState.orders.length && props.appState.client) {
+    let orders = []
+    let ordersCards = []
+    let pagination = null
+
+    const handleChange = (event, value) => {
+      setState({page: value})
+      getClientOrders(props.setAppState, props.appState.client.pk, value)
+    }
+
+    if (props.appState.orders.results) {
+      orders = props.appState.orders.results
+      let count = props.appState.orders.count
+      let totalPages = Math.ceil(count/PAGE_SIZE)
+      totalPages = totalPages? totalPages: totalPages+1
+      pagination = <Pagination
+                      count={totalPages}
+                      page={state.page}
+                      onChange={handleChange}
+                      className={classes.pagination}
+                    />
+    }
+
+    if (!props.appState.orders.results && props.appState.client) {
       getClientOrders(props.setAppState, props.appState.client.pk)
     }
 
-    let ordersList = []
     for (let order of orders) {
       let orderRow = <OrderCard order={order}/>
-      ordersList.push(orderRow)
+      ordersCards.push(orderRow)
     }
 
     return (
       <Grid container>
         <Grid item xs={10} className={classes.root}>
           <h1>Meus pedidos</h1>
-          <List>{ordersList}</List>
+          <Grid item xs={12}>
+            <List>{ordersCards}</List>
+          </Grid>
+          <Grid item xs={12}>
+            {pagination}
+          </Grid>
         </Grid>
       </Grid>
     )
