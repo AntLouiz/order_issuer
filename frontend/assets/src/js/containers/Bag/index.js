@@ -60,13 +60,12 @@ export default function Bag(props) {
     for (let item of items) {
       let orderItemCard = (
             <OrderItemCard
-                key={item.id}
                 order={item}
                 setAppState={props.setAppState}
                 appState={props.appState}
             />
           )
-          itemsList.push(<Grid item xs={12}>{orderItemCard}</Grid>)
+          itemsList.push(<Grid item key={item.id} xs={12}>{orderItemCard}</Grid>)
 
       subtotal += item.quantity * item.price
     }

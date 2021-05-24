@@ -22,8 +22,8 @@ export default function Offers(props) {
     }
 
     for (let offer of products) {
-      let offerCard = <OfferCard key={offer.id} offer={offer} setAppState={props.setAppState} appState={props.appState}/>
-      offers.push(<Grid item xs={3}>{offerCard}</Grid>)
+      let offerCard = <OfferCard offer={offer} setAppState={props.setAppState} appState={props.appState}/>
+      offers.push(<Grid item key={offer.id} xs={3}>{offerCard}</Grid>)
     }
 
     return (

@@ -75,7 +75,7 @@ export default function Orders(props) {
     }
 
     for (let order of orders) {
-      let orderRow = <OrderCard order={order}/>
+      let orderRow = <OrderCard key={order.id} order={order}/>
       ordersCards.push(orderRow)
     }
 

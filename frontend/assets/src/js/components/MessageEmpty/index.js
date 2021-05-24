@@ -21,8 +21,8 @@ export default function MessageEmpty(props) {
 
     return (
         <Grid item xs={12} className={classes.emptyMessageRoot}>
-            <Grid xs={12} className={classes.emptyMessage}>{message}</Grid>
-            <Grid xs={12}>
+            <Grid item xs={12} className={classes.emptyMessage}>{message}</Grid>
+            <Grid item xs={12}>
                 <Link to="/">
                     <p>Continuar comprando</p>
                 </Link>

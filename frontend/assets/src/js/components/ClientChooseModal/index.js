@@ -56,7 +56,7 @@ export default function ClientChooseModal(props) {
     const setClients = (clients) => {
         let cardClients = []
         for (let client of clients) {
-            cardClients.push(<Grid item xs={4}><ClientCard key={client.pk} client={client} setClient={setClient} /></Grid>)
+            cardClients.push(<Grid item key={client.pk} xs={4}><ClientCard client={client} setClient={setClient} /></Grid>)
         }
         setState((prevState) => { return {...prevState, clients: cardClients}})
     }

@@ -16,7 +16,7 @@ export default function OrderDetailItem(props) {
     const classes = useStyles();
 
     return (
-        <Grid container xs={12} className={classes.root}>
+        <Grid container className={classes.root}>
             <Grid item xs={5}>{item.productItem.name}</Grid>
             <Grid item xs={2}>{integerToBRL(item.price)}</Grid>
             <Grid item xs={2}>Qtd.: {item.quantity}</Grid>

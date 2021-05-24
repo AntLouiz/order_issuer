@@ -7,11 +7,10 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Input from '@material-ui/core/Input';
 import { makeStyles } from '@material-ui/core/styles';
-import OrderConfirmModal from '../OrderConfirmModal';
 import integerToBRL from '../../utils';
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     root: {
         margin: "auto",
         height: "100%",
@@ -45,11 +44,6 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: "3rem"
     }
 }));
-
-
-function convertPrice(price) {
-    return price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
-}
 
 
 export default function OrderPricing(props) {
@@ -143,7 +137,6 @@ export default function OrderPricing(props) {
                     id="standard-adornment-amount"
                     name="suggestedPrice"
                     error={state.inputError}
-                    value={null}
                     type="number"
                     onChange={handleChange}
                     startAdornment={<InputAdornment position="start">R$</InputAdornment>}
