@@ -11,6 +11,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import integerToBRL from '../../utils';
 import { removeItem } from '../../api/Orders';
+import { RENTABILITY_CHOICES } from '../../api/settings';
 
 
 const useStyles = makeStyles({
@@ -52,6 +53,8 @@ export default function OrderItemCard(props) {
       removeItem(props.setAppState, order)
     }
 
+    let rentability = RENTABILITY_CHOICES[order.rentability]
+
     return (
       <Grid container className={classes.root}>
         <Grid item xs={3}>
@@ -91,7 +94,7 @@ export default function OrderItemCard(props) {
         </Grid>
         <Grid item xs={2} className={classes.details}>
             <Typography component="h3">
-              <span>Rent.:</span> <b>{order.rentability}</b>
+              <span>Rent.:</span> <b>{rentability}</b>
             </Typography>
         </Grid>
         <Grid item xs={2} className={classes.details}>

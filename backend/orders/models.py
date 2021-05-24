@@ -15,9 +15,9 @@ class OrderItem(models.Model):
     GOOD = 'GOOD'
     BAD = 'BAD'
     RENTABILITY_CHOICES = [
-        (GREAT, 'Great'),
-        (GOOD, 'Good'),
-        (BAD, 'Bad'),
+        (GREAT, 'Ótimo'),
+        (GOOD, 'Bom'),
+        (BAD, 'Ruim'),
     ]
 
     product = models.ForeignKey(Product, on_delete=models.CASCADE)

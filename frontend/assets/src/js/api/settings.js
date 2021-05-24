@@ -10,6 +10,12 @@ if (API_URL) {
 
 export const PAGE_SIZE = 5
 
+export const RENTABILITY_CHOICES = {
+    'GREAT': 'Ótima',
+    'GOOD': 'Boa',
+    'BAD': 'Ruim'
+}
+
 export default axios.create({
     baseURL: url
 })
