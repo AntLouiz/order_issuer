@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
 import List from '@material-ui/core/List';
 import Pagination from '@material-ui/lab/Pagination';
 import { makeStyles } from '@material-ui/core/styles';
@@ -38,6 +39,13 @@ const useStyles = makeStyles((theme) => ({
     "& > ul": {
       "display": "inline-flex"
     }
+  },
+  emptyMessageRoot: {
+    textAlign: "center",
+    padding: "8rem 2rem 8rem 2rem"
+  },
+  emptyMessage: {
+      fontSize: "2rem"
   }
 }));
 
@@ -77,17 +85,32 @@ export default function Orders(props) {
       ordersCards.push(orderRow)
     }
 
+    let body = (
+      <Grid item xs={10} className={classes.root}>
+        <h1>Meus pedidos</h1>
+        <Grid item xs={12}>
+          <List>{ordersCards}</List>
+        </Grid>
+        <Grid item xs={12}>
+          {pagination}
+        </Grid>
+      </Grid>
+    )
+
+    let emptyOrdersMessage = (
+      <Grid item xs={12} className={classes.emptyMessageRoot}>
+      <Grid xs={12} className={classes.emptyMessage}>Você não tem pedidos :(</Grid>
+      <Grid xs={12}>
+          <Link to="/">
+              <p>Buscar produtos</p>
+          </Link>
+      </Grid>
+      </Grid>
+    )
+
     return (
       <Grid container>
-        <Grid item xs={10} className={classes.root}>
-          <h1>Meus pedidos</h1>
-          <Grid item xs={12}>
-            <List>{ordersCards}</List>
-          </Grid>
-          <Grid item xs={12}>
-            {pagination}
-          </Grid>
-        </Grid>
+        {ordersCards.length? body: emptyOrdersMessage}
       </Grid>
     )
 }
