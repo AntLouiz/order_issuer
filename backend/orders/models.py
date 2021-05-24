@@ -26,7 +26,7 @@ class OrderItem(models.Model):
         choices=RENTABILITY_CHOICES,
         default=GOOD,
     )
-    price = models.IntegerField()
+    price = models.BigIntegerField()
     quantity = models.IntegerField(default=1)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
 
