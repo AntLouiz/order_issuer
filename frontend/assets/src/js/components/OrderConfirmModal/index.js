@@ -32,7 +32,7 @@ function fakeRequest(handler, history) {
     setTimeout(() => {
         handler()
         setTimeout(() => {
-            history.push('home')
+            history.push('/')
         }, 800)
     }, 1000);
 }

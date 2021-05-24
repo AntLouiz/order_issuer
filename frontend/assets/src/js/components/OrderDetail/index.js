@@ -1,16 +1,20 @@
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import CardMedia from '@material-ui/core/CardMedia';
 import React from 'react';
+import OrderDetailItem from '../OrderDetailItem';
+import integerToBRL from '../../utils';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         margin: "auto",
-        backgroundColor: 'red',
+        backgroundColor: 'white',
+        border: "1px #0433ff solid",
+        padding: "1rem"
     },
-    media: {
-        width: "100%",
-        margin: "1rem"
+    total: {
+        textAlign: "right",
+        padding: "0rem 1rem 0rem 0rem",
+        borderTop: "1px solid #5b5b5b"
     }
 }));
 
@@ -19,16 +23,17 @@ export default function OrderDetail(props) {
 
     const classes = useStyles();
 
+    let subtotal = order.subtotal
+    let items = [];
+    order.items.forEach((item) => {
+        items.push(<OrderDetailItem key={item.id} item={item} />)
+    })
+
     return (
-        <Grid container className={classes.root} justify="space-evenly">
-            <Grid item xs={4}>
-                <img src={order.image_url} className={classes.media} />
-            </Grid>
-            <Grid item xs={6}>
-                <h4>{order.title}</h4>
-                <p>
-                    {order.description}
-                </p>
+        <Grid container className={classes.root}>
+            {items}
+            <Grid item xs={12} className={classes.total}>
+                Total: {integerToBRL(subtotal)}
             </Grid>
         </Grid>
     )

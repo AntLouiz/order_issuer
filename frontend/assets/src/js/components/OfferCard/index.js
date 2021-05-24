@@ -7,18 +7,35 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import OrderItemModal from '../OrderItemModal';
+import integerToBRL from '../../utils';
 
 
 const useStyles = makeStyles({
   root: {
-    width: "12rem",
-    margin: "1rem"
+    width: "15rem",
+    margin: "10px",
+    maxHeight: "19rem"
+  },
+  content: {
+    padding: "8px"
   },
   media: {
     height: 140,
   },
   buttons: {
     margin: "auto"
+  },
+  price: {
+    alignItems: "center",
+    fontSize: 17,
+    color: "rgb(51, 51, 51)",
+    fontWeight: "bold"
+  },
+  actions: {
+    display: "inline"
+  },
+  offerName: {
+    fontSize: "1rem"
   }
 });
 
@@ -26,30 +43,29 @@ const useStyles = makeStyles({
 export default function OfferCard(props) {
     const {offer} = props
     const classes = useStyles();
+    let imageDefaultUrl = '/static/images/placeholder.png'
 
     return (
         <Card className={classes.root}>
-        <CardActionArea>
+        <CardContent className={classes.content}>
             <CardMedia
               className={classes.media}
-              image={offer.image_url}
+              image={offer.image_url? offer.image_url: imageDefaultUrl}
               title={offer.name}
             />
         <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {offer.name}
+            <Typography gutterBottom>
+              <span className={classes.offerName}>{offer.name}</span>
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
+            <Typography variant="body2" color="textSecondary" component="span">
               {offer.description}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="h2">
-              R$ {offer.price}
+            <Typography variant="body2" component="strong" className={classes.price}>
+                <b>{integerToBRL(offer.price)}</b>
             </Typography>
           </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <OrderItemModal order={offer} setAppState={props.setAppState} appState={props.appState} />
-        </CardActions>
+        </CardContent>
+        <OrderItemModal className={classes.actions} order={offer} setAppState={props.setAppState} appState={props.appState} />
       </Card>
     )
 }

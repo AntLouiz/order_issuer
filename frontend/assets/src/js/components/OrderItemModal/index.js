@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
@@ -18,13 +18,16 @@ const useStyles = makeStyles((theme) => ({
         position: 'absolute',
         margin: "10rem",
         backgroundColor: theme.palette.background.paper,
-        border: '2px solid #000',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
     },
     button: {
         width: "100%",
-        backgroundColor: "red"
+        backgroundColor: "#21349d",
+        borderRadius: 0,
+        "&:hover": {
+            backgroundColor: "#141d4d"
+        }
     },
     loading: {
         margin: "auto",
@@ -33,6 +36,16 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'blue',
         fontSize: 30,
         fontWeight: 600
+    },
+    image: {
+        width: "20rem"
+    },
+    product: {
+        textAlign: "center"
+    },
+    close: {
+        position: "absolute",
+        right: "1rem"
     }
 }));
 
@@ -40,6 +53,7 @@ export default function OrderItemModal(props) {
     const {order} = props
     const classes = useStyles();
     const [state, setState] = useState(defaultState);
+    let imageDefaultUrl = '/static/images/placeholder.png'
 
     const handleOpen = () => {
         setState({...state, open: true});
@@ -77,9 +91,16 @@ export default function OrderItemModal(props) {
 
     const body = (
         <div className={classes.paper}>
-            <Grid container xs={12}>
-                <Grid item xs={6}>
+            <Grid container>
+                <Grid item xs={12} className={classes.close}>
+                    <Button
+                        onClick={handleClose}
+                        startIcon={<CloseIcon />}
+                    />
+                </Grid>
+                <Grid item xs={6} className={classes.product}>
                     <h2 id="simple-modal-title">{order.name}</h2>
+                    <img src={order.image_url?order.image_url:imageDefaultUrl} className={classes.image}></img>
                     <p id="simple-modal-description">
                         {order.description}
                     </p>
@@ -92,13 +113,26 @@ export default function OrderItemModal(props) {
     );
 
     let modalAction = (
-        <IconButton aria-label="add to favorites" onClick={handleOpen}>
-            <LocalMallIcon />
-        </IconButton>
+        <Button
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+            onClick={handleOpen}
+            startIcon={<LocalMallIcon />}
+        >
+            Fazer pedido
+        </Button>
     )
     if (props.modalActionText) {
         modalAction = (
-            <Button onClick={handleOpen}>{props.modalActionText}</Button>
+            <Button
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+                onClick={handleOpen}
+            >
+                {props.modalActionText}
+            </Button>
         )
     }
 
