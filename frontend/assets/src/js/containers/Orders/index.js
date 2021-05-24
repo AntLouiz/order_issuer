@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { getClientOrders } from '../../api/Orders';
 import OrderCard from '../../components/OrderCard';
+import MessageEmpty from '../../components/MessageEmpty';
 import {PAGE_SIZE} from '../../api/settings';
 
 const defaultState = {page: 1}
@@ -39,13 +40,6 @@ const useStyles = makeStyles((theme) => ({
     "& > ul": {
       "display": "inline-flex"
     }
-  },
-  emptyMessageRoot: {
-    textAlign: "center",
-    padding: "8rem 2rem 8rem 2rem"
-  },
-  emptyMessage: {
-      fontSize: "2rem"
   }
 }));
 
@@ -97,16 +91,9 @@ export default function Orders(props) {
       </Grid>
     )
 
-    let emptyOrdersMessage = (
-      <Grid item xs={12} className={classes.emptyMessageRoot}>
-      <Grid xs={12} className={classes.emptyMessage}>Você não tem pedidos :(</Grid>
-      <Grid xs={12}>
-          <Link to="/">
-              <p>Buscar produtos</p>
-          </Link>
-      </Grid>
-      </Grid>
-    )
+    let emptyOrdersMessage = <MessageEmpty
+                                message="Você não tem pedidos"
+                              />
 
     return (
       <Grid container>

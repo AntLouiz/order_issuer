@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid'
 import OrderItemCard from '../../components/OrderItemCard'
+import MessageEmpty from '../../components/MessageEmpty';
 import { closeOrder } from '../../api/Orders'
 import integerToBRL from '../../utils';
 
@@ -24,13 +25,6 @@ const useStyles = makeStyles((theme) => ({
         color: "white",
         width: "100%",
         float: "right"
-    },
-    emptyMessageRoot: {
-        textAlign: "center",
-        padding: "8rem 2rem 8rem 2rem"
-    },
-    emptyMessage: {
-        fontSize: "2rem"
     },
     itemsList: {
         backgroundColor: "white",
@@ -77,16 +71,7 @@ export default function Bag(props) {
       subtotal += item.quantity * item.price
     }
 
-    let emptyBagMessage = (
-        <Grid item xs={12} className={classes.emptyMessageRoot}>
-            <Grid xs={12} className={classes.emptyMessage}>Sua sacola está vazia :(</Grid>
-            <Grid xs={12}>
-                <Link to="/">
-                    <p>Continuar comprando</p>
-                </Link>
-            </Grid>
-        </Grid>
-    )
+    let emptyBagMessage = <MessageEmpty message="Sua sacola está vazia :(" />
 
     let body = (
         <Grid container className={classes.itemsList}>
