@@ -16,7 +16,11 @@ import { RENTABILITY_CHOICES } from '../../api/settings';
 
 const useStyles = makeStyles({
   root: {
-    padding: "1rem"
+    padding: "1rem",
+    background: "#f7f7f7",
+    border: "1px #e1dede solid",
+    borderRadius: "3px",
+    marginBottom: "1rem"
   },
   media: {
     height: 140,
@@ -98,7 +102,14 @@ export default function OrderItemCard(props) {
             </Typography>
         </Grid>
         <Grid item xs={2} className={classes.details}>
-          <OrderItemModal className={classes.actions} order={order} setAppState={props.setAppState} appState={props.appState} modalActionText={"Editar valores"} isEdition={true}/>
+          <OrderItemModal
+            className={classes.actions}
+            order={order}
+            setAppState={props.setAppState}
+            appState={props.appState}
+            modalActionText={"Editar valores"}
+            isEdition={true}
+          />
         </Grid>
       </Grid>
     )

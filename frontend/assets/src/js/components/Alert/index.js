@@ -13,12 +13,27 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(4),
     },
   },
-  alert: {
-    fontWeight: "bold"
+  standardSuccess: {
+    backgroundColor: "#1ccc79",
+    display: "inline-flex"
+  },
+  message: {
+    marginTop: "0px"
+  },
+  action: {
+    marginTop: "0px"
   },
   close: {
     padding: theme.spacing(0.5),
   },
+  anchorOriginTopCenter: {
+    marginTop: "6rem",
+    width: "auto",
+    top: "24px",
+    left: "50%",
+    right: "auto",
+    transform: "translateX(-50%)"
+  }
 }));
 
 export default function Alert(props) {
@@ -37,9 +52,10 @@ export default function Alert(props) {
       <Collapse in={open}>
         <Snackbar
           key={severity}
+          classes={classes}
           anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'right',
+            vertical: 'top',
+            horizontal: 'center',
           }}
           open={open}
           autoHideDuration={6000}
@@ -59,7 +75,8 @@ export default function Alert(props) {
         >
           <MaterialAlert
             severity={severity}
-            className={classes.alert}
+            classes={classes}
+            icon={false}
             action={
               <IconButton
                 aria-label="close"

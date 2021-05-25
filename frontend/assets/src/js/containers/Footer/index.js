@@ -17,7 +17,7 @@ export default function Footer() {
     let currentYear = date.getFullYear(); 
     return (
         <footer className={classes.footer}>
-            <small>&copy; Copyright {currentYear} Galactic Republic. All Rights Reserved</small>
+            <small>&copy;FireBlaster {currentYear}</small>
         </footer>
         
     )

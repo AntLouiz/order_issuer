@@ -18,10 +18,10 @@ const useStyles = makeStyles((theme) => ({
         background: "white",
         marginTop: "1rem",
         borderRadius: "1%",
-        border: "#092ece 3px solid"
+        border: "#5c3aca 3px solid"
     },
     submit: {
-        backgroundColor: "#62db1d",
+        backgroundColor: "#5c3aca",
         color: "white",
         width: "100%",
         float: "right"

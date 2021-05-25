@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
     },
     popper: {
         margin: "3px 0px 0px 2rem"
+    },
+    avatar: {
+        backgroundColor: "#0188a5"
     }
 }));
 
@@ -59,7 +62,7 @@ export default function AvatarOptions(props) {
     return (
         <Grid container>
         <Grid item xs={3}>
-            <Avatar>{client.name[0]}</Avatar>
+            <Avatar src={client.image_url} className={classes.avatar}>{client.name[0]}</Avatar>
         </Grid>
         <Grid item xs={9} className={classes.greetings}>
             <a
@@ -69,7 +72,7 @@ export default function AvatarOptions(props) {
                 onClick={handleToggle}
                 className={classes.toggle}
             >
-                <strong>Olá, {client.name}</strong>
+                <strong>Olá,<br></br>{client.name}</strong>
                 <ExpandMoreIcon className={classes.expandIcon} />
             </a>
             <Popper className={classes.popper} open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>

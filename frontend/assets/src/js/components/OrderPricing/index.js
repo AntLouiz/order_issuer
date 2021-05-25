@@ -23,10 +23,10 @@ const useStyles = makeStyles(() => ({
     button: {
         width: "100%",
         color: "white",
-        backgroundColor: "#21349d",
+        backgroundColor: "#3f3060",
         borderRadius: 0,
         "&:hover": {
-            backgroundColor: "#141d4d"
+            backgroundColor: "#3e3264"
         }
     },
     buttonQuantity: {
