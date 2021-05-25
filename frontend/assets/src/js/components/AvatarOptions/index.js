@@ -69,7 +69,7 @@ export default function AvatarOptions(props) {
                 onClick={handleToggle}
                 className={classes.toggle}
             >
-                <strong>Olá, {client.name}</strong>
+                <strong>Olá,<br></br>{client.name}</strong>
                 <ExpandMoreIcon className={classes.expandIcon} />
             </a>
             <Popper className={classes.popper} open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>

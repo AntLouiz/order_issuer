@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
     link: {
         display: 'flex',
         color: 'white',
-        textDecoration: "none"
+        textDecoration: "none",
+        fontFamily: "Mulish, sans-serif"
     },
     icon: {
         marginRight: theme.spacing(0.5),
