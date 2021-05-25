@@ -26,6 +26,14 @@ const useStyles = makeStyles((theme) => ({
   close: {
     padding: theme.spacing(0.5),
   },
+  anchorOriginTopCenter: {
+    marginTop: "6rem",
+    width: "auto",
+    top: "24px",
+    left: "50%",
+    right: "auto",
+    transform: "translateX(-50%)"
+  }
 }));
 
 export default function Alert(props) {
@@ -44,9 +52,10 @@ export default function Alert(props) {
       <Collapse in={open}>
         <Snackbar
           key={severity}
+          classes={classes}
           anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'right',
+            vertical: 'top',
+            horizontal: 'center',
           }}
           open={open}
           autoHideDuration={6000}
@@ -67,6 +76,7 @@ export default function Alert(props) {
           <MaterialAlert
             severity={severity}
             classes={classes}
+            icon={false}
             action={
               <IconButton
                 aria-label="close"

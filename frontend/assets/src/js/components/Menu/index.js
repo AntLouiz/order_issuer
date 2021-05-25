@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Link as RouteLink} from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Badge from '@material-ui/core/Badge';
@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
     },
     greetings: {
         paddingTop: 5
+    },
+    fireIcon: {
+        color: "#f27575"
     },
     colorError: {
         backgroundColor: "#df0772",
@@ -63,7 +66,7 @@ export default function Menu(props) {
         >
             <Grid item xs={2}>
                 <RouteLink to="/" className={classes.link}>
-                    <h2>Fire<WhatshotIcon />Blaster</h2>
+                    <h2>Fire<WhatshotIcon className={classes.fireIcon}/>Blaster</h2>
                     <span className={classes.subtitle}>Arms and vehicles shop</span>
                 </RouteLink>
             </Grid>
