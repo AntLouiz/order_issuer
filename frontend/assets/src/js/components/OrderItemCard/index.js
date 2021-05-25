@@ -102,7 +102,14 @@ export default function OrderItemCard(props) {
             </Typography>
         </Grid>
         <Grid item xs={2} className={classes.details}>
-          <OrderItemModal className={classes.actions} order={order} setAppState={props.setAppState} appState={props.appState} modalActionText={"Editar valores"} isEdition={true}/>
+          <OrderItemModal
+            className={classes.actions}
+            order={order}
+            setAppState={props.setAppState}
+            appState={props.appState}
+            modalActionText={"Editar valores"}
+            isEdition={true}
+          />
         </Grid>
       </Grid>
     )

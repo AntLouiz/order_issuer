@@ -23,10 +23,18 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         width: "100%",
-        backgroundColor: "#21349d",
+        backgroundColor: "#0db958",
         borderRadius: 0,
         "&:hover": {
-            backgroundColor: "#141d4d"
+            backgroundColor: "#1ca859"
+        }
+    },
+    editButton: {
+        width: "100%",
+        backgroundColor: "#0188a5",
+        borderRadius: 0,
+        "&:hover": {
+            backgroundColor: "#0188a5"
         }
     },
     loading: {
@@ -128,7 +136,7 @@ export default function OrderItemModal(props) {
             <Button
                 variant="contained"
                 color="secondary"
-                className={classes.button}
+                className={props.isEdition?classes.editButton: classes.button}
                 onClick={handleOpen}
             >
                 {props.modalActionText}

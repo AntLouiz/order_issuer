@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import Tooltip from '@material-ui/core/Tooltip';
-import Avatar from '@material-ui/core/Avatar';
+import WhatshotIcon from '@material-ui/icons/Whatshot';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import ProductsSearch from '../ProductsSearch';
 import AvatarOptions from '../AvatarOptions';
@@ -30,6 +30,16 @@ const useStyles = makeStyles((theme) => ({
     },
     greetings: {
         paddingTop: 5
+    },
+    colorError: {
+        backgroundColor: "#df0772",
+        marginTop: "1rem"
+    },
+    subtitle: {
+        position: "absolute",
+        top: "4rem",
+        fontSize: "12px",
+        margin: "1px 1px 1px 10px"
     }
 }));
 
@@ -53,7 +63,8 @@ export default function Menu(props) {
         >
             <Grid item xs={2}>
                 <RouteLink to="/" className={classes.link}>
-                    <h2>ShopTropper</h2>
+                    <h2>Fire<WhatshotIcon />Blaster</h2>
+                    <span className={classes.subtitle}>Arms and vehicles shop</span>
                 </RouteLink>
             </Grid>
             <Grid item xs={5}>
@@ -79,7 +90,7 @@ export default function Menu(props) {
                 <Typography color="textPrimary">
                     <RouteLink to="/my-bag" alt="Minha sacola" className={classes.link}>
                         <Tooltip title="Minha sacola" aria-label="my-bag">
-                            <Badge badgeContent={itemsLength} color="error">
+                            <Badge badgeContent={itemsLength} color="error" classes={classes}>
                                 <ShoppingBasketIcon className={classes.icon} />
                             </Badge>
                         </Tooltip>

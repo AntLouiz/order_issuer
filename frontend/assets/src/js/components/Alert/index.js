@@ -13,8 +13,15 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(4),
     },
   },
-  alert: {
-    fontWeight: "bold"
+  standardSuccess: {
+    backgroundColor: "#1ccc79",
+    display: "inline-flex"
+  },
+  message: {
+    marginTop: "0px"
+  },
+  action: {
+    marginTop: "0px"
   },
   close: {
     padding: theme.spacing(0.5),
@@ -59,7 +66,7 @@ export default function Alert(props) {
         >
           <MaterialAlert
             severity={severity}
-            className={classes.alert}
+            classes={classes}
             action={
               <IconButton
                 aria-label="close"
