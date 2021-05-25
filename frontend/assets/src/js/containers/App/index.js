@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import {
     BrowserRouter as Router,
     Switch,
@@ -23,14 +24,22 @@ let defaultState = {
     products: []
 }
 
+const useStyles = makeStyles(() => ({
+    root: {
+        fontFamily: "Volkorn, sans-serif",
+        background: "#f7f7f7"
+    }
+}));
+
 export default function App() {
     const [state, setState] = useState(defaultState)
+    const classes = useStyles()
 
     return (
         <HashRouter>
         <ClientChooseModal appState={state} setAppState={setState} />
         <Menu setAppState={setState} appState={state} />
-        <div style={{background: "#eaeaea"}}>
+        <div className={classes.root}>
         {state.alertMessage&& <Alert severity={state.alertMessage.severity} message={state.alertMessage.message} setAppState={setState} />}
                 <Switch>
                     <Route
