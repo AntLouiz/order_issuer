@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
   avatar: {
     margin: 5,
-    backgroundColor: "#0433ff"
+    backgroundColor: "#0188a5"
   }
 });
 
@@ -37,7 +37,7 @@ export default function ClientCard(props) {
           <CardContent >
             <Grid container>
               <Grid item xs={3}>
-                <Avatar className={classes.avatar}>{client.name[0]}</Avatar>
+                <Avatar className={classes.avatar} src={client.image_url}>{client.name[0]}</Avatar>
               </Grid>
               <Grid item xs={8}>
                 <Typography gutterBottom variant="h5" component="h5">
