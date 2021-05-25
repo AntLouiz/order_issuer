@@ -23,10 +23,10 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         width: "100%",
-        backgroundColor: "#0db958",
+        backgroundColor: "#5f41b5",
         borderRadius: 0,
         "&:hover": {
-            backgroundColor: "#1ca859"
+            backgroundColor: "#342364"
         }
     },
     editButton: {

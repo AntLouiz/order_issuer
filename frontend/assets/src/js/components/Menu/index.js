@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     },
     fireIcon: {
         color: "#f27575",
-        width: "13rem"
+        width: "11rem"
     },
     colorError: {
         backgroundColor: "#df0772",
