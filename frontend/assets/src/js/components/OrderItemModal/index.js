@@ -16,10 +16,10 @@ let defaultState = {
 const useStyles = makeStyles((theme) => ({
     paper: {
         position: 'absolute',
-        margin: "10rem",
+        margin: "5rem",
         backgroundColor: theme.palette.background.paper,
         boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
+        padding: "2rem",
     },
     button: {
         width: "100%",

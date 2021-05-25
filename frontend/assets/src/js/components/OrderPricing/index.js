@@ -38,7 +38,7 @@ const useStyles = makeStyles(() => ({
         fontWeight: "bold",
         margin: 10,
         paddingBottom: "1rem",
-        paddingTop: "3rem"
+        paddingTop: "10rem"
     },
     quantity: {
         paddingTop: "3rem"
