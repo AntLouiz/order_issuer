@@ -16,7 +16,11 @@ import { RENTABILITY_CHOICES } from '../../api/settings';
 
 const useStyles = makeStyles({
   root: {
-    padding: "1rem"
+    padding: "1rem",
+    background: "#f7f7f7",
+    border: "1px #e1dede solid",
+    borderRadius: "3px",
+    marginBottom: "1rem"
   },
   media: {
     height: 140,
