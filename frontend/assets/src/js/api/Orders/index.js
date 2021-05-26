@@ -3,9 +3,10 @@ import API from '../settings';
 
 export function getClientOrders(setAppState, clientId, pageIndex=1) {
     let endpoint = `/orders/clients/${clientId}/?page=${pageIndex}`
+
     API.get(endpoint).then((response) => {
         const orders = response.data;
-        setAppState((prevState) => { return {...prevState, orders: orders}})
+        setAppState((prevState) => { return {...prevState, orders: orders, isLoading: false}})
     })
 }
 
@@ -15,7 +16,7 @@ export function getOrderItems(setAppState, orderId) {
         const items = response.data.reverse()
         setAppState((prevState) => {
             const currentOrder = {...prevState.currentOrder, items: items}
-            return {...prevState, currentOrder: currentOrder}
+            return {...prevState, currentOrder: currentOrder, isLoading: false}
         })
     })
 }
@@ -25,10 +26,11 @@ export function getCurrentClientOrder(setAppState, clientId, handler, handlerErr
     API.get(endpoint).then((response) => {
         const currentOrderId = response.data.id
         let currentOrder = {pk: currentOrderId, items:[]}
-        setAppState((prevState) => { return {...prevState, currentOrder: currentOrder}})
+        setAppState((prevState) => { return {...prevState, currentOrder: currentOrder, isLoading: true}})
         getOrderItems(setAppState, currentOrderId)
         handler()
     }).catch((error) => {
+        setAppState((prevState) => { return {...prevState, isLoading: false}})
         handlerError()
     })
 }

@@ -8,6 +8,7 @@ import { getClientOrders } from '../../api/Orders';
 import OrderCard from '../../components/OrderCard';
 import MessageEmpty from '../../components/MessageEmpty';
 import {PAGE_SIZE} from '../../api/settings';
+import DotLoader from '../../components/Loader';
 
 const defaultState = {page: 1}
 
@@ -47,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
 export default function Orders(props) {
     const classes = useStyles()
     const [state, setState] = useState(defaultState)
+    const {isLoading} = props.appState
+
+    let isOrderLoading = true
 
     let orders = []
     let ordersCards = []
@@ -72,6 +76,12 @@ export default function Orders(props) {
 
     if (!props.appState.orders.results && props.appState.client) {
       getClientOrders(props.setAppState, props.appState.client.pk)
+    } else {
+      isOrderLoading = false
+    }
+
+    if (isLoading) {
+      isOrderLoading = true
     }
 
     for (let order of orders) {
@@ -95,9 +105,11 @@ export default function Orders(props) {
                                 message="Você não tem pedidos"
                               />
 
+    body = ordersCards.length? body: emptyOrdersMessage
+
     return (
       <Grid container>
-        {ordersCards.length? body: emptyOrdersMessage}
+        {isOrderLoading? <DotLoader />: body}
       </Grid>
     )
 }

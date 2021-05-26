@@ -16,17 +16,17 @@ let defaultState = {
 const useStyles = makeStyles((theme) => ({
     paper: {
         position: 'absolute',
-        margin: "10rem",
+        margin: "5rem",
         backgroundColor: theme.palette.background.paper,
         boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
+        padding: "2rem",
     },
     button: {
         width: "100%",
-        backgroundColor: "#0db958",
+        backgroundColor: "#5f41b5",
         borderRadius: 0,
         "&:hover": {
-            backgroundColor: "#1ca859"
+            backgroundColor: "#342364"
         }
     },
     editButton: {

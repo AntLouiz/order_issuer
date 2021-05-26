@@ -8,6 +8,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Input from '@material-ui/core/Input';
 import { makeStyles } from '@material-ui/core/styles';
 import integerToBRL from '../../utils';
+import ButtonLoader from '../ButtonLoader';
 
 
 const useStyles = makeStyles(() => ({
@@ -38,10 +39,13 @@ const useStyles = makeStyles(() => ({
         fontWeight: "bold",
         margin: 10,
         paddingBottom: "1rem",
-        paddingTop: "3rem"
+        paddingTop: "10rem"
     },
     quantity: {
         paddingTop: "3rem"
+    },
+    buttonLoading: {
+        cursor: 'none'
     }
 }));
 
@@ -51,6 +55,7 @@ export default function OrderPricing(props) {
 
     let orderPrice = order.price
     let defaultState = {
+        isLoading: false,
         showInput: false,
         showUserInput: false,
         confirmedPrice: orderPrice,
@@ -123,6 +128,8 @@ export default function OrderPricing(props) {
             price: state.confirmedPrice
         }
 
+        setState({...state, isLoading: true})
+
         handleSubmit(item)
     }
     let togglePriceButton = (
@@ -151,6 +158,8 @@ export default function OrderPricing(props) {
                 </Button>
             </label>
     )
+
+    let buttonText = props.isEdition? "Atualizar item": "Adicionar item na sacola"
 
     return (
         <Grid container className={classes.root} justify="space-evenly">
@@ -198,10 +207,16 @@ export default function OrderPricing(props) {
                 <hr></hr>
                 <span>Subtotal: {integerToBRL(state.subtotal)}</span>
             </Grid>
-            <Grid item xs={12}>
-            <Button color="default" className={classes.button} onClick={handleItemSubmit}>
-                {props.isEdition? "Atualizar item": "Adicionar item na sacola"}
-            </Button>
+            <Grid item xs={8}>
+                <Button
+                    color="default"
+                    className={classes.button}
+                    disabled={state.isLoading}
+                    onClick={handleItemSubmit}
+                >
+                    {buttonText}
+                    {state.isLoading? <ButtonLoader />: null}
+                </Button>
             </Grid>
         </Grid>
     )

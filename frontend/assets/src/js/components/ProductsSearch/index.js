@@ -53,6 +53,8 @@ export default function ProductsSearch(props) {
 
         setState({searchText: searchText})
 
+        props.setAppState({...props.appState, isLoading: true})
+
         handler(props.setAppState, searchText)
     }
 

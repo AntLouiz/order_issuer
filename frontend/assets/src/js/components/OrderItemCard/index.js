@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import OrderItemModal from '../../components/OrderItemModal'
@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import integerToBRL from '../../utils';
 import { removeItem } from '../../api/Orders';
 import { RENTABILITY_CHOICES } from '../../api/settings';
+import ButtonLoader from '../ButtonLoader';
 
 
 const useStyles = makeStyles({
@@ -45,6 +46,7 @@ const useStyles = makeStyles({
 
 export default function OrderItemCard(props) {
     const classes = useStyles();
+    const [state, setState] = useState({isLoading: false})
     let imageDefaultUrl = '/static/images/placeholder.png'
     let order = props.order
 
@@ -54,6 +56,7 @@ export default function OrderItemCard(props) {
     order['multiple'] = order.productItem.multiple
 
     const handleRemove = () => {
+      setState({isLoading: true})
       removeItem(props.setAppState, order)
     }
 
@@ -76,6 +79,7 @@ export default function OrderItemCard(props) {
                 className={classes.actions}
                 onClick={handleRemove}
             >
+              {state.isLoading? <ButtonLoader />: null}
               Remover produto
             </Button>
           </Grid>

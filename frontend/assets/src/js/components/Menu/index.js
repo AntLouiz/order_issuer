@@ -52,6 +52,8 @@ export default function Menu(props) {
     const items = props.appState.currentOrder.items
     const itemsLength = items?items.length:0
 
+    let imageLogoUrl = '/static/images/logo.png'
+
     let avatarOptions;
     if (client) {
         avatarOptions = <AvatarOptions client={client}/>

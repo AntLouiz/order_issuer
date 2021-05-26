@@ -24,19 +24,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home(props) {
     const classes = useStyles()
+    const {isLoading} = props.appState
+
+    let offers = <Offers setAppState={props.setAppState} appState={props.appState}/>
 
     return (
         <div className={classes.root}>
-            <Container>
                 <Grid
                     alignItems="center"
                     container
                     direction="row"
                     justify="center"
                 >
-                    <Offers setAppState={props.setAppState} appState={props.appState}/>
+                    {offers}
                 </Grid>
-            </Container>
         </div>
     )
 }

@@ -21,7 +21,8 @@ let defaultState = {
     currentOrder: {items: [], pk: null},
     alertMessage: null,
     orders: {},
-    products: []
+    products: [],
+    isLoading: true
 }
 
 const useStyles = makeStyles(() => ({

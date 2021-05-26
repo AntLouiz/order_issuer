@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core';
@@ -6,7 +6,10 @@ import Grid from '@material-ui/core/Grid'
 import OrderItemCard from '../../components/OrderItemCard'
 import MessageEmpty from '../../components/MessageEmpty';
 import { closeOrder } from '../../api/Orders'
+import DotLoader from '../../components/Loader';
+import ButtonLoader from '../../components/ButtonLoader';
 import integerToBRL from '../../utils';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
         marginTop: "1rem",
         borderRadius: "1%",
         border: "#5c3aca 3px solid"
+    },
+    body: {
+        margin: "auto"
     },
     submit: {
         backgroundColor: "#5c3aca",
@@ -38,15 +44,20 @@ const useStyles = makeStyles((theme) => ({
 export default function Bag(props) {
     const classes = useStyles()
     const {items} = props.appState.currentOrder
+    const {isLoading} = props.appState
+    const [isSubmitLoading, setState] = useState(false)
+
     let history = useHistory()
     let itemsList = [];
     let subtotal = 0;
 
     const handleSubmit = () => {
         let alertMessage = {message: null, severity: 'success'}
+        setState(true)
         const handler = () => {
             alertMessage['message'] = 'Pedido submetido com sucesso'
             props.setAppState((prevState) => {return {...prevState, alertMessage: alertMessage}})
+            history.push('/')
         }
         const handlerError = () => {
             alertMessage['message'] = 'Falha ao submeter pedido'
@@ -54,7 +65,6 @@ export default function Bag(props) {
             props.setAppState((prevState) => {return {...prevState, alertMessage: alertMessage}})
         }
         closeOrder(props.setAppState, props.appState.currentOrder.pk, props.appState.client.pk, handler, handlerError)
-        history.push('/')
     }
 
     for (let item of items) {
@@ -90,16 +100,25 @@ export default function Bag(props) {
             </Grid>
             <Grid item xs={12}>
                 <Grid item xs={3} className={classes.submit}>
-                    <Button onClick={handleSubmit} className={classes.submit}>Submeter pedido</Button>
+                    <Button onClick={handleSubmit} className={classes.submit}>
+                        Submeter pedido
+                        {isSubmitLoading? <ButtonLoader />: null}
+                    </Button>
                 </Grid>
             </Grid>
         </Grid>
     )
 
-    return (
-        <Grid container className={classes.root}>
+    let itensBody = (
+        <div className={classes.body}>
             {itemsList.length?body: emptyBagMessage}
             {itemsList.length?subtotalSubmit: null}
+        </div>
+    )
+
+    return (
+        <Grid container className={classes.root}>
+            {isLoading? <DotLoader />: itensBody}
         </Grid>
     )
 }
