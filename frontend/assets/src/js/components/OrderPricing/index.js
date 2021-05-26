@@ -8,7 +8,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Input from '@material-ui/core/Input';
 import { makeStyles } from '@material-ui/core/styles';
 import integerToBRL from '../../utils';
-import Loader from '../Loader';
+import ButtonLoader from '../ButtonLoader';
 
 
 const useStyles = makeStyles(() => ({
@@ -43,6 +43,9 @@ const useStyles = makeStyles(() => ({
     },
     quantity: {
         paddingTop: "3rem"
+    },
+    buttonLoading: {
+        cursor: 'none'
     }
 }));
 
@@ -52,6 +55,7 @@ export default function OrderPricing(props) {
 
     let orderPrice = order.price
     let defaultState = {
+        isLoading: false,
         showInput: false,
         showUserInput: false,
         confirmedPrice: orderPrice,
@@ -124,6 +128,8 @@ export default function OrderPricing(props) {
             price: state.confirmedPrice
         }
 
+        setState({isLoading: true})
+
         handleSubmit(item)
     }
     let togglePriceButton = (
@@ -152,6 +158,8 @@ export default function OrderPricing(props) {
                 </Button>
             </label>
     )
+
+    let buttonText = props.isEdition? "Atualizar item": "Adicionar item na sacola"
 
     return (
         <Grid container className={classes.root} justify="space-evenly">
@@ -200,8 +208,14 @@ export default function OrderPricing(props) {
                 <span>Subtotal: {integerToBRL(state.subtotal)}</span>
             </Grid>
             <Grid item xs={12}>
-            <Button color="default" className={classes.button} onClick={handleItemSubmit}>
-                {props.isEdition? "Atualizar item": "Adicionar item na sacola"}
+            <Button
+                color="default"
+                className={classes.button}
+                disabled={state.isLoading}
+                onClick={handleItemSubmit}
+            >
+                {buttonText}
+                {state.isLoading? <ButtonLoader />: null}
             </Button>
             </Grid>
         </Grid>
