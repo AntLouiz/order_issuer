@@ -10,7 +10,7 @@ if (API_URL) {
 
 export const PAGE_SIZE = 5
 
-export const REQUEST_TIMEOUT = 10000
+export const REQUEST_TIMEOUT = 80000
 
 export const RENTABILITY_CHOICES = {
     'GREAT': 'Ótima',

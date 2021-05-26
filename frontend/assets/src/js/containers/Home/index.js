@@ -5,7 +5,6 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Offers from '../../components/Offers';
-import DotLoader from '../../components/Loader';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -31,16 +30,14 @@ export default function Home(props) {
 
     return (
         <div className={classes.root}>
-            <Container>
                 <Grid
                     alignItems="center"
                     container
                     direction="row"
                     justify="center"
                 >
-                    {isLoading? <DotLoader />: offers}
+                    {offers}
                 </Grid>
-            </Container>
         </div>
     )
 }
