@@ -1,4 +1,3 @@
-from rest_framework import generics
 from django_filters import rest_framework as filters
 from backend.products.models import Product
 

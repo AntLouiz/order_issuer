@@ -1,4 +1,4 @@
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView
 from backend.clients.models import Client
 from backend.clients.api.serializers import ClientSerializer
 
