@@ -72,7 +72,7 @@ export function postItem(setAppState, item, handler=null, handlerError=null) {
     })
 }
 
-export function updateItem(setAppState, item, handler) {
+export function updateItem(setAppState, item, handler, handlerError) {
     let endpoint = `/items/${item.id}/`
     let alertMessage = {
         message: 'Item atualizado',
@@ -103,6 +103,7 @@ export function updateItem(setAppState, item, handler) {
     }).catch((error) => {
         let message = error.response.data
         setAppState((prevState) => { return {...prevState, isLoading: false}})
+        handlerError && handlerError()
         return alertErrorMessage(message)
     })
 }
