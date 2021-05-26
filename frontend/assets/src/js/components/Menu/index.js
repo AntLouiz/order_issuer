@@ -32,8 +32,7 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: 5
     },
     fireIcon: {
-        color: "#f27575",
-        width: "11rem"
+        color: "#f27575"
     },
     colorError: {
         backgroundColor: "#df0772",
@@ -69,7 +68,8 @@ export default function Menu(props) {
         >
             <Grid item xs={2}>
                 <RouteLink to="/" className={classes.link}>
-                    <img src={imageLogoUrl} className={classes.fireIcon}></img>
+                    <h2>Fire<WhatshotIcon className={classes.fireIcon}/>Blaster</h2>
+                    <span className={classes.subtitle}>Arms and vehicles shop</span>
                 </RouteLink>
             </Grid>
             <Grid item xs={5}>
