@@ -47,6 +47,8 @@ export default function ClientChooseModal(props) {
     const setClient = (client) => {
         const handler = () => setState({...state, open: false, isLoading: false})
         const handlerError = handler
+
+        setState({...state, isLoading: true})
         getCurrentClientOrder(props.setAppState, client.pk, handler, handlerError)
         props.setAppState({...props.appState, client: client})
     }
