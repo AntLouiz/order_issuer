@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core';
@@ -7,6 +7,7 @@ import OrderItemCard from '../../components/OrderItemCard'
 import MessageEmpty from '../../components/MessageEmpty';
 import { closeOrder } from '../../api/Orders'
 import DotLoader from '../../components/Loader';
+import ButtonLoader from '../../components/ButtonLoader';
 import integerToBRL from '../../utils';
 
 
@@ -41,6 +42,8 @@ export default function Bag(props) {
     const classes = useStyles()
     const {items} = props.appState.currentOrder
     const {isLoading} = props.appState
+    const [isSubmitLoading, setState] = useState(false)
+
     let history = useHistory()
     let itemsList = [];
     let subtotal = 0;
@@ -49,7 +52,9 @@ export default function Bag(props) {
         let alertMessage = {message: null, severity: 'success'}
         const handler = () => {
             alertMessage['message'] = 'Pedido submetido com sucesso'
+            setState(true)
             props.setAppState((prevState) => {return {...prevState, alertMessage: alertMessage}})
+            history.push('/')
         }
         const handlerError = () => {
             alertMessage['message'] = 'Falha ao submeter pedido'
@@ -57,7 +62,6 @@ export default function Bag(props) {
             props.setAppState((prevState) => {return {...prevState, alertMessage: alertMessage}})
         }
         closeOrder(props.setAppState, props.appState.currentOrder.pk, props.appState.client.pk, handler, handlerError)
-        history.push('/')
     }
 
     for (let item of items) {
@@ -94,6 +98,7 @@ export default function Bag(props) {
             <Grid item xs={12}>
                 <Grid item xs={3} className={classes.submit}>
                     <Button onClick={handleSubmit} className={classes.submit}>Submeter pedido</Button>
+                    {isSubmitLoading? <ButtonLoader />: null}
                 </Grid>
             </Grid>
         </Grid>

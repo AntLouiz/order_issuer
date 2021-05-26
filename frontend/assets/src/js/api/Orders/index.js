@@ -3,6 +3,7 @@ import API from '../settings';
 
 export function getClientOrders(setAppState, clientId, pageIndex=1) {
     let endpoint = `/orders/clients/${clientId}/?page=${pageIndex}`
+
     API.get(endpoint).then((response) => {
         const orders = response.data;
         setAppState((prevState) => { return {...prevState, orders: orders, isLoading: false}})
@@ -29,6 +30,7 @@ export function getCurrentClientOrder(setAppState, clientId, handler, handlerErr
         getOrderItems(setAppState, currentOrderId)
         handler()
     }).catch((error) => {
+        setAppState((prevState) => { return {...prevState, isLoading: false}})
         handlerError()
     })
 }
