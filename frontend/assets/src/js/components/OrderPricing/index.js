@@ -207,16 +207,16 @@ export default function OrderPricing(props) {
                 <hr></hr>
                 <span>Subtotal: {integerToBRL(state.subtotal)}</span>
             </Grid>
-            <Grid item xs={12}>
-            <Button
-                color="default"
-                className={classes.button}
-                disabled={state.isLoading}
-                onClick={handleItemSubmit}
-            >
-                {buttonText}
-                {state.isLoading? <ButtonLoader />: null}
-            </Button>
+            <Grid item xs={8}>
+                <Button
+                    color="default"
+                    className={classes.button}
+                    disabled={state.isLoading}
+                    onClick={handleItemSubmit}
+                >
+                    {buttonText}
+                    {state.isLoading? <ButtonLoader />: null}
+                </Button>
             </Grid>
         </Grid>
     )

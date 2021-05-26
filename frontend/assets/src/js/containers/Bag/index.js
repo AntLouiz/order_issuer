@@ -23,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: "1%",
         border: "#5c3aca 3px solid"
     },
+    body: {
+        margin: "auto"
+    },
     submit: {
         backgroundColor: "#5c3aca",
         color: "white",
@@ -50,9 +53,9 @@ export default function Bag(props) {
 
     const handleSubmit = () => {
         let alertMessage = {message: null, severity: 'success'}
+        setState(true)
         const handler = () => {
             alertMessage['message'] = 'Pedido submetido com sucesso'
-            setState(true)
             props.setAppState((prevState) => {return {...prevState, alertMessage: alertMessage}})
             history.push('/')
         }
@@ -97,15 +100,17 @@ export default function Bag(props) {
             </Grid>
             <Grid item xs={12}>
                 <Grid item xs={3} className={classes.submit}>
-                    <Button onClick={handleSubmit} className={classes.submit}>Submeter pedido</Button>
-                    {isSubmitLoading? <ButtonLoader />: null}
+                    <Button onClick={handleSubmit} className={classes.submit}>
+                        Submeter pedido
+                        {isSubmitLoading? <ButtonLoader />: null}
+                    </Button>
                 </Grid>
             </Grid>
         </Grid>
     )
 
     let itensBody = (
-        <div>
+        <div className={classes.body}>
             {itemsList.length?body: emptyBagMessage}
             {itemsList.length?subtotalSubmit: null}
         </div>
