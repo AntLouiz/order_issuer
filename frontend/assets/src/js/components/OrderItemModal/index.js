@@ -71,11 +71,12 @@ export default function OrderItemModal(props) {
       setState({...state, open: false});
     };
 
-    const handleSubmit = (product) => {
+    const handleSubmit = (product, postHandler) => {
         let item = {...product, product: product.id}
         if (!props.appState.currentOrder.pk) {
             postOrder(props.setAppState, props.appState.client.pk, item)
-            setState({...state, open: false});
+            setState({...state, open: false})
+            postHandler()
             return
         }
 
@@ -87,9 +88,9 @@ export default function OrderItemModal(props) {
 
         if (props.isEdition) {
             item = {...product, product: product.product}
-            updateItem(props.setAppState, item, handler)
+            updateItem(props.setAppState, item, handler, postHandler)
         } else {
-            postItem(props.setAppState, item, handler)
+            postItem(props.setAppState, item, handler, postHandler)
         }
     }
 

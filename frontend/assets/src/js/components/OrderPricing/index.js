@@ -130,8 +130,14 @@ export default function OrderPricing(props) {
 
         setState({...state, isLoading: true})
 
-        handleSubmit(item)
+        const postHandler = () => {
+            setState({...state, isLoading: false})
+            return 
+        }
+
+        handleSubmit(item, postHandler)
     }
+
     let togglePriceButton = (
         <Button color="default" onClick={toggleInput}>
             {state.useSuggestedPrice? "Utilizar preço original": "Sugerir um preço para o produto"}

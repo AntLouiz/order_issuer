@@ -35,7 +35,7 @@ export function getCurrentClientOrder(setAppState, clientId, handler, handlerErr
     })
 }
 
-export function postItem(setAppState, item, handler=null) {
+export function postItem(setAppState, item, handler=null, errorHandler=null) {
     let endpoint = '/items/'
     let alertMessage = {
         message: 'Item adicionado à sacola',
@@ -66,6 +66,8 @@ export function postItem(setAppState, item, handler=null) {
         })
         handler && handler()
     }).catch(() => {
+        setAppState((prevState) => { return {...prevState, isLoading: false}})
+        errorHandler && errorHandler()
         return alertErrorMessage('Item com rentabilidade ruim.')
     })
 }
@@ -100,6 +102,7 @@ export function updateItem(setAppState, item, handler) {
         handler()
     }).catch((error) => {
         let message = error.response.data
+        setAppState((prevState) => { return {...prevState, isLoading: false}})
         return alertErrorMessage(message)
     })
 }
