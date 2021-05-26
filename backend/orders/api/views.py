@@ -28,7 +28,9 @@ class CurrentClientOrderAPIView(RetrieveAPIView):
     serializer_class = OrderSerializer
 
     def get(self, request, client_pk, *args, **kwargs):
-        current_order = get_object_or_404(Order, client__pk=client_pk, is_closed=False)
+        current_order = get_object_or_404(Order,
+                                          client__pk=client_pk,
+                                          is_closed=False)
 
         serializer = self.serializer_class(current_order)
         return Response(serializer.data)
