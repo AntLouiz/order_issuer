@@ -23,7 +23,6 @@ def test_instance_fields(client, db):
                        'is_closed',
                        '_state']
 
-    order_dict = {"client": client}
     order = Order.objects.create(client=client)
 
     object_fields = order.__dict__.keys()
