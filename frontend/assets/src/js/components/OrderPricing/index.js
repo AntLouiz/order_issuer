@@ -8,6 +8,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Input from '@material-ui/core/Input';
 import { makeStyles } from '@material-ui/core/styles';
 import integerToBRL from '../../utils';
+import Loader from '../Loader';
 
 
 const useStyles = makeStyles(() => ({
