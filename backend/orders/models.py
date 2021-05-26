@@ -52,6 +52,7 @@ class OrderItem(models.Model):
 
         return rentability
 
+    @property
     def is_bad_rentability(self):
         self.rentability = self.check_rentability()
         return self.rentability == self.BAD

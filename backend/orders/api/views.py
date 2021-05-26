@@ -75,7 +75,7 @@ class OrderItemViewSet(viewsets.ModelViewSet):
         item = OrderItem.objects.get(pk=pk)
         item.price = data['price']
         item.quantity = data['quantity']
-        if item.is_bad_rentability():
+        if item.is_bad_rentability:
             return Response("Item com rentabilidade ruim", 400)
 
         return super().update(request, pk, *args, **kwargs)
