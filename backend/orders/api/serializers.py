@@ -1,4 +1,3 @@
-from django.db.models import F
 from rest_framework import serializers
 from backend.products.api.serializers import ProductSerializer
 from backend.orders.models import OrderItem, Order
@@ -6,9 +5,14 @@ from backend.orders.models import OrderItem, Order
 
 class OrderSerializer(serializers.ModelSerializer):
     updated_at = serializers.DateTimeField(read_only=True)
+
     class Meta:
         model = Order
-        fields = ['id', 'client', 'created_at', 'updated_at', 'is_closed']
+        fields = ['id',
+                  'client',
+                  'created_at',
+                  'updated_at',
+                  'is_closed']
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
@@ -16,7 +20,13 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OrderItem
-        fields = ['id', 'product', 'productItem', 'price', 'quantity', 'rentability', 'order']
+        fields = ['id',
+                  'product',
+                  'productItem',
+                  'price',
+                  'quantity',
+                  'rentability',
+                  'order']
 
     def create(self, validated_data):
         order_item = OrderItem(**validated_data)
@@ -34,7 +44,13 @@ class ClientOrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ['id', 'client', 'created_at', 'updated_at', 'is_closed', 'items', 'subtotal']
+        fields = ['id',
+                  'client',
+                  'created_at',
+                  'updated_at',
+                  'is_closed',
+                  'items',
+                  'subtotal']
 
     def get_items(self, obj):
         queryset = OrderItem.objects.filter(order=obj.pk)
@@ -44,5 +60,5 @@ class ClientOrderSerializer(serializers.ModelSerializer):
         return items
 
     def get_subtotal(self, obj):
-        items_subtotals = [item['price'] * item['quantity'] for item in self.get_items(obj)]
-        return sum(items_subtotals)
+        subtotals = [i['price'] * i['quantity'] for i in self.get_items(obj)]
+        return sum(subtotals)
