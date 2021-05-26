@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
     root: {
         position: "absolute",
         background: "#fbfbfb94",
-        paddingTop: "5px"
+        padding: "5px"
     },
     loader: {
         margin: "auto"

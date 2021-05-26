@@ -128,7 +128,7 @@ export default function OrderPricing(props) {
             price: state.confirmedPrice
         }
 
-        setState({isLoading: true})
+        setState({...state, isLoading: true})
 
         handleSubmit(item)
     }
