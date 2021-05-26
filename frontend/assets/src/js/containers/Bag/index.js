@@ -6,7 +6,9 @@ import Grid from '@material-ui/core/Grid'
 import OrderItemCard from '../../components/OrderItemCard'
 import MessageEmpty from '../../components/MessageEmpty';
 import { closeOrder } from '../../api/Orders'
+import DotLoader from '../../components/Loader';
 import integerToBRL from '../../utils';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -38,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Bag(props) {
     const classes = useStyles()
     const {items} = props.appState.currentOrder
+    const {isLoading} = props.appState
     let history = useHistory()
     let itemsList = [];
     let subtotal = 0;
@@ -96,10 +99,16 @@ export default function Bag(props) {
         </Grid>
     )
 
-    return (
-        <Grid container className={classes.root}>
+    let itensBody = (
+        <div>
             {itemsList.length?body: emptyBagMessage}
             {itemsList.length?subtotalSubmit: null}
+        </div>
+    )
+
+    return (
+        <Grid container className={classes.root}>
+            {isLoading? <DotLoader />: itensBody}
         </Grid>
     )
 }

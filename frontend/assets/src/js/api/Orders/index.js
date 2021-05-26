@@ -15,7 +15,7 @@ export function getOrderItems(setAppState, orderId) {
         const items = response.data.reverse()
         setAppState((prevState) => {
             const currentOrder = {...prevState.currentOrder, items: items}
-            return {...prevState, currentOrder: currentOrder}
+            return {...prevState, currentOrder: currentOrder, isLoading: false}
         })
     })
 }

@@ -10,7 +10,7 @@ export function getProducts(setAppState, searchText=null) {
 
     API.get(endpoint).then((response) => {
         const products = response.data;
-        setAppState((prevState) => { return {...prevState, products: products}})
+        setAppState((prevState) => { return {...prevState, products: products, isLoading: false}})
     })
 }
 

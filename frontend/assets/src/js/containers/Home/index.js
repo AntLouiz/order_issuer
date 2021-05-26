@@ -5,6 +5,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Offers from '../../components/Offers';
+import DotLoader from '../../components/Loader';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home(props) {
     const classes = useStyles()
+    const {isLoading} = props.appState
+
+    let offers = <Offers setAppState={props.setAppState} appState={props.appState}/>
 
     return (
         <div className={classes.root}>
@@ -34,7 +38,7 @@ export default function Home(props) {
                     direction="row"
                     justify="center"
                 >
-                    <Offers setAppState={props.setAppState} appState={props.appState}/>
+                    {isLoading? <DotLoader />: offers}
                 </Grid>
             </Container>
         </div>
