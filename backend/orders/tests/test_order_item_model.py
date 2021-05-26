@@ -10,6 +10,24 @@ def order(db):
     return Order.objects.create(client=client)
 
 
+def test_order_item_check_rentability_method(db, order):
+    product_price = 100
+    product = Product.objects.create(name='C3PO', price=product_price)
+
+    order_item = OrderItem(order=order, price=product_price, product=product, quantity=2)
+    rentability = order_item.check_rentability()
+
+    assert rentability == OrderItem.GOOD
+
+
+def test_order_item_is_bad_rentability_property(db, order):
+    product_price = 100
+    product = Product.objects.create(name='C3PO', price=product_price)
+
+    order_item = OrderItem(order=order, price=product_price, product=product, quantity=2)
+    assert order_item.is_bad_rentability is False
+
+
 def test_order_item_great_rentability(db, order):
     product_price = 100
     product = Product.objects.create(name='R2d2', price=product_price)
