@@ -3,14 +3,13 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from backend.products.models import Product
 from backend.orders.models import Order, OrderItem
-from backend.orders.api.serializers import OrderItemSerializer
-from backend.orders.api.views import OrderItemViewSet
 
 
 @pytest.fixture
 def product():
     product = Product(name='R2d2', price=100, pk=1)
     return product
+
 
 @pytest.fixture
 def order_item_url():
@@ -32,18 +31,21 @@ def test_update_order_item(mocker, client, order_item_url, product, item):
     order = Order(pk=1)
 
     url = f"{order_item_url}{order.pk}/"
+    data = {"price": 100, 'quantity': 2, "product": product.pk}
     response = client.patch(url,
-                            data={"price": 100, 'quantity': 2, "product": product.pk},
+                            data=data,
                             content_type='application/json')
     assert response.status_code == 200
 
 
-def test_update_order_item_bad_rentability(mocker, client, order_item_url, product, item):
+def test_update_order_item_bad_rentability(mocker, client,
+                                           order_item_url,
+                                           product, item):
     order = Order(pk=1)
 
     url = f"{order_item_url}{order.pk}/"
-    response = client.patch(url,
-                            data={"price": 1, 'quantity': 2, "product": product.pk},
+    data = {"price": 1, 'quantity': 2, "product": product.pk}
+    response = client.patch(url, data=data,
                             content_type='application/json')
 
     assert response.status_code == 400

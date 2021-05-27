@@ -1,6 +1,5 @@
 import pytest
-from backend.products.models import Product
-from backend.orders.models import Order, OrderItem
+from backend.orders.models import Order
 from backend.clients.models import Client
 
 

@@ -1,5 +1,4 @@
 import pytest
-from django.forms.models import model_to_dict
 from backend.products.models import Product
 from backend.orders.models import Order, OrderItem
 from backend.clients.models import Client
