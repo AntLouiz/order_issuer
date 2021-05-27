@@ -4,20 +4,15 @@ endef
 
 
 update-requirements:
-	$(call step,Upgrading local packages in poetry.lock...)
-	poetry update
+	$(call step,Upgrading local packages in package.lock...)
+	npm update
 
 install-requirements:
 	# Install requirements for a local development environment
-	$(call step,Installing poetry...)
-	pip install poetry
-	$(call step,Installing packages from poetry.lock...)
-	poetry install
-
-generate-requirements:
-	# Export the poetry.lock file in a requirements.txt file format
-	$(call step,Exporting packages from poetry.lock to requirements.txt...)
-	poetry export -o requirements.txt -f requirements.txt --without-hashes
+	$(call step,Installing npm...)
+	pip install npm
+	$(call step,Installing packages from package.lock...)
+	npm install
 
 setup-data:
 	$(call step,Exporting the initial data...)
