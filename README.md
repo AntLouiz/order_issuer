@@ -6,7 +6,7 @@ Outras ferramentas utilizadas:
 - [Pytest](https://docs.pytest.org/en/6.2.x/)
 - [Webpack](https://webpack.js.org/)
 
-Disponível em: [order-issuer.herokuapp.com](order-issuer.herokuapp.com/)
+Disponível em: [order-issuer.herokuapp.com](https://order-issuer.herokuapp.com)
 
 ## Descrição
 Este projeto contém regras de negócios simples para a submissão de pedidos.
