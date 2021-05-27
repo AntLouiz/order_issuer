@@ -1,6 +1,6 @@
 {
   "name": "order_issuer",
-  "description": "Django boilerplate to start new projects.",
+  "description": "Simple project to order products",
   "version": "1.0.0",
   "author": "Luiz",
   "dependencies": {
@@ -19,10 +19,6 @@
     "build": "export API_URL=https://order-issuer.herokuapp.com/api/ && ./node_modules/.bin/webpack --config webpack.config.js --mode=production",
     "watch": "npm run start -- --watch"
   },
-  "bugs": {
-    "url": "https://github.com/dunderlabs/django-boilerplate/issues"
-  },
-  "homepage": "https://github.com/dunderlabs/django-boilerplate#readme",
   "main": "index.js",
   "directories": {
     "test": "tests"
