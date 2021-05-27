@@ -30,6 +30,7 @@ Ao sugerir um preço de um item, será feito uma validação de rentabilidade, q
 Alguns produtos só podem ser vendidos em quantidades múltiplas de um determinado número. Por exemplo, o produto X-Wing só pode ser vendido em múltiplos de 2, por exemplo, 2, 4, 6, 8, etc. Já o produto Lightsaber só pode ser vendido em múltiplos de 5, ou seja, 5, 10, 15, 20 e assim por diante. Produtos que não possuem múltiplos podem ser vendidos​ ​em​ ​qualquer​ ​quantidade.
 
 ## Como rodar localmente
+Faça o clone do projeto utilizando o comando, após isso crie um ambiente virtual para o projeto.
 
 Você deverá fazer uma cópia do arquivo `example.env` mudando o nome da cópia para `.env`. Agora dentro dele, altere os valores das variáveis conforme necessário.
 
