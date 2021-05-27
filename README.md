@@ -1,6 +1,10 @@
 # Order Issuer
 
-Construído utilizando Django Rest Framework + React
+Construído utilizando: [Django Rest Framework](https://www.django-rest-framework.org/) + [React](https://pt-br.reactjs.org/)
+
+Outras ferramentas utilizadas:
+- [Pytest](https://docs.pytest.org/en/6.2.x/)
+- [Webpack](https://webpack.js.org/)
 
 Disponível em: [order-issuer.herokuapp.com](order-issuer.herokuapp.com/)
 
