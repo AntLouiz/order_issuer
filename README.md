@@ -70,5 +70,10 @@ Rodando os testes:
 Pra rodar os testes vai ser tão simples quanto o seguinte:
 
 ```bash
+$ make test
+```
+ou
+
+```bash
 $ pytest
 ```
